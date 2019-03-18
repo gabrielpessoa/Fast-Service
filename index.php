@@ -23,8 +23,8 @@
 		</nav>
 
 		<div class="header-bg">
-			<h2><label>F</label>ast</h2><br>
-			<h3>Service</h3>
+			<h2><label>F</label>ast -</h2><br>
+			<h3><label>S</label>ervice</h3>
 		</div>
 
 			<section>
