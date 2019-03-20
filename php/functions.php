@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
 
 function conexao(){
 	global $conn;
@@ -23,10 +23,12 @@ function addUser($data){
 	$password = $data['password1'];
 	$email = $data['email'];
 	$stmt = rowCount("SELECT * FROM USUARIOS WHERE USER_NOME=?", [$username]) > 0;
+
 	if ($stmt) {
 		$_SESSION['user_exist'] = 1;
 		header('location: register.php');
-		exit();
+		$_SESSION['user_exist'] = $username;
+ 		exit();
 	}
 	$stmt = rowCount("SELECT * FROM USUARIOS WHERE USER_EMAIL=?", [$email]) > 0;
 	if ($stmt) {
@@ -36,9 +38,42 @@ function addUser($data){
 	}
 	else{
 		pdoExec("INSERT INTO USUARIOS SET USER_NOME = ?, USER_SENHA=?, USER_EMAIL=?", [$username, $password, $email]);
+		header('location: login.php');
 	}
-	
-
 }
 
+function login($data){
+	$username = $data['username'];
+	$password = md5($data['password']);
+	$stmt = pdoExec("SELECT * FROM USUARIOS WHERE USER_NOME=?", [$username]);
+
+	if ($stmt->rowCount() > 0) {
+		$dados = $stmt -> fetch();
+		if ($dados['USER_NOME']==$username && $dados['USER_SENHA']!=$password) {
+			echo "<script>alert('Senha incorreta')</script>";
+			header('location: login.php');
+			exit();
+		}
+		else{
+			$_SESSION['userId'] = $dados['USER_ID'];
+			$_SESSION['username'] = $dados['USER_NOME'];
+			$_SESSION['userEmail'] = $dados['USER_EMAIL'];
+			header('location: ../index.php');
+		}
+	}
+}
+
+function isLogged(){
+	if (isset($_SESSION['username'])) {
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function logout(){
+	session_destroy();
+	header('location: /');
+}
 ?>
