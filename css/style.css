@@ -9,9 +9,13 @@ html{
 }
 body{
 	padding: 0;
+	margin: 0;
 	width: 100%;
 	font-family: Oswald;
-	margin-bottom: 80px;
+	background: url("../img/2.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
 }
 
 .content{
@@ -50,7 +54,7 @@ nav ul{
 	text-align: center;
 }
 nav ul li{
-	
+	margin-top: 16px;
 	list-style: none;
 	display: inline-block;
 	font-size: 17px;
@@ -129,10 +133,10 @@ nav  img{
 	max-width: 80%;
 	font-size: 6em;
 }
-h2 label{
+.header-bg h2 label{
 	font-size: 2.7em;
 }
-h3 label{
+.header-bg h3 label{
 	font-size: 2.7em;
 
 }
@@ -164,4 +168,83 @@ label.red{
 }
 section p{
 	font-size: 20px;
+}
+.window{
+	display: none;
+	width: 450px;
+	height: 500px;
+	position: fixed;
+	background: white;
+	top: 0;
+	left: 0;
+	z-index: 9900;
+	padding: 10px;
+	border-radius: 10px;
+}
+#mascara{
+	display: none;
+	position: absolute;
+	background: black;
+	top: 0;
+	left: 0;
+	z-index: 9000;
+}
+.fechar{
+	display: block;
+	text-align: right;
+	font-size: 20px;
+	margin-right: 10px;
+}
+.window h4{
+	text-align: center;
+	font-size: 28px;
+	font-weight: bolder;
+}
+.window p{
+	margin-top: 30px;
+	font-size: 20px;
+}
+.window a{
+	text-decoration: none;
+	color: blue;
+}
+.window button{
+	padding: 10px 15px;
+	cursor: pointer;
+	color: white;
+	background:red;
+	border: none;
+	border-radius: 5px;
+	margin-top: 50px;
+	font-size: 20px;
+	width: 290px;
+	margin-bottom: 20px;
+}
+.window input{
+	border: solid 0.5 #babaca;
+	width: 80%;
+	height: 35px;
+}
+div.cadastro{
+	text-align: center;
+	margin-top: 40px;
+	border: solid 1px;
+	width: 350px;
+	border-radius: 5px;
+	background: white;
+}
+div.cadastro form button{
+	color: white;
+	background: red;
+	border: none;
+	border-radius: 5px;
+	padding: 15px;
+	cursor: pointer;
+	margin-top: 20px;
+	width: 155px;
+}
+
+div.cadastro input{
+	width: 80%;
+	height: 20px;
 }

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
 
 function conexao(){
 	global $conn;
@@ -27,7 +27,6 @@ function addUser($data){
 	if ($stmt) {
 		$_SESSION['user_exist'] = 1;
 		header('location: register.php');
-		$_SESSION['user_exist'] = $username;
  		exit();
 	}
 	$stmt = rowCount("SELECT * FROM USUARIOS WHERE USER_EMAIL=?", [$email]) > 0;
@@ -37,8 +36,9 @@ function addUser($data){
 		exit();
 	}
 	else{
+	    $_SESSION['add_user'] = 1;
 		pdoExec("INSERT INTO USUARIOS SET USER_NOME = ?, USER_SENHA=?, USER_EMAIL=?", [$username, $password, $email]);
-		header('location: login.php');
+		header('location: ../index.php');
 	}
 }
 
@@ -50,8 +50,8 @@ function login($data){
 	if ($stmt->rowCount() > 0) {
 		$dados = $stmt -> fetch();
 		if ($dados['USER_NOME']==$username && $dados['USER_SENHA']!=$password) {
-			echo "<script>alert('Senha incorreta')</script>";
-			header('location: login.php');
+			$_SESSION['password_incorrect'] = 1;
+			header('location: ../index.php');
 			exit();
 		}
 		else{
@@ -60,6 +60,11 @@ function login($data){
 			$_SESSION['userEmail'] = $dados['USER_EMAIL'];
 			header('location: ../index.php');
 		}
+	}
+	else{
+		$_SESSION['user_invalid'] = 1;
+		header('location: ../index.php');
+		exit();
 	}
 }
 
