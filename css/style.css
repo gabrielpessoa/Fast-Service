@@ -229,9 +229,10 @@ div.cadastro{
 	text-align: center;
 	margin-top: 40px;
 	border: solid 1px;
-	width: 350px;
+	width: 450px;
 	border-radius: 5px;
 	background: white;
+	height: 710px;
 }
 div.cadastro form button{
 	color: white;
@@ -243,8 +244,13 @@ div.cadastro form button{
 	margin-top: 20px;
 	width: 155px;
 }
-
+div.cadastro p.primary{
+	margin-top: 20px;
+}
 div.cadastro input{
 	width: 80%;
 	height: 20px;
+}
+div.cadastro form input[type=radio]{
+	float: left;
 }

@@ -1,8 +1,8 @@
 <?php  
 include('functions.php');
-$dados['username'] = $_POST['username'];
-$dados['password1'] = md5($_POST['password1']);
-$dados['email'] = $_POST['email'];
+$dados['username'] = addslashes($_POST['username']);
+$dados['password1'] = addslashes(md5($_POST['password1']));
+$dados['email'] = addslashes($_POST['email']);
 
 if ($_POST['password1']==$_POST['password2']) {
 	addUser($dados);

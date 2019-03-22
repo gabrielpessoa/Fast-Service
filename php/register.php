@@ -38,18 +38,30 @@
 				<label class="red">E-mail já existe</label>
 			<?php endif; unset($_SESSION['email_exist']); ?>
 				
-			<div class="cadastro" style="width: 380px; height: 400px; border: solid 1px #babaca; margin-top: 120px;">
+			<div class="cadastro" style="border: solid 1px #babaca; margin-top: 120px;">
         		
             		
 			<form action="register2.php" method="POST">
-				<br><p>Nome de usuário</p>
+				<p class="primary">Nome</p><br>
+				<input type="text" name="name" placeholder="Digite aqui"><br>
+				<br><p>usuário</p>
 				<input type="text" name="username" id="login" class="fadeIn second" required placeholder="Digite aqui"><br>
 				<br><p>E-mail</p>
 				<input type="text" name="email" id="login" class="fadeIn third" required placeholder="Digite aqui"><br>
-
+				<div>
+				<br><p>Sexo</p><br>
+					<input type="radio" name="usersex" value="masculino" placeholder="Digite aqui">
+					<label>Masculino</label><br>
+					<input type="radio" name="usersex" value="feminino" placeholder="Digite aqui">
+					<label>Feminino<label><br>
+					
+				</div>
+				<br><p>Tipo de conta</p><br>
+				<input type="radio" name="type" value="as" placeholder="Digite aqui">Anunciante<br>
+				<input type="radio" name="type" value="as" placeholder="Digite aqui">Cliente<br>
 				<br><p>Senha</p>
 				<input type="password" name="password1" id="login" class="fadeIn second" required placeholder="Digite aqui"><br>
-				<br><p>Confirme a senha</p>
+				<br><p>Confirmar senha</p>
 				<input type="password" name="password2" id="login" class="fadeIn third" required placeholder="Digite aqui"><br>
 				<button type="submit">Cadastrar</button>
 			</form>
@@ -77,35 +89,6 @@
 		
 	</div>
 
-	<script>
-		$("a[rel=modal]").click(function(e){
-			e.preventDefault();
-			var id = $(this).attr("href");
-			var alturaTela = $(document).height();
-			var larguraTela = $(window).width();
-
-			$("#mascara").css({'width': larguraTela, 'height': alturaTela});
-			$("#mascara").fadeIn(1000);
-			$("#mascara").fadeTo("slow", 0.8);
-
-			var left = ($(window).width()/2) - ($(id).width()/2);
-			var top = ($(window).height()/2) - ($(id).height()/2);
-
-			$(id).css({'left': left, 'top': top});
-			$(id).show();
-
-		});
-
-		$("#mascara").click(function(){
-			$(this).fadeOut("slow");
-			$(".window").fadeOut("slow");
-		});
-		$(".fechar").click(function(e){
-			e.preventDefault();
-			$("#mascara").fadeOut(1000, "linear");
-			$(".window").fadeOut(1000, "linear");
-		});
-	</script>
 	<footer class="rodape">©Copyright 2019</footer>
 </body>
 </html>
