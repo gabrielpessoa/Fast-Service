@@ -19,6 +19,7 @@
                     <li><a href="#">Sobre</a></li>
                     <?php if (isLogged() ){ ?>
                         <li><a href="perfil.php">Minha conta</a></li>
+                        <li><a href="servico.php">Anuciar</a></li>
                         <li><a href="logout.php" class="btn-login">Sair</a></li>
                     <?php } else{ ?>
                     <li><a href="register.php">Registrar-se</a></li>
@@ -32,7 +33,7 @@
                 
                 <form id="tab">
                     <br><p>Nome</p>
-                    <input type="text" value="<?=$_SESSION['username']?>"disabled><br>
+                    <input type="text" value="<?=$_SESSION['userName']?>"disabled><br>
                     <br><p>Email</p>
                     <input type="email" value="<?=$_SESSION['userEmail']?>"disabled><br>
                     <br><p>Contato</p>

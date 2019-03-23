@@ -19,6 +19,7 @@
 				<li><a href="#">Sobre</a></li>
 				<?php if (isLogged() ){ ?>
 					<li><a href="php/perfil.php">Minha conta</a></li>
+					<li><a href="php/servico.php">Anuciar</a></li>
 					<li><a href="php/logout.php" class="btn-login">Sair</a></li>
 				<?php } else{ ?>
 				<li><a href="php/register.php">Registrar-se</a></li>

@@ -20,6 +20,7 @@
 				<li><a href="register.php">Registrar-se</a></li>
 				<?php if (isLogged() ){ ?>
 					<li><a href="perfil.php">Minha conta</a></li>
+					<li><a href="servico.php">Anuciar</a></li>
 					<li><a href="logout.php" class="btn-login">Sair</a></li>
 				<?php } else{ ?>
 				<li><a href="#janela" rel="modal" class="btn-login">Login</a></li>

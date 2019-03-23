@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
 
 function conexao(){
 	global $conn;
@@ -56,7 +56,7 @@ function login($data){
 		}
 		else{
 			$_SESSION['userId'] = $dados['USER_ID'];
-			$_SESSION['username'] = $dados['USER_NOME'];
+			$_SESSION['userName'] = $dados['USER_NOME'];
 			$_SESSION['userEmail'] = $dados['USER_EMAIL'];
 			header('location: ../index.php');
 		}
@@ -69,7 +69,7 @@ function login($data){
 }
 
 function isLogged(){
-	if (isset($_SESSION['username'])) {
+	if (isset($_SESSION['userName'])) {
 		return true;
 	}
 	else{
