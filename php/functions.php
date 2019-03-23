@@ -13,6 +13,21 @@ function pdoExec($prepare, $execute){
 	return $stmt;
 }
 
+function addServico($dados){
+	$nome = $dados['nome'];
+	$tipo = $dados['tipo'];
+	$descricao = $dados['descricao'];
+	$localizacao = $dados['localizacao'];
+	$preco = $dados['preco'];
+	
+	if($dados != ''){
+		pdoExec("INSERT INTO SERVICOS SET SERVICO_NOME=?, SERVICO_TIPO=?, SERVICO_DESCRICAO=?, SERVICO_LOCALIZACAO=?, SERVICO_PRECO=?, SERVICO_USER_ID=?", [$nome, $tipo, $descricao, $localizacao, $preco, $_SESSION['userId']]);
+		header('location: ../index.php');
+	}else{
+		header('location: servico.php');
+	}
+}
+
 function rowCount($prepare, $execute = []){
 	$stmt = pdoExec($prepare, $execute)->rowCount();
 	return $stmt;

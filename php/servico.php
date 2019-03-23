@@ -32,7 +32,7 @@
 			<div class="cadastro" style="border: solid 1px #babaca; margin-top: 120px;">		
                 <form action="servico_proc.php" method="POST">
                     <p class="primary">Nome do Serviço/Produto</p><br>
-                    <input type="text" name="name" placeholder="Digite aqui"><br>
+                    <input type="text" name="nome" class="fadeIn second" placeholder="Digite aqui"><br>
                     <br><p>Tipo</p>
                     <input type="text" name="tipo" class="fadeIn second" required placeholder="Digite aqui"><br>
                     <br><p>Descrição</p>
@@ -40,7 +40,7 @@
                     <br><p>Localização</p><br>
                     <input type="text" name="localizacao" class="fadeIn second" required placeholder="Digite aqui"><br>
                     <br><p>Preço</p>
-                    <input type="text" name="preco" id="login" class="fadeIn second" required placeholder="Digite aqui"><br>
+                    <input type="text" name="preco" class="fadeIn second" required placeholder="Digite aqui"><br>
                     <button type="submit">Cadastrar</button>
                 </form>
 			</div>

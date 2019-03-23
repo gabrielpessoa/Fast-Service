@@ -1,53 +1,116 @@
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.8.0.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: FASTSERVICE
--- ------------------------------------------------------
--- Server version	5.7.25-0ubuntu0.18.04.2
+-- Host: 127.0.0.1
+-- Generation Time: 23-Mar-2019 às 00:57
+-- Versão do servidor: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `USUARIOS`
+-- Database: `fastservice`
 --
 
-DROP TABLE IF EXISTS `USUARIOS`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `USUARIOS` (
-  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `servicos`
+--
+
+CREATE TABLE `servicos` (
+  `SERVICO_ID` int(11) NOT NULL,
+  `SERVICO_NOME` varchar(40) NOT NULL,
+  `SERVICO_TIPO` varchar(40) NOT NULL,
+  `SERVICO_DESCRICAO` varchar(2000) DEFAULT NULL,
+  `SERVICO_LOCALIZACAO` varchar(50) NOT NULL,
+  `SERVICO_PRECO` int(6) NOT NULL,
+  `SERVICO_USER_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `servicos`
+--
+
+INSERT INTO `servicos` (`SERVICO_ID`, `SERVICO_NOME`, `SERVICO_TIPO`, `SERVICO_DESCRICAO`, `SERVICO_LOCALIZACAO`, `SERVICO_PRECO`, `SERVICO_USER_ID`) VALUES
+(2, 'pizza', 'pizzaria', 'melhor pizza da regiao', 'aqui na minha casa', 10, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `USER_ID` int(11) NOT NULL,
   `USER_NOME` varchar(40) NOT NULL,
   `USER_SENHA` varchar(40) NOT NULL,
-  `USER_EMAIL` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`USER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `USER_EMAIL` varchar(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `USUARIOS`
+-- Extraindo dados da tabela `usuarios`
 --
 
-LOCK TABLES `USUARIOS` WRITE;
-/*!40000 ALTER TABLE `USUARIOS` DISABLE KEYS */;
-INSERT INTO `USUARIOS` VALUES (1,'Alessandro0325','1234','alessandrosilva325@gmail.com');
-/*!40000 ALTER TABLE `USUARIOS` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `usuarios` (`USER_ID`, `USER_NOME`, `USER_SENHA`, `USER_EMAIL`) VALUES
+(1, 'Alessandro0325', '1234', 'alessandrosilva325@gmail.com'),
+(2, 'gabriel', '123', 'gabriel'),
+(3, 'rob', '202cb962ac59075b964b07152d234b70', 'asd');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `servicos`
+--
+ALTER TABLE `servicos`
+  ADD PRIMARY KEY (`SERVICO_ID`),
+  ADD KEY `SERVICO_USER_ID` (`SERVICO_USER_ID`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`USER_ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `servicos`
+--
+ALTER TABLE `servicos`
+  MODIFY `SERVICO_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `servicos`
+--
+ALTER TABLE `servicos`
+  ADD CONSTRAINT `SERVICO_USER_ID` FOREIGN KEY (`SERVICO_USER_ID`) REFERENCES `usuarios` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2019-03-17 21:16:57
