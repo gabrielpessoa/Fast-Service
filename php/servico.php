@@ -1,4 +1,10 @@
-<?php include("functions.php"); ?>
+<?php 
+include("functions.php"); 
+if(!isLogged()){
+    header('location: /');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,35 +18,41 @@
 	<center>
 		<div>
             <nav class="black">	
-                <a href="../index.php"><img src="../img/1.jpeg"></a>
+                <a href="../index.php"><img src="../img/3.png"></a>
                 <ul>
                     <li><a href="../index.php">Início</a></li>
                     <li><a href="#">Sobre</a></li>
-                    <li><a href="register.php">Registrar-se</a></li>
-                    <?php if (isLogged() ){ ?>
-                        <li><a href="perfil.php">Minha conta</a></li>
-                        <li><a href="servico.php">Anuciar</a></li>
-                        <li><a href="logout.php" class="btn-login">Sair</a></li>
-                    <?php } else{ ?>
-                    <li><a href="#janela" rel="modal" class="btn-login">Login</a></li>
-                <?php } ?>
+                    <li><a href="perfil.php">Minha conta</a></li>
+                    <li><a href="servico.php">Anunciar</a></li>
+                    <li><a href="logout.php" class="btn-login">Sair</a></li>
                 </ul>
                 
             </nav>
 
 			<label>.</label>
-			<div class="cadastro" style="border: solid 1px #babaca; margin-top: 120px;">		
+			<div class="cadastro">		
                 <form action="servico_proc.php" method="POST">
                     <p class="primary">Nome do Serviço/Produto</p><br>
-                    <input type="text" name="nome" class="fadeIn second" placeholder="Digite aqui"><br>
+                    <input type="text" name="name" placeholder="Digite aqui"><br>
                     <br><p>Tipo</p>
-                    <input type="text" name="tipo" class="fadeIn second" required placeholder="Digite aqui"><br>
+                    <select name="type">
+                        <option disabled>Selecione</option>
+                        <?php 
+                        $stmt = conexao();
+                        $dados = $stmt-> prepare("SELECT * FROM CATEGORIAS");
+                        $dados -> execute();
+                        $resultado = $dados -> fetchAll();
+                        foreach ($resultado as $value) : ?>                            
+                        <option value=<?=$value['CTG_ID'];?> > <?= utf8_encode($value['CTG_NOME']);?> </option>
+                    <?php endforeach; ?>
+                    </select>
                     <br><p>Descrição</p>
-                    <textarea style=" width:365px ; height: 50px; resize: none;" name="descricao" placeholder="Digite aqui" cols="30" rows="10"></textarea><br>
+                    <textarea style=" width:365px ; height: 50px; resize: none;" name="description" placeholder="Digite aqui" cols="30" rows="10"></textarea><br>
                     <br><p>Localização</p><br>
-                    <input type="text" name="localizacao" class="fadeIn second" required placeholder="Digite aqui"><br>
+                    <input type="text" name="location" required placeholder="Digite aqui"><br>
                     <br><p>Preço</p>
-                    <input type="text" name="preco" class="fadeIn second" required placeholder="Digite aqui"><br>
+                    <input type="number" name="price" required placeholder="Digite aqui"><br>
+                    <input type="hidden" name="user_id" value=<?=$_SESSION['userId'];?> >
                     <button type="submit">Cadastrar</button>
                 </form>
 			</div>

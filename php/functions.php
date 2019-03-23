@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
 
 function conexao(){
 	global $conn;
@@ -14,14 +14,15 @@ function pdoExec($prepare, $execute){
 }
 
 function addServico($dados){
-	$nome = $dados['nome'];
-	$tipo = $dados['tipo'];
-	$descricao = $dados['descricao'];
-	$localizacao = $dados['localizacao'];
-	$preco = $dados['preco'];
+	$nome = $dados['name'];
+	$tipo = $dados['type'];
+	$descricao = $dados['description'];
+	$localizacao = $dados['location'];
+	$preco = $dados['price'];
+	$usuario = $dados['user_id'];
 	
-	if($dados != ''){
-		pdoExec("INSERT INTO SERVICOS SET SERVICO_NOME=?, SERVICO_TIPO=?, SERVICO_DESCRICAO=?, SERVICO_LOCALIZACAO=?, SERVICO_PRECO=?, SERVICO_USER_ID=?", [$nome, $tipo, $descricao, $localizacao, $preco, $_SESSION['userId']]);
+	if(!empty($dados)){
+		pdoExec("INSERT INTO SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=?, SRV_USER_ID=?", [$nome, $tipo, $descricao, $localizacao, $preco, $usuario]);
 		header('location: ../index.php');
 	}else{
 		header('location: servico.php');
@@ -66,7 +67,7 @@ function login($data){
 		$dados = $stmt -> fetch();
 		if ($dados['USER_NOME']==$username && $dados['USER_SENHA']!=$password) {
 			$_SESSION['password_incorrect'] = 1;
-			header('location: ../index.php');
+			header('location: ../index.php?i='.$password);
 			exit();
 		}
 		else{

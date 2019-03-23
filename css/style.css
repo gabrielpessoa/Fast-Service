@@ -4,9 +4,7 @@
 	margin: 0;
 	padding: 0;
 }
-html{
-	background: white;
-}
+
 body{
 	padding: 0;
 	margin: 0;
@@ -15,7 +13,7 @@ body{
 	background: url("../img/2.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 100vh;
+	
 }
 
 .content{
@@ -75,9 +73,9 @@ nav ul li a{
 nav  img{
 	margin-left: 45px;
 	float: left;
-	width: 90px;
-	height: 50px;
-	margin-top: 20px;
+	width: 120px;
+	height: 70px;
+	margin-top: 8px;
 	border-radius: 5px;
 	cursor: pointer;
 }
@@ -220,6 +218,9 @@ section p{
 	width: 290px;
 	margin-bottom: 20px;
 }
+.window button:hover{
+	background: #FA5858;
+}
 .window input{
 	border: solid 0.5 #babaca;
 	width: 80%;
@@ -232,6 +233,9 @@ div.cadastro{
 	width: 450px;
 	border-radius: 5px;
 	background: white;
+	border: solid 1px #babaca; 
+	margin-top: 120px;
+	margin-bottom: 60px;
 }
 div.cadastro form button{
 	color: white;
@@ -241,7 +245,11 @@ div.cadastro form button{
 	padding: 15px;
 	cursor: pointer;
 	margin-top: 20px;
-	width: 155px;
+	width: 80%;
+	margin-bottom: 30px;
+}
+div.cadastro form button:hover{
+	background: #FA5858;
 }
 div.cadastro p.primary{
 	margin-top: 20px;
@@ -252,4 +260,8 @@ div.cadastro input{
 }
 div.cadastro form input[type=radio]{
 	float: left;
+}
+div.cadastro select{
+	width: 80%;
+	height: 27px;
 }

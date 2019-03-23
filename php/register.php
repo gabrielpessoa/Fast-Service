@@ -1,4 +1,9 @@
-<?php include("functions.php"); ?>
+<?php 
+include("functions.php"); 
+if (isLogged()) {
+	header('location: /');
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,18 +18,12 @@
 		<div>
 		<nav class="black">
 			
-			<a href="../index.php"><img src="../img/1.jpeg"></a>
+			<a href="../index.php"><img src="../img/3.png"></a>
 			<ul>
 				<li><a href="../index.php">Início</a></li>
 				<li><a href="#">Sobre</a></li>
 				<li><a href="register.php">Registrar-se</a></li>
-				<?php if (isLogged() ){ ?>
-					<li><a href="perfil.php">Minha conta</a></li>
-					<li><a href="servico.php">Anuciar</a></li>
-					<li><a href="logout.php" class="btn-login">Sair</a></li>
-				<?php } else{ ?>
 				<li><a href="#janela" rel="modal" class="btn-login">Login</a></li>
-			<?php } ?>
 			</ul>
 			
 		</nav>
@@ -46,9 +45,9 @@
 				<p class="primary">Nome</p><br>
 				<input type="text" name="name" placeholder="Digite aqui"><br>
 				<br><p>usuário</p>
-				<input type="text" name="username" id="login" class="fadeIn second" required placeholder="Digite aqui"><br>
+				<input type="text" name="username" required placeholder="Digite aqui"><br>
 				<br><p>E-mail</p>
-				<input type="text" name="email" id="login" class="fadeIn third" required placeholder="Digite aqui"><br>
+				<input type="text" name="email" required placeholder="Digite aqui"><br>
 				<div>
 				<br><p>Sexo</p><br>
 					<input type="radio" name="usersex" value="masculino" placeholder="Digite aqui">
@@ -61,9 +60,9 @@
 				<input type="radio" name="type" value="as" placeholder="Digite aqui">Anunciante<br>
 				<input type="radio" name="type" value="as" placeholder="Digite aqui">Cliente<br>
 				<br><p>Senha</p>
-				<input type="password" name="password1" id="login" class="fadeIn second" required placeholder="Digite aqui"><br>
+				<input type="password" name="password1" required placeholder="Digite aqui"><br>
 				<br><p>Confirmar senha</p>
-				<input type="password" name="password2" id="login" class="fadeIn third" required placeholder="Digite aqui"><br>
+				<input type="password" name="password2"  required placeholder="Digite aqui"><br>
 				<button type="submit">Cadastrar</button>
 			</form>
 

@@ -13,13 +13,13 @@
 	<div>
 		<nav>
 			
-			<a href="index.php"><img src="img/1.jpeg"></a>
+			<a href="index.php"><img src="img/3.png"></a>
 			<ul>
 				<li><a href="#">Início</a></li>
 				<li><a href="#">Sobre</a></li>
 				<?php if (isLogged() ){ ?>
 					<li><a href="php/perfil.php">Minha conta</a></li>
-					<li><a href="php/servico.php">Anuciar</a></li>
+					<li><a href="php/servico.php">Anunciar</a></li>
 					<li><a href="php/logout.php" class="btn-login">Sair</a></li>
 				<?php } else{ ?>
 				<li><a href="php/register.php">Registrar-se</a></li>

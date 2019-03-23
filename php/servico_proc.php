@@ -1,11 +1,12 @@
 <?php  
 include('functions.php');
 
-$dados['name'] = addslashes($_POST['nome']);
-$dados['tipo'] = addslashes($_POST['tipo']);
-$dados['descricao'] = addslashes($_POST['descricao']);
-$dados['localizacao'] = addslashes($_POST['localizacao']);
-$dados['preco'] = addslashes($_POST['preco']);
+$dados['name'] = addslashes($_POST['name']);
+$dados['type'] = addslashes($_POST['type']);
+$dados['description'] = addslashes($_POST['description']);
+$dados['location'] = addslashes($_POST['location']);
+$dados['price'] = addslashes($_POST['price']);
+$dados['user_id'] = addslashes($_POST['user_id']);
 
 addServico($dados);
 
