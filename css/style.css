@@ -10,10 +10,9 @@ body{
 	margin: 0;
 	width: 100%;
 	font-family: Oswald;
-	background: url("../img/2.jpg");
+	background: url("../img/8.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	
 }
 
 .content{
@@ -104,7 +103,7 @@ nav  img{
 	left: 0;
 	width: 100%;
 	height: 100vh;
-	background: url('../img/2.jpg');
+	
 	background-size: cover;
 	background-attachment: fixed;
 	display: flex;
@@ -265,3 +264,32 @@ div.cadastro select{
 	width: 80%;
 	height: 27px;
 }
+div.busca {
+	position: relative;
+	margin-top: 120px;
+	width: 50%;
+}
+div.busca button{
+	position: absolute;
+	right: 0;
+	top: 8px;
+	padding: 4px 16px;
+	font-size: 20px;
+	background: none;
+	border: none;
+	outline: none;
+}
+div.busca i:hover{
+	color: blue;
+	cursor: pointer;
+}
+div.busca form input{
+	width: 100%;
+	height: 40px;
+	border-radius: 25px;
+	border: solid 2px #babaca;
+	text-align: center;
+	outline: none;
+	overflow: hidden;
+}
+

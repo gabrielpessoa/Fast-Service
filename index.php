@@ -6,12 +6,14 @@
 	<title>Fast-Service</title>
 	
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="demo-files/demo.css">
 	<script src="js/jquery.js"></script>
 	<script src="js/functions.js"></script>
+	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
 </head>
-<body style="background: transparent;">
+<body>
 	<div>
-		<nav>
+		<nav class="black">
 			
 			<a href="index.php"><img src="img/3.png"></a>
 			<ul>
@@ -28,11 +30,21 @@
 			</ul>
 			
 		</nav>
+	</div>
 
-		<div class="header-bg">
+		<center>
+			<div class="header-bg">
 			<h2><label>F</label>ast -</h2><br>
 			<h3><label>S</label>ervice</h3>
 		</div>
+			<br><div class="busca">
+				<form action="">
+					<input type="text" placeholder="  Estou procurando por..." required>
+
+					<button type="submit"><i class="icon icon-search" ></i></button>
+				</form>
+			</div>
+		</center>
 			<?php 
 			if (isset($_SESSION['user_invalid'])) {
 				echo "<script>alert('Usuário não existe')</script>";
@@ -47,13 +59,8 @@
 				unset($_SESSION['add_user']);
 			}
 			?>
-		<section>
-			<h2>Fast-Service</h2>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PcageMaker including versions of Lorem Ipsum.</p>
-		</section>
-	</div>
-	
+		
+				
 	<div class="window" id="janela">
 		<center>
 			<a href="#" class="fechar">X</a>
