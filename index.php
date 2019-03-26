@@ -10,6 +10,9 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/functions.js"></script>
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
 </head>
 <body>
 	<div>
@@ -34,9 +37,9 @@
 
 		<center>
 			<div class="header-bg">
-			<h2><label>F</label>ast -</h2><br>
-			<h3><label>S</label>ervice</h3>
-		</div>
+				<h2><label>F</label>ast -</h2><br>
+				<h3><label>S</label>ervice</h3>
+			</div>
 			<br><div class="busca">
 				<form action="">
 					<input type="text" placeholder="  Estou procurando por..." required>
@@ -44,14 +47,15 @@
 					<button type="submit"><i class="icon icon-search" ></i></button>
 
 					<ul class="icons-busca">
-						<?php 
-						$stmt = conexao();
-						$dados = $stmt-> prepare("SELECT * FROM CATEGORIAS");
-						$dados -> execute();
-						$resultado = $dados -> fetchAll();
-						foreach ($resultado as $value) { ?>
-							<li><i class="icon icon-search"></i><?= utf8_encode($value['CTG_NOME']);?></li>
-						<?php } ?>	
+						<li class="icons"><i class="fas fa-home"></i><p>Imóveis</p></li>
+					    <li class="icons"><i class="fas fa-tshirt"></i>Moda e Beleza</li>
+					    <li class="icons"><i class="fas fa-industry"></i>Agro e Indústria</li>
+					    <li class="icons"><i class="fas fa-paw"></i>Animais de Estimação</li>
+					    <li class="icons"><i class="fas fa-volleyball-ball"></i>Esportes e Lazer</li>
+					    <li class="icons"><i class="fas fa-mortar-pestle"></i>Culinária</li>
+					    <li class="icons"><i class="fas fa-mobile-alt"></i>Eletrônicos e Celulares</li>
+					    <li class="icons"><i class="fas fa-guitar"></i>Músicas e Hobbies</li>
+					    <li class="icons"><i class="fas fa-th-list"></i>Todas as Categorias</li>
        				</ul>
 				</form>
 			</div>
