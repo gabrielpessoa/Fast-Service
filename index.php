@@ -42,6 +42,17 @@
 					<input type="text" placeholder="  Estou procurando por..." required>
 
 					<button type="submit"><i class="icon icon-search" ></i></button>
+
+					<ul class="icons-busca">
+						<?php 
+						$stmt = conexao();
+						$dados = $stmt-> prepare("SELECT * FROM CATEGORIAS");
+						$dados -> execute();
+						$resultado = $dados -> fetchAll();
+						foreach ($resultado as $value) { ?>
+							<li><i class="icon icon-search"></i><?= utf8_encode($value['CTG_NOME']);?></li>
+						<?php } ?>	
+       				</ul>
 				</form>
 			</div>
 		</center>

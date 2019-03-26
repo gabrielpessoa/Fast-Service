@@ -293,3 +293,12 @@ div.busca form input{
 	overflow: hidden;
 }
 
+.icons-busca{
+	list-style: none;
+	display: flex;
+}
+.icons-busca li{
+	padding: 5px;
+	
+
+}
