@@ -292,13 +292,26 @@ div.busca form input{
 	outline: none;
 	overflow: hidden;
 }
-
+a{
+	text-decoration: none;
+}
 .icons-busca{
 	list-style: none;
 	display: flex;
 	margin-top: 15px;
 }
 .icons-busca li{
+	padding: 5px;
+}
+.icons-busca li a{
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+.icons-busca li a:hover{
+	text-decoration: underline;
+}
+.icons-busca a i{
 	padding: 5px;
 }
 .icons{
@@ -308,7 +321,39 @@ div.busca form input{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 100px; 
-	height: 75px;
+	width: 105px; 
+	height: 85px;
 	padding: 15px;
+}
+div.search {
+	margin-top: 60px;
+	text-align: center;
+	width: 70%;
+	height: 100vh;
+	border-radius: 15px;
+	background: white;
+	margin-bottom: 30px;
+}
+div.search div.products{
+	margin-top: 20px;
+	width: 400px;
+	height: 210px;
+	text-align: center;
+	border: solid 1px #babaca;
+	border-radius: 5px;
+	
+}
+div.products a{
+	margin-top: -60px;
+	cursor: pointer;
+}
+div.products a p{
+	margin-top: -70px;
+	margin-left: 140px;
+}
+div.search div.products div.foto{
+	width: 140px;
+	height: 208px;
+	border: solid 1px #babaca;
+	border-radius: 5px;
 }

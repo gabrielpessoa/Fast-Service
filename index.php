@@ -16,11 +16,11 @@
 </head>
 <body>
 	<div>
-		<nav class="black">
+		<nav>
 			
 			<a href="index.php"><img src="img/3.png"></a>
 			<ul>
-				<li><a href="#">Início</a></li>
+				<li><a href="/">Início</a></li>
 				<li><a href="#">Sobre</a></li>
 				<?php if (isLogged() ){ ?>
 					<li><a href="php/perfil.php">Minha conta</a></li>
@@ -41,21 +41,20 @@
 				<h3><label>S</label>ervice</h3>
 			</div>
 			<br><div class="busca">
-				<form action="">
-					<input type="text" placeholder="  Estou procurando por..." required>
-
+				<form action="php/search.php" method="GET">
+					<input type="text" name="search" placeholder="  Estou procurando por..." required>
 					<button type="submit"><i class="icon icon-search" ></i></button>
 
 					<ul class="icons-busca">
-						<li class="icons"><i class="fas fa-home"></i><p>Imóveis</p></li>
-					    <li class="icons"><i class="fas fa-tshirt"></i>Moda e Beleza</li>
-					    <li class="icons"><i class="fas fa-industry"></i>Agro e Indústria</li>
-					    <li class="icons"><i class="fas fa-paw"></i>Animais de Estimação</li>
-					    <li class="icons"><i class="fas fa-volleyball-ball"></i>Esportes e Lazer</li>
-					    <li class="icons"><i class="fas fa-mortar-pestle"></i>Culinária</li>
-					    <li class="icons"><i class="fas fa-mobile-alt"></i>Eletrônicos e Celulares</li>
-					    <li class="icons"><i class="fas fa-guitar"></i>Músicas e Hobbies</li>
-					    <li class="icons"><i class="fas fa-th-list"></i>Todas as Categorias</li>
+						<li class="icons"> <a href=""><i class="fas fa-home"></i>Imóveis</a></li>
+					    <li class="icons"> <a href=""><i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
+					    <li class="icons"> <a href=""><i class="fas fa-industry"></i>Agro e Indústria </a></li>
+					    <li class="icons"> <a href=""><i class="fas fa-paw"></i>Animais de Estimação </a></li>
+					    <li class="icons"> <a href=""><i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
+					    <li class="icons"> <a href=""><i class="fas fa-mortar-pestle"></i>Culinária </a></li>
+					    <li class="icons"> <a href=""><i class="fas fa-mobile-alt"></i>Eletrônicos e Celulares </a></li>
+					    <li class="icons"> <a href=""><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
+					    <li class="icons"> <a href=""><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
        				</ul>
 				</form>
 			</div>
