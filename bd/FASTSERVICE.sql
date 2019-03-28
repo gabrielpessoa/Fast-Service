@@ -19,6 +19,12 @@
 -- Table structure for table `CATEGORIAS`
 --
 
+DROP DATABASE IF EXISTS FASTSERVICE;
+CREATE DATABASE FASTSERVICE;
+
+USE FASTSERVICE;
+
+
 DROP TABLE IF EXISTS `CATEGORIAS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;

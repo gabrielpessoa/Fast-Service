@@ -357,3 +357,12 @@ div.search div.products div.foto{
 	border: solid 1px #babaca;
 	border-radius: 5px;
 }
+.sobre p{
+	text-align: justify;
+	width: 780px;
+	font-size: 25px;
+	color: rgb(255 255 255);
+}
+.sobre{
+	margin-top: 240px;
+}

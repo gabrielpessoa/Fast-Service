@@ -21,7 +21,8 @@
 			<a href="index.php"><img src="../img/3.png"></a>
 			<ul>
 				<li><a href="/">Início</a></li>
-				<li><a href="#">Sobre</a></li>
+				<li><a href="sobre.php">Sobre</a></li>
+				<li><a href="ajuda.php">Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
 					<li><a href="perfil.php">Minha conta</a></li>
 					<li><a href="servico.php">Anunciar</a></li>

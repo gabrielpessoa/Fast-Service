@@ -21,7 +21,8 @@
 			<a href="index.php"><img src="../img/3.png"></a>
 			<ul>
 				<li><a href="/">Início</a></li>
-				<li><a href="#">Sobre</a></li>
+				<li><a href="sobre.php">Sobre</a></li>
+				<li><a href="ajuda.php">Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
 					<li><a href="perfil.php">Minha conta</a></li>
 					<li><a href="servico.php">Anunciar</a></li>
@@ -37,34 +38,16 @@
 
 	<br>
 	<center>
-		<div class="busca">
-			<form action="">
-				<input type="text" placeholder="  Estou procurando por..." required>
-
-				<button type="submit"><i class="icon icon-search" ></i></button>
-
-				<ul class="icons-busca">
-					<li class="icons"> <a href=""><i class="fas fa-home"></i>Imóveis</a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-industry"></i>Agro e Indústria </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-paw"></i>Animais de Estimação </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-mortar-pestle"></i>Culinária </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-mobile-alt"></i>Eletrônicos e Celulares </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
-				</ul>
-			</form>
+		<div class="header-bg">
+		<h2><label>F</label>ast -</h2><br>
+		<h3><label>S</label>ervice</h3>
 		</div>
-
-		<div>
-			   <p>Essa plataforma está sendo desenvolvida com o objetivo de facilitar a divulgação do trabalho realizado pelas pessoas de nossa cidade. 
-			   Através dessa plataforma visamos ajudar a comunidade, a oferecer serviços e agendamentos online, disponibilizando um serviço de forma
-				simples e mais rápida por profissionais que oferecem atendimento à domicílio e, divulgarão seus produtos online.</p>
-
-		</div>
-
-		</center>
+			<div class="sobre">
+				   <p>Essa plataforma está sendo desenvolvida com o objetivo de facilitar a divulgação do trabalho realizado pelas pessoas de nossa cidade. 
+				   Através dessa plataforma visamos ajudar a comunidade, a oferecer serviços e agendamentos online, disponibilizando um serviço de forma
+					simples e mais rápida por profissionais que oferecem atendimento à domicílio e, divulgarão seus produtos online.</p>
+			</div>
+	</center>
 
 	<div class="window" id="janela">
 		<center>
