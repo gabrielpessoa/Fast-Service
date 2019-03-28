@@ -45,7 +45,7 @@
 			<div class="sobre">
 				   <p>Essa plataforma está sendo desenvolvida com o objetivo de facilitar a divulgação do trabalho realizado pelas pessoas de nossa cidade. 
 				   Através dessa plataforma visamos ajudar a comunidade, a oferecer serviços e agendamentos online, disponibilizando um serviço de forma
-					simples e mais rápida por profissionais que oferecem atendimento à domicílio e, divulgarão seus produtos online.</p>
+					simples e rápida por profissionais que oferecem atendimento à domicílio. </p>
 			</div>
 	</center>
 

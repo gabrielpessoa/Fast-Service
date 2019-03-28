@@ -366,3 +366,21 @@ div.search div.products div.foto{
 .sobre{
 	margin-top: 240px;
 }
+
+.ajuda {
+	text-align: justify;
+	margin: 150px auto;
+	width: 400px;
+	/*background-color: red;*/
+	font-size: 19px;
+	color: rgb(255 255 255);
+	z-index: 5;
+}
+.ajuda h1{
+	margin-left:-25px;
+}	
+@media screen and(max-width: 500px){
+	body{
+		background-color: red;
+	}
+}
