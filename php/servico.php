@@ -33,7 +33,7 @@ if(!isLogged()){
 			<label>.</label>
 			<div class="cadastro">		
                 <form action="servico_proc.php" method="POST">
-                    <p class="primary">Nome do Serviço/Produto</p><br>
+                    <p class="primary">Nome do Serviço</p><br>
                     <input type="text" name="name" placeholder="Digite aqui"><br>
                     <br><p>Tipo</p>
                     <select name="type">
@@ -48,8 +48,8 @@ if(!isLogged()){
                     <?php endforeach; ?>
                     </select>
                     <br><p>Descrição</p>
-                    <textarea style=" width:365px ; height: 50px; resize: none;" name="description" placeholder="Digite aqui" cols="30" rows="10"></textarea><br>
-                    <br><p>Localização</p><br>
+                    <textarea style=" width:80% ; height: 70px; resize: none;" name="description" placeholder="Digite aqui"></textarea><br>
+                    <br><p>Cidade</p><br>
                     <input type="text" name="location" required placeholder="Digite aqui"><br>
                     <br><p>Preço</p>
                     <input type="number" name="price" required placeholder="Digite aqui"><br>

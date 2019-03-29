@@ -6,9 +6,9 @@
 	<title>Fast-Service</title>
 	
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="demo-files/demo.css">
 	<script src="js/jquery.js"></script>
 	<script src="js/functions.js"></script>
+	<link rel="stylesheet" type="text/css" href="demo-files/demo.css">
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
@@ -46,18 +46,14 @@
 					<input type="text" name="search" placeholder="  Estou procurando por..." required>
 					<button type="submit"><i class="icon icon-search" ></i></button>
 
+				</form>
 					<ul class="icons-busca">
-						<li class="icons"> <a href=""><i class="fas fa-home"></i>Imóveis</a></li>
 					    <li class="icons"> <a href=""><i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
-					    <li class="icons"> <a href=""><i class="fas fa-industry"></i>Agro e Indústria </a></li>
-					    <li class="icons"> <a href=""><i class="fas fa-paw"></i>Animais de Estimação </a></li>
 					    <li class="icons"> <a href=""><i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
 					    <li class="icons"> <a href=""><i class="fas fa-mortar-pestle"></i>Culinária </a></li>
-					    <li class="icons"> <a href=""><i class="fas fa-mobile-alt"></i>Eletrônicos e Celulares </a></li>
 					    <li class="icons"> <a href=""><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
 					    <li class="icons"> <a href=""><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
        				</ul>
-				</form>
 			</div>
 		</center>
 			<?php 

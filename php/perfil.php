@@ -17,7 +17,7 @@ if (!isLogged()) {
 <body>
     <center>
         <div>
-            <nav class="black">
+            <nav>
                 
                 <a href="../index.php"><img src="../img/3.png"></a>
                 <ul>
@@ -36,10 +36,12 @@ if (!isLogged()) {
                 <form id="tab">
                     <br><p>Nome</p>
                     <input type="text" value="<?=$_SESSION['userName']?>"disabled><br>
+                    <br><p>Usuário</p>
+                    <input type="text" value="<?=$_SESSION['userLogin']?>"disabled><br>
                     <br><p>Email</p>
                     <input type="email" value="<?=$_SESSION['userEmail']?>"disabled><br>
                     <br><p>Contato</p>
-                    <input type="email" value="...."disabled><br>
+                    <input type="email" value="<?=$_SESSION['userFone']?>"disabled><br>
                 </form>
             </div>
         </div>

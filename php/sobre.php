@@ -4,15 +4,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>Fast-Service</title>
-	
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../demo-files/demo.css">
 	<script src="../js/jquery.js"></script>
 	<script src="../js/functions.js"></script>
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-
 </head>
 <body>
 	<div>
@@ -38,14 +35,13 @@
 
 	<br>
 	<center>
-		<div class="header-bg">
-		<h2><label>F</label>ast -</h2><br>
-		<h3><label>S</label>ervice</h3>
-		</div>
+		
 			<div class="sobre">
-				   <p>Essa plataforma está sendo desenvolvida com o objetivo de facilitar a divulgação do trabalho realizado pelas pessoas de nossa cidade. 
-				   Através dessa plataforma visamos ajudar a comunidade, a oferecer serviços e agendamentos online, disponibilizando um serviço de forma
-					simples e rápida por profissionais que oferecem atendimento à domicílio. </p>
+			   <p>
+			   	Essa plataforma está sendo desenvolvida com o objetivo de facilitar a divulgação do trabalho realizado pelas pessoas de nossa cidade. 
+			    Através dessa plataforma visamos ajudar a comunidade, a oferecer serviços e agendamentos online, disponibilizando um serviço de forma
+				simples e rápida por profissionais que oferecem atendimento à domicílio. 
+				</p>
 			</div>
 	</center>
 

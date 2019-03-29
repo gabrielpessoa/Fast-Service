@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
 
 function conexao(){
 	global $conn;
@@ -35,10 +35,12 @@ function rowCount($prepare, $execute = []){
 }
 
 function addUser($data){
+	$name = $data['name'];
 	$username = $data['username'];
 	$password = $data['password1'];
 	$email = $data['email'];
-	$stmt = rowCount("SELECT * FROM USUARIOS WHERE USER_NOME=?", [$username]) > 0;
+	$fone = $data['fone'];
+	$stmt = rowCount("SELECT * FROM USUARIOS WHERE USER_USUARIO=?", [$username]) > 0;
 
 	if ($stmt) {
 		$_SESSION['user_exist'] = 1;
@@ -53,7 +55,7 @@ function addUser($data){
 	}
 	else{
 	    $_SESSION['add_user'] = 1;
-		pdoExec("INSERT INTO USUARIOS SET USER_NOME = ?, USER_SENHA=?, USER_EMAIL=?", [$username, $password, $email]);
+		pdoExec("INSERT INTO USUARIOS SET USER_NOME = ?, USER_USUARIO =?, USER_SENHA=?, USER_EMAIL=?, USER_TELEFONE=?", [$name, $username, $password, $email, $fone]);
 		header('location: ../index.php');
 	}
 }
@@ -61,19 +63,21 @@ function addUser($data){
 function login($data){
 	$username = $data['username'];
 	$password = md5($data['password']);
-	$stmt = pdoExec("SELECT * FROM USUARIOS WHERE USER_NOME=?", [$username]);
+	$stmt = pdoExec("SELECT * FROM USUARIOS WHERE USER_USUARIO=?", [$username]);
 
 	if ($stmt->rowCount() > 0) {
 		$dados = $stmt -> fetch();
-		if ($dados['USER_NOME']==$username && $dados['USER_SENHA']!=$password) {
+		if ($dados['USER_USUARIO']==$username && $dados['USER_SENHA']!=$password) {
 			$_SESSION['password_incorrect'] = 1;
 			header('location: ../index.php?i='.$password);
 			exit();
 		}
 		else{
 			$_SESSION['userId'] = $dados['USER_ID'];
-			$_SESSION['userName'] = $dados['USER_NOME'];
+			$_SESSION['userName'] = $dados['USER_USUARIO'];
 			$_SESSION['userEmail'] = $dados['USER_EMAIL'];
+			$_SESSION['userFone'] = $dados['USER_TELEFONE'];
+			$_SESSION['userLogin'] = $dados['USER_NOME'];
 			header('location: ../index.php');
 		}
 	}

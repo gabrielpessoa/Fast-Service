@@ -30,13 +30,13 @@ if (isLogged()) {
 		</nav>
 			<label>.</label>
 			<?php if (isset($_SESSION['user_exist'])) : ?>
-				<label class="red">Usuário já existe</label>
+				<script> alert("Usuário já existe"); </script>
 			<?php endif; unset($_SESSION['user_exist']); ?>
 			<?php if (isset($_SESSION['passwords_different'])) : ?>
-				<label class="red">Senhas diferentes</label>
+				<script> alert("Senhas diferentes"); </script>
 			<?php endif; unset($_SESSION['passwords_different']); ?>
 			<?php if (isset($_SESSION['email_exist'])) : ?>
-				<label class="red">E-mail já existe</label>
+				<script> alert("E-mail já está em uso"); </script>
 			<?php endif; unset($_SESSION['email_exist']); ?>
 				
 			<div class="cadastro" style="border: solid 1px #babaca; margin-top: 120px;">
@@ -45,21 +45,12 @@ if (isLogged()) {
 			<form action="register2.php" method="POST">
 				<p class="primary">Nome</p><br>
 				<input type="text" name="name" placeholder="Digite aqui"><br>
-				<br><p>usuário</p>
+				<br><p>Usuário</p>
 				<input type="text" name="username" required placeholder="Digite aqui"><br>
 				<br><p>E-mail</p>
 				<input type="text" name="email" required placeholder="Digite aqui"><br>
-				<div>
-				<br><p>Sexo</p><br>
-					<input type="radio" name="usersex" value="masculino" placeholder="Digite aqui">
-					<label>Masculino</label><br>
-					<input type="radio" name="usersex" value="feminino" placeholder="Digite aqui">
-					<label>Feminino<label><br>
-					
-				</div>
-				<br><p>Tipo de conta</p><br>
-				<input type="radio" name="type" value="as" placeholder="Digite aqui">Anunciante<br>
-				<input type="radio" name="type" value="as" placeholder="Digite aqui">Cliente<br>
+				<br><p>Telefone</p>
+				<input type="text" name="fone" required placeholder="Digite aqui"><br>
 				<br><p>Senha</p>
 				<input type="password" name="password1" required placeholder="Digite aqui"><br>
 				<br><p>Confirmar senha</p>

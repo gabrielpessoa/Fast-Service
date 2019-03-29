@@ -45,13 +45,9 @@
 				<button type="submit"><i class="icon icon-search" ></i></button>
 
 				<ul class="icons-busca">
-					<li class="icons"> <a href=""><i class="fas fa-home"></i>Imóveis</a></li>
 				    <li class="icons"> <a href=""><i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-industry"></i>Agro e Indústria </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-paw"></i>Animais de Estimação </a></li>
 				    <li class="icons"> <a href=""><i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
 				    <li class="icons"> <a href=""><i class="fas fa-mortar-pestle"></i>Culinária </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-mobile-alt"></i>Eletrônicos e Celulares </a></li>
 				    <li class="icons"> <a href=""><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
 				    <li class="icons"> <a href=""><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
 				</ul>

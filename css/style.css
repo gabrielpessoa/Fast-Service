@@ -255,14 +255,14 @@ div.cadastro p.primary{
 }
 div.cadastro input{
 	width: 80%;
-	height: 20px;
+	height: 27px;
 }
 div.cadastro form input[type=radio]{
-	float: left;
+	text-align: justify;
 }
 div.cadastro select{
-	width: 80%;
-	height: 27px;
+	width: 81%;
+	height: 30px;
 }
 div.busca {
 	position: relative;
@@ -295,10 +295,11 @@ div.busca form input{
 a{
 	text-decoration: none;
 }
-.icons-busca{
+div.busca .icons-busca{
 	list-style: none;
 	display: flex;
 	margin-top: 15px;
+	justify-content: center;
 }
 .icons-busca li{
 	padding: 5px;
