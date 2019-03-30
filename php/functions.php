@@ -101,4 +101,13 @@ function logout(){
 	session_destroy();
 	header('location: /');
 }
+
+function addComentario($data){
+	$comentario = $data['comentario'];
+	$usuario = $_SESSION['userId'];
+	$servico = $data['id_servico'];
+	$stmt = pdoExec("INSERT INTO COMENTARIOS SET CMT_COMENTARIO = ?, CMT_USER_ID = ?, CMT_SRV_ID",[$comentario, $usuario, $servico]);
+	header('location:'.$_SERVER['HTTP_REFERER']);
+
+}
 ?>

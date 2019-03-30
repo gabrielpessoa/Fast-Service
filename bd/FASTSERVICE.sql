@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `id9042161_fastservice`
+-- Database: `FASTSERVICE`
 --
-CREATE DATABASE IF NOT EXISTS `id9042161_fastservice` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `id9042161_fastservice`;
+CREATE DATABASE IF NOT EXISTS `FASTSERVICE` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `FASTSERVICE`;
 
 -- --------------------------------------------------------
 

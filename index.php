@@ -8,7 +8,6 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery.js"></script>
 	<script src="js/functions.js"></script>
-	<link rel="stylesheet" type="text/css" href="demo-files/demo.css">
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
 	<link rel="stylesheet" href="fontawesome/css/all.css">
 </head>
