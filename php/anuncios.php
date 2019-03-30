@@ -70,7 +70,22 @@
 					<p>Lorem ipsum é um texto utilizado para preencher o espaço de texto em publicações (jornais, revistas, e websites) e testar aspectos visuais(cores, fontes), com a finalidade de verificar o layout, tipografia e formatação antes de utilizar conteúdo real.</p><br><hr><br>
 					<h3>Localização</h3>
 					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr>
-					
+					<form action="add_comentario.php" method="GET" style="margin-top: 80px;">
+						<p>Comentários</p>
+						<?php
+						$id = $value['SRV_ID'];
+						$conn = conexao();
+						$stmt = $conn -> prepare("SELECT * FROM COMENTARIOS WHERE CMT_SRV_ID=?");
+						$stmt -> execute([$id]);
+						$dados = $stmt->fetchAll();
+						foreach ($dados as $value) {?>
+							<p><?= $value['CMT_COMENTAIO'];?></p>
+						<?php } ?>
+						
+						<textarea name="comentario" placeholder="Digite aqui" style="resize: none; width: 80%; height: 80px;"></textarea><br>
+						<input type="hidden" value=<?=$id;?>>
+						<button type="submit">Comentar</button>
+					</form>
 				</center>	
 			</div>
 		<?php endforeach; ?>
