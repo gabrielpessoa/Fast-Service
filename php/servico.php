@@ -20,9 +20,10 @@ if(!isLogged()){
             <nav class="black">	
                 <a href="../index.php"><img src="../img/3.png"></a>
                 <ul>
-                    <li><a href="../index.php">Início</a></li>
+                    <li><a href="../">Início</a></li>
                     <li><a href="sobre.php">Sobre</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
+                    <li><a href="anuncios.php">Meus anúncios</a></li>
                     <li><a href="perfil.php">Minha conta</a></li>
                     <li><a href="servico.php">Anunciar</a></li>
                     <li><a href="logout.php" class="btn-login">Sair</a></li>
@@ -32,7 +33,7 @@ if(!isLogged()){
 
 			<label>.</label>
 			<div class="cadastro">		
-                <form action="servico_proc.php" method="POST">
+                <form action="servico_proc.php" method="POST" enctype="multipart/form-data">
                     <p class="primary">Nome do Serviço</p><br>
                     <input type="text" name="name" placeholder="Digite aqui"><br>
                     <br><p>Tipo</p>
@@ -53,8 +54,10 @@ if(!isLogged()){
                     <input type="text" name="location" required placeholder="Digite aqui"><br>
                     <br><p>Preço</p>
                     <input type="number" name="price" required placeholder="Digite aqui"><br>
+                    <br><p>Anexar Imagem</p><br>
+                    <input type="file" name="foto" required><br>
                     <input type="hidden" name="user_id" value=<?=$_SESSION['userId'];?> >
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit" name="cadastrar">Cadastrar</button>
                 </form>
 			</div>
 		</div>

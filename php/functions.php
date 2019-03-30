@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
 
 function conexao(){
 	global $conn;
@@ -19,10 +19,11 @@ function addServico($dados){
 	$descricao = $dados['description'];
 	$localizacao = $dados['location'];
 	$preco = $dados['price'];
+	$arquivo = $dados['foto'];
 	$usuario = $dados['user_id'];
 	
 	if(!empty($dados)){
-		pdoExec("INSERT INTO SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=?, SRV_USER_ID=?", [$nome, $tipo, $descricao, $localizacao, $preco, $usuario]);
+		pdoExec("INSERT INTO SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=?, SRV_IMAGEM=?, SRV_USER_ID=?", [$nome, $tipo, $descricao, $localizacao, $preco, $arquivo, $usuario]);
 		header('location: ../index.php');
 	}else{
 		header('location: servico.php');
