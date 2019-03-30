@@ -10,9 +10,7 @@
 	<script src="js/functions.js"></script>
 	<link rel="stylesheet" type="text/css" href="demo-files/demo.css">
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-
+	<link rel="stylesheet" href="fontawesome/css/all.css">
 </head>
 <body>
 	<div>
@@ -24,6 +22,7 @@
 				<li><a href="php/sobre.php">Sobre</a></li>
 				<li><a href="php/ajuda.php">Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
+					<li><a href="php/anuncios.php">Meus anúncios</a></li>
 					<li><a href="php/perfil.php">Minha conta</a></li>
 					<li><a href="php/servico.php">Anunciar</a></li>
 					<li><a href="php/logout.php" class="btn-login">Sair</a></li>
@@ -44,7 +43,7 @@
 			<br><div class="busca">
 				<form action="php/search.php" method="GET">
 					<input type="text" name="search" placeholder="  Estou procurando por..." required>
-					<button type="submit"><i class="icon icon-search" ></i></button>
+					<button type="submit"><i class="fas fa-search"></i></button>
 
 				</form>
 					<ul class="icons-busca">
