@@ -17,7 +17,7 @@ if (isset($_POST['cadastrar'])) {
 		$dados['location'] = addslashes($_POST['location']);
 		$dados['price'] = addslashes($_POST['price']);
 		$dados['foto'] = addslashes($nome_imagem);
-		$dados['user_id'] = addslashes($_POST['user_id']);
+		$dados['user_id'] = addslashes($_SESSION['userId']);
 	addServico($dados);
 }
 

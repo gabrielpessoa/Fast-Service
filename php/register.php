@@ -11,7 +11,8 @@ if (isLogged()) {
 	<title>Cadastro de usuários</title>
 	<link rel="stylesheet" href="../css/style.css">
 	<script src="../js/jquery.js"></script>	
-	<script src="../js/functions.js"></script>	
+	<script src="../js/functions.js"></script>
+	<link rel="shortcut icon" type="image/x-png" href="../img/3.png">
 </head>
 <body>
 	<center>

@@ -4,13 +4,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>Fast-Service</title>
-	
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../demo-files/demo.css">
 	<script src="../js/jquery.js"></script>
 	<script src="../js/functions.js"></script>
-	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
-	<link rel="stylesheet" href="../fontawesome/css/all.css">
+	<link rel="shortcut icon" type="image/x-png" href="../img/3.png">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
 	<div>
@@ -40,7 +39,7 @@
 			<form action="">
 				<input type="text" placeholder="  Estou procurando por..." required>
 
-				<button type="submit"><i class="icon icon-search" ></i></button>
+				<button type="submit"><i class="fas fa-search" ></i></button>
 
 				<ul class="icons-busca">
 				    <li class="icons"> <a href=""><i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
@@ -54,22 +53,44 @@
 
 	<div class="search">
 		<?php 
-		$search = $_GET['desc']; 
-		$stmt = conexao();
-		$dados = $stmt -> prepare("SELECT * FROM SERVICOS WHERE SRV_ID=?" );
-		$dados -> execute([$search]);
+		$search = $_GET['desc'];
+		$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_ID)=?", [$search]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
-			<div>
+			<div class="anuncios">
 				<center>
-					<br><p style="margin-top: 140px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr><br>
+					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
+					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
 					<h3>Preço</h3>
-					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr><br>
+					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr>
 					<h3>Descrição</h3>
 					<p><?= $value['SRV_DESCRICAO'];?></p>
-					<p>Lorem ipsum é um texto utilizado para preencher o espaço de texto em publicações (jornais, revistas, e websites) e testar aspectos visuais(cores, fontes), com a finalidade de verificar o layout, tipografia e formatação antes de utilizar conteúdo real.</p><br><hr><br>
+					<p>Lorem ipsum é um texto utilizado para preencher o espaço de texto em publicações (jornais, revistas, e websites) e testar aspectos visuais(cores, fontes), com a finalidade de verificar o layout, tipografia e formatação antes de utilizar conteúdo real.</p><br><hr>
 					<h3>Localização</h3>
 					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr>
+						<h3>Comentários</h3>
+					<div class="comentarios">
+						<?php
+						$id = $value['SRV_ID'];
+						$stmt = pdoExec("SELECT * FROM COMENTARIOS WHERE CMT_SRV_ID=?", [$id]);
+						$dados = $stmt->fetchAll();
+						foreach ($dados as $value) :
+							$comentario = $value['CMT_COMENTARIO'];
+							$data = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$value['CMT_USER_ID']]);
+							$result = $data -> fetchAll();
+							foreach($result as $dados1){
+								$user = $dados1['USER_NOME'];
+							}
+							?>
+							<p><?= $user.":  ".$comentario;?></p>
+						<?php endforeach; ?>
+					</div>
+					<form action="add_comentario.php" method="POST">
+						<p>Escrever comentário</p>
+						<textarea name="comentario" placeholder="Digite aqui"></textarea><br>
+						<input type="hidden" name="id_servico" value=<?=$id;?> >
+						<button type="submit">Enviar comentário</button>
+					</form>
 				</center>	
 			</div>
 		<?php endforeach; ?>

@@ -40,23 +40,20 @@ if(!isLogged()){
                     <select name="type">
                         <option disabled>Selecione</option>
                         <?php 
-                        $stmt = conexao();
-                        $dados = $stmt-> prepare("SELECT * FROM CATEGORIAS");
-                        $dados -> execute();
+                        $dados = pdoExec("SELECT * FROM CATEGORIAS",[]);
                         $resultado = $dados -> fetchAll();
                         foreach ($resultado as $value) : ?>                            
                         <option value=<?=$value['CTG_ID'];?> > <?= utf8_encode($value['CTG_NOME']);?> </option>
                     <?php endforeach; ?>
                     </select>
                     <br><p>Descrição</p>
-                    <textarea style=" width:80% ; height: 70px; resize: none;" name="description" placeholder="Digite aqui"></textarea><br>
+                    <textarea name="description" placeholder="Digite aqui"></textarea><br>
                     <br><p>Cidade</p><br>
                     <input type="text" name="location" required placeholder="Digite aqui"><br>
                     <br><p>Preço</p>
                     <input type="number" name="price" required placeholder="Digite aqui"><br>
                     <br><p>Anexar Imagem</p><br>
                     <input type="file" name="foto" required><br>
-                    <input type="hidden" name="user_id" value=<?=$_SESSION['userId'];?> >
                     <button type="submit" name="cadastrar">Cadastrar</button>
                 </form>
 			</div>

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
 
 function conexao(){
 	global $conn;
@@ -75,10 +75,10 @@ function login($data){
 		}
 		else{
 			$_SESSION['userId'] = $dados['USER_ID'];
-			$_SESSION['userName'] = $dados['USER_USUARIO'];
+			$_SESSION['userName'] = $dados['USER_NOME'];
 			$_SESSION['userEmail'] = $dados['USER_EMAIL'];
 			$_SESSION['userFone'] = $dados['USER_TELEFONE'];
-			$_SESSION['userLogin'] = $dados['USER_NOME'];
+			$_SESSION['userLogin'] = $dados['USER_USUARIO'];
 			header('location: ../index.php');
 		}
 	}
@@ -107,7 +107,7 @@ function addComentario($data){
 	$comentario = $data['comentario'];
 	$usuario = $_SESSION['userId'];
 	$servico = $data['id_servico'];
-	$stmt = pdoExec("INSERT INTO COMENTARIOS SET CMT_COMENTARIO = ?, CMT_USER_ID = ?, CMT_SRV_ID",[$comentario, $usuario, $servico]);
+	$stmt = pdoExec("INSERT INTO COMENTARIOS SET CMT_COMENTARIO = ?, CMT_USER_ID = ?, CMT_SRV_ID=? ", [$comentario, $usuario, $servico]);
 	header('location:'.$_SERVER['HTTP_REFERER']);
 
 }

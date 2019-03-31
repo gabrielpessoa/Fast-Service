@@ -257,8 +257,10 @@ div.cadastro input{
 	width: 80%;
 	height: 27px;
 }
-div.cadastro form input[type=radio]{
-	text-align: justify;
+div.cadastro form textarea{
+	width:80% ; 
+	height: 70px; 
+	resize: none;
 }
 div.cadastro select{
 	width: 81%;
@@ -280,7 +282,7 @@ div.busca button{
 	outline: none;
 }
 div.busca button i:hover{
-	color: blue;
+	color: #58ACFA;
 	cursor: pointer;
 }
 div.busca form input{
@@ -291,6 +293,9 @@ div.busca form input{
 	text-align: center;
 	outline: none;
 	overflow: hidden;
+}
+div.busca form input:focus{
+	border: solid 2px #58ACFA;
 }
 a{
 	text-decoration: none;
@@ -330,10 +335,10 @@ div.search {
 	margin-top: 60px;
 	text-align: center;
 	width: 70%;
-	height: 100vh;
 	border-radius: 15px;
 	background: white;
-	margin-bottom: 30px;
+	margin-bottom: 80px;
+	min-height: 100vh;
 }
 div.search div.products{
 	margin-top: 20px;
@@ -342,20 +347,70 @@ div.search div.products{
 	text-align: center;
 	border: solid 1px #babaca;
 	border-radius: 5px;
-	
 }
 div.products a{
 	margin-top: -60px;
 	cursor: pointer;
 }
-div.products a p{
-	margin-top: -70px;
-	margin-left: 140px;
+div.search div.products a p{
+	margin-top: -140px;
+	float: right;
+	width: 50%;
 }
 div.search div.products div.foto{
-	width: 140px;
-	height: 208px;
+	width: 50%;
+	height: 100%;
+	border-radius: 5px;
+	overflow: hidden;
+}
+div.search div.anuncios{
+	width: 100%;
+	margin: auto;
+}
+div.anuncios img{
+	width: 50%;
+	height: 50%;
+	margin-top: 40px;
+}
+div.anuncios form{
+	margin-top: 80px;
+}
+div.anuncios form button{
+	margin-bottom: 40px;
+	cursor: pointer;
+}
+div.anuncios form textarea{
+	resize: none; 
+	width: 50%; 
+	height: 150px;
+	border-radius: 5px;
+	outline: none;
+}
+div.anuncios form button:hover{
+	background: #FA5858;
+}
+div.anuncios h3{
+	margin-top: 30px;
+}
+div.anuncios div.comentarios{
+	margin-top: 40px;
+	width: 50%;
 	border: solid 1px #babaca;
+	border-radius: 5px;
+}
+div.comentarios h3{
+	margin-top: 60px;
+	margin-bottom: 40px;
+}
+div.comentarios p{
+	text-align: left;
+	padding-left: 10px;
+}
+div.anuncios form button{
+	padding: 15px;
+	color: white;
+	background: red;
+	border: none;
 	border-radius: 5px;
 }
 .sobre p{
@@ -372,7 +427,6 @@ div.search div.products div.foto{
 	text-align: justify;
 	margin: 150px auto;
 	width: 400px;
-	/*background-color: red;*/
 	font-size: 19px;
 	color: rgb(255 255 255);
 	z-index: 5;

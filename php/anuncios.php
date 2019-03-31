@@ -38,10 +38,9 @@
 	<br>
 	<center>
 		<div class="busca">
-			<form action="">
+			<form action="search.php" method="GET">
 				<input type="text" placeholder="  Estou procurando por..." required>
-
-				<button type="submit"><i class="icon icon-search" ></i></button>
+				<button type="submit"><i class="fas fa-search" ></i></button>
 
 				<ul class="icons-busca">
 				    <li class="icons"> <a href=""><i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
@@ -56,37 +55,20 @@
 	<div class="search">
 		<?php 
 		$usuario = $_SESSION['userId']; 
-		$stmt = conexao();
-		$dados = $stmt -> prepare("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?" );
-		$dados -> execute([$usuario]);
+		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
-			<div style="width: 50%; margin: auto;">
+			<div class="anuncios">
 				<center>
-					<br><p style="margin-top: 140px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr><br>
+					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
+					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr><br>
 					<h3>Preço</h3>
 					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr><br>
 					<h3>Descrição</h3>
-					<p><?= $value['SRV_DESCRICAO'];?></p>
-					<p>Lorem ipsum é um texto utilizado para preencher o espaço de texto em publicações (jornais, revistas, e websites) e testar aspectos visuais(cores, fontes), com a finalidade de verificar o layout, tipografia e formatação antes de utilizar conteúdo real.</p><br><hr><br>
+					<p><?= $value['SRV_DESCRICAO'];?></p><hr><br>
 					<h3>Localização</h3>
-					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr>
-					<form action="add_comentario.php" method="GET" style="margin-top: 80px;">
-						<p>Comentários</p>
-						<?php
-						$id = $value['SRV_ID'];
-						$conn = conexao();
-						$stmt = $conn -> prepare("SELECT * FROM COMENTARIOS WHERE CMT_SRV_ID=?");
-						$stmt -> execute([$id]);
-						$dados = $stmt->fetchAll();
-						foreach ($dados as $value) {?>
-							<p><?= $value['CMT_COMENTAIO'];?></p>
-						<?php } ?>
-						
-						<textarea name="comentario" placeholder="Digite aqui" style="resize: none; width: 80%; height: 80px;"></textarea><br>
-						<input type="hidden" value=<?=$id;?>>
-						<button type="submit">Comentar</button>
-					</form>
+					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr><br>
+					
 				</center>	
 			</div>
 		<?php endforeach; ?>
