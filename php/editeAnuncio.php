@@ -58,18 +58,19 @@
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
-			<div class="anuncios">
+			<div class="anunciosEdit">
 				<center>
+				<form action="#" method="POST">
 					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
-					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr><br>
+					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><hr><br>
 					<h3>Preço</h3>
-					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr><br>
+					<input type="text" name="price" value="<?=$value['SRV_PRECO'];?>"><hr><br>
 					<h3>Descrição</h3>
-					<p><?= $value['SRV_DESCRICAO'];?></p><hr><br>
+					<textarea name="description"><?= $value['SRV_DESCRICAO'];?></textarea><hr><br>
 					<h3>Localização</h3>
-					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr><br>
-					<h3><a href="editeAnuncio.php"> Editar</a></h3>
-					<h3><a href="deleteAnuncio.php"> Excluir</a></h3>
+					<p></p> <input type="text" name="location" value="<?= $value['SRV_LOCALIZACAO'];?>" ><hr><br>
+					<button style="width:10%;" type="submit" name="enviar">Enviar</button>
+				</form>
 					
 				</center>	
 			</div>
@@ -98,6 +99,19 @@
 	</div>
 
 	<footer class="rodape">©Copyright 2019</footer>
+	
+	<?php
+		$servico = $_SESSION['SRV_ID']; 
+		$name = $_POST['name'];
+		$preco = $_POST['price'];
+		$descricao = $_POST['description'];
+		$localizacao = $_POST['location'];
+
+		if (isset($_POST['enviar'])) {
+			$stmt = rowCount("UPDATE SERVICOS SET SRV_NOME='$name',SRV_PRECO='$preco' ,SRV_DESCRICAO='$descricao' ,SRV_LOCALIZACAO='$localizacao' WHERE SRV_ID='$servico'");
+			header('location: anuncios.php');
+		}
+	?>
 
 </body>
 </html>

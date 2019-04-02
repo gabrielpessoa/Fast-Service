@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
 
 function conexao(){
 	global $conn;
@@ -111,4 +111,3 @@ function addComentario($data){
 	header('location:'.$_SERVER['HTTP_REFERER']);
 
 }
-?>

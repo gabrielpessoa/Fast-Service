@@ -439,3 +439,13 @@ div.anuncios form button{
 		background-color: red;
 	}
 }
+.anunciosEdit textarea{
+	width:40% ; 
+	height: 30px; 
+	resize: none;
+	margin-bottom: 5px;
+}
+.anunciosEdit input{
+	width: 40%;
+	margin-bottom: 10px;
+}
