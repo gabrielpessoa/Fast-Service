@@ -56,7 +56,7 @@
 		<?php 
 		$usuario = $_SESSION['userId']; 
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
-		$resultado = $dados -> fetchAll(); 
+		$resultado = $dados -> fetchAll();
 		foreach($resultado as $value):?>
 			<div class="anuncios">
 				<center>
@@ -69,7 +69,7 @@
 					<h3>Localização</h3>
 					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr><br>
 					<h3><a href="editeAnuncio.php"> Editar</a></h3>
-					<h3><a href="deleteAnuncio.php"> Excluir</a></h3>
+					<h3><a href="deleteAnuncio.php?deletar=<?=$value['SRV_ID']?>"> Excluir</a></h3>
 					
 				</center>	
 			</div>

@@ -61,6 +61,8 @@
 			<div class="anunciosEdit">
 				<center>
 				<form action="#" method="POST">
+					<br>
+					<input type="hidden" name="servico" value="<?= $value['SRV_ID'];?>">
 					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
 					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><hr><br>
 					<h3>Preço</h3>
@@ -101,13 +103,13 @@
 	<footer class="rodape">©Copyright 2019</footer>
 	
 	<?php
-		$servico = $_SESSION['SRV_ID']; 
+		if (isset($_POST['enviar'])) {
+		$servico = $_POST['servico']; 
 		$name = $_POST['name'];
 		$preco = $_POST['price'];
 		$descricao = $_POST['description'];
 		$localizacao = $_POST['location'];
 
-		if (isset($_POST['enviar'])) {
 			$stmt = rowCount("UPDATE SERVICOS SET SRV_NOME='$name',SRV_PRECO='$preco' ,SRV_DESCRICAO='$descricao' ,SRV_LOCALIZACAO='$localizacao' WHERE SRV_ID='$servico'");
 			header('location: anuncios.php');
 		}
