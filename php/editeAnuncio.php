@@ -6,7 +6,6 @@
 	<title>Fast-Service</title>
 	
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	<link rel="stylesheet" type="text/css" href="../demo-files/demo.css">
 	<script src="../js/jquery.js"></script>
 	<script src="../js/functions.js"></script>
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
@@ -58,13 +57,11 @@
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
-			<div class="anunciosEdit">
+			<div class="anuncios">
 				<center>
-				<form action="#" method="POST">
-					<br>
-					<input type="hidden" name="servico" value="<?= $value['SRV_ID'];?>">
+				<form action="edit_anuncio_controler.php" method="POST">
 					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
-					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><hr><br>
+					<br><p style="margin-top: 80px;"><h2>Nome do servico / Produto</h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><hr><br>
 					<h3>Preço</h3>
 					<input type="text" name="price" value="<?=$value['SRV_PRECO'];?>"><hr><br>
 					<h3>Descrição</h3>
@@ -102,18 +99,6 @@
 
 	<footer class="rodape">©Copyright 2019</footer>
 	
-	<?php
-		if (isset($_POST['enviar'])) {
-		$servico = $_POST['servico']; 
-		$name = $_POST['name'];
-		$preco = $_POST['price'];
-		$descricao = $_POST['description'];
-		$localizacao = $_POST['location'];
-
-			$stmt = rowCount("UPDATE SERVICOS SET SRV_NOME='$name',SRV_PRECO='$preco' ,SRV_DESCRICAO='$descricao' ,SRV_LOCALIZACAO='$localizacao' WHERE SRV_ID='$servico'");
-			header('location: anuncios.php');
-		}
-	?>
 
 </body>
 </html>

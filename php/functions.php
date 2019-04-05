@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
 
 function conexao(){
 	global $conn;
@@ -29,7 +29,27 @@ function addServico($dados){
 		header('location: servico.php');
 	}
 }
-
+function updateServico($dados){
+	$nome = $dados['name'];
+	$descricao = $dados['description'];
+	$localizacao = $dados['location'];
+	$preco = $dados['price'];
+	$usuario = $_SESSION['userId'];
+	if(!empty($dados)){
+		$stmt =pdoExec("UPDATE SERVICOS SET SRV_NOME=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=? WHERE SRV_USER_ID=?", [$nome, $descricao, $localizacao, $preco, $usuario]);
+	
+		header('location:'.$_SERVER['HTTP_REFERER']);
+	}else{
+		header('location:'.$_SERVER['HTTP_REFERER']);
+	}
+}
+function deleteServico($dados){
+	$id = $dados['id_servico'];
+	$usuario = $_SESSION['userId'];
+	pdoExec("DELETE FROM COMENTARIOS WHERE md5(CMT_SRV_ID)=?", [$id]);
+	pdoExec("DELETE FROM SERVICOS WHERE md5(SRV_ID)=?",[$id]);
+	header('location: anuncios.php');
+}
 function rowCount($prepare, $execute = []){
 	$stmt = pdoExec($prepare, $execute)->rowCount();
 	return $stmt;

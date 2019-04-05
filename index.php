@@ -46,11 +46,11 @@
 
 				</form>
 					<ul class="icons-busca">
-					    <li class="icons"> <a href=""><i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
-					    <li class="icons"> <a href=""><i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
-					    <li class="icons"> <a href=""><i class="fas fa-mortar-pestle"></i>Culinária </a></li>
-					    <li class="icons"> <a href=""><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
-					    <li class="icons"> <a href=""><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
+					     <li class="icons"> <a href=php/search.php?search=<?=md5(4);?> > <i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
+				    <li class="icons"> <a href=php/search.php?search=<?=md5(7);?> > <i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
+				    <li class="icons"> <a href=php/search.php?search=<?=md5(8);?> > <i class="fas fa-mortar-pestle"></i>Culinária </a></li>
+				    <li class="icons"> <a href=php/search.php?search=<?=md5(10);?> ><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
+				    <li class="icons"> <a href=php/search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
        				</ul>
 			</div>
 		</center>

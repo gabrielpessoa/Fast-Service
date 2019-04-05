@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<title>Fast-Service</title>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	<link rel="stylesheet" type="text/css" href="../demo-files/demo.css">
 	<script src="../js/jquery.js"></script>
 	<script src="../js/functions.js"></script>
 	<link rel="shortcut icon" type="image/x-png" href="../img/3.png">
@@ -21,6 +20,7 @@
 				<li><a href="sobre.php">Sobre</a></li>
 				<li><a href="ajuda.php">Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
+					<li><a href="anuncios.php">Meus anúncios</a></li>
 					<li><a href="perfil.php">Minha conta</a></li>
 					<li><a href="servico.php">Anunciar</a></li>
 					<li><a href="logout.php" class="btn-login">Sair</a></li>
@@ -41,31 +41,60 @@
 				<button type="submit"><i class="fas fa-search" ></i></button>
 			</form>
 				<ul class="icons-busca">
-				    <li class="icons"> <a href=""><i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-mortar-pestle"></i>Culinária </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
+				    <li class="icons"> <a href=search.php?search=<?=md5(4);?> > <i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
+				    <li class="icons"> <a href=search.php?search=<?=md5(7);?> > <i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
+				    <li class="icons"> <a href=search.php?search=<?=md5(8);?> > <i class="fas fa-mortar-pestle"></i>Culinária </a></li>
+				    <li class="icons"> <a href=search.php?search=<?=md5(10);?> ><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
+				    <li class="icons"> <a href=search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
 				</ul>
 		</div>
 
 		<div class="search">
-				<center>
-			<?php
-			$search = $_GET['search'];
-			$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_NOME LIKE '%$search%' ", []);
-			$resultado = $dados -> fetchAll(); 
-			foreach($resultado as $value):?>
+			<center>
+				<?php
+				$search = $_GET['search'];
+				$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_NOME LIKE '%$search%' ", []);
+				$resultado = $dados -> fetchAll(); 
+				foreach($resultado as $value):?>
 				<br>
-				<div class="products">
-					<div class="foto"><img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
-					<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
-						<p><?= $value['SRV_NOME'];?><br>
-						<?= "R$: ".$value['SRV_PRECO']; ?><br>
-						<?= $value['SRV_LOCALIZACAO']; ?></p>
-					</a>
-				</div>
-			<?php endforeach; ?>
+					<div class="products">
+						<div class="foto"><img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
+						<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
+							<p><?= $value['SRV_NOME'];?><br>
+							<?= "R$: ".$value['SRV_PRECO']; ?><br>
+							<?= $value['SRV_LOCALIZACAO']; ?></p>
+						</a>
+					</div>
+				<?php endforeach; ?>
+				<?php if(!$dados->rowCount() > 0  ){
+					$row = 1;
+					$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_CATEGORIA)=?", [$search]);
+					$resultado = $dados -> fetchAll(); 
+					foreach($resultado as $value):?>
+					<br>
+						<div class="products">
+							<div class="foto"><img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
+							<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
+								<p><?= $value['SRV_NOME'];?><br>
+								<?= "R$: ".$value['SRV_PRECO']; ?><br>
+								<?= $value['SRV_LOCALIZACAO']; ?></p>
+							</a>
+						</div>
+				<?php endforeach; } ?> 
+				<?php if($search=="todos"){
+					$dados = pdoExec("SELECT * FROM SERVICOS", []);
+					$resultado = $dados -> fetchAll(); 
+					foreach($resultado as $value):?>
+					<br>
+						<div class="products">
+							<div class="foto"><img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
+							<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
+								<p><?= $value['SRV_NOME'];?><br>
+								<?= "R$: ".$value['SRV_PRECO']; ?><br>
+								<?= $value['SRV_LOCALIZACAO']; ?></p>
+							</a>
+						</div>
+				<?php endforeach; } ?> 
 			</center>
 		</div>
 	</center>
