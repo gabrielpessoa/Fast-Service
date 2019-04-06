@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
 
 function conexao(){
 	global $conn;
@@ -10,11 +10,6 @@ function conexao(){
 function pdoExec($prepare, $execute){
 	$stmt = conexao()->prepare($prepare);
 	$stmt -> execute($execute);
-	return $stmt;
-}
-
-function rowCount($prepare, $execute = []){
-	$stmt = pdoExec($prepare, $execute)->rowCount();
 	return $stmt;
 }
 
@@ -34,22 +29,21 @@ function addServico($dados){
 		header('location: servico.php');
 	}
 }
-
 function updateServico($dados){
 	$nome = $dados['name'];
 	$descricao = $dados['description'];
 	$localizacao = $dados['location'];
 	$preco = $dados['price'];
-	$servico = $dados['id_servico'];
+	$id = $dados['id_servico'];
+	$usuario = $_SESSION['userId'];
 	if(!empty($dados)){
-		$stmt =pdoExec("UPDATE SERVICOS SET SRV_NOME=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=? WHERE md5(SRV_ID)=?", [$nome, $descricao, $localizacao, $preco, $servico]);
+		$stmt =pdoExec("UPDATE SERVICOS SET SRV_NOME=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=? WHERE SRV_ID=? AND SRV_USER_ID=?", [$nome, $descricao, $localizacao, $preco, $id, $usuario]);
 	
-		header('location: anuncios.php');
+		header('location:'.$_SERVER['HTTP_REFERER']);
 	}else{
 		header('location:'.$_SERVER['HTTP_REFERER']);
 	}
 }
-
 function deleteServico($dados){
 	$id = $dados['id_servico'];
 	$usuario = $_SESSION['userId'];
@@ -57,7 +51,10 @@ function deleteServico($dados){
 	pdoExec("DELETE FROM SERVICOS WHERE md5(SRV_ID)=?",[$id]);
 	header('location: anuncios.php');
 }
-
+function rowCount($prepare, $execute = []){
+	$stmt = pdoExec($prepare, $execute)->rowCount();
+	return $stmt;
+}
 
 function addUser($data){
 	$name = $data['name'];

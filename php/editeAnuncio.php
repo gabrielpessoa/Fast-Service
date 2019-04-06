@@ -53,14 +53,13 @@
 
 	<div class="search">
 		<?php 
-		$servico = $_GET['e']; 
-		$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_ID)=?", [$servico]);
+		$usuario = $_SESSION['userId']; 
+		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
 			<div class="anuncios">
 				<center>
 				<form action="edit_anuncio_controler.php" method="POST">
-					<input type="hidden" name="id" value="<?=$servico?>">
 					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
 					<br><p style="margin-top: 80px;"><h2>Nome do servico / Produto</h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><hr><br>
 					<h3>Preço</h3>
@@ -69,6 +68,7 @@
 					<textarea name="description"><?= $value['SRV_DESCRICAO'];?></textarea><hr><br>
 					<h3>Localização</h3>
 					<p></p> <input type="text" name="location" value="<?= $value['SRV_LOCALIZACAO'];?>" ><hr><br>
+					<input type="hidden" name="id_servico" value=<?=$value['SRV_ID'];?>>
 					<button style="width:10%;" type="submit" name="enviar">Enviar</button>
 				</form>
 					

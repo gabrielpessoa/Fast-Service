@@ -70,6 +70,34 @@ INSERT INTO `COMENTARIOS` VALUES (4,'sdsdas',6,2);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `FAVORITOS`
+--
+
+DROP TABLE IF EXISTS `FAVORITOS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `FAVORITOS` (
+  `FVR_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FVR_USER_ID` int(11) NOT NULL,
+  `FVR_SRV_ID` int(11) NOT NULL,
+  PRIMARY KEY (`FVR_ID`),
+  KEY `FVR_USER_ID` (`FVR_USER_ID`),
+  KEY `FVR_SRV_ID` (`FVR_SRV_ID`),
+  CONSTRAINT `FAVORITOS_ibfk_1` FOREIGN KEY (`FVR_USER_ID`) REFERENCES `USUARIOS` (`USER_ID`),
+  CONSTRAINT `FAVORITOS_ibfk_2` FOREIGN KEY (`FVR_SRV_ID`) REFERENCES `SERVICOS` (`SRV_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `FAVORITOS`
+--
+
+LOCK TABLES `FAVORITOS` WRITE;
+/*!40000 ALTER TABLE `FAVORITOS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `FAVORITOS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `SERVICOS`
 --
 
@@ -99,7 +127,7 @@ CREATE TABLE `SERVICOS` (
 
 LOCK TABLES `SERVICOS` WRITE;
 /*!40000 ALTER TABLE `SERVICOS` DISABLE KEYS */;
-INSERT INTO `SERVICOS` VALUES (2,'teste',4,'asdasdasda','Igarassu, Pe','15','432e94a16bd76059238f914428dc4047.png',6),(3,'Sala 01',8,'gfdgdgd','Igarassu, Pe','50','06b48083335b8a4b582ac4622e31166d.png',6);
+INSERT INTO `SERVICOS` VALUES (2,'teste',4,'asdasdasda','Igarassu, Pe','159','432e94a16bd76059238f914428dc4047.png',6),(3,'teste',8,'asdasdasda','Igarassu, Pe','15','06b48083335b8a4b582ac4622e31166d.png',6);
 /*!40000 ALTER TABLE `SERVICOS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-04 23:51:15
+-- Dump completed on 2019-04-06 19:33:08

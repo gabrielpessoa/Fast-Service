@@ -1,4 +1,4 @@
-	<?php include("functions.php"); ?>
+<?php include("functions.php"); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,7 +13,26 @@
 	<link rel="stylesheet" href="../fontawesome/css/all.css">
 </head>
 <body>
-	<?php include('menu.php'); ?>
+	<div>
+		<nav>
+			
+			<a href="../index.php"><img src="../img/3.png"></a>
+			<ul>
+				<li><a href="/">Início</a></li>
+				<li><a href="ajuda.php">Ajuda</a></li>
+				<?php if (isLogged() ){ ?>
+					<li><a href="anuncios.php">Meus anúncios</a></li>
+					<li><a href="perfil.php">Minha conta</a></li>
+					<li><a href="servico.php">Anunciar</a></li>
+					<li><a href="logout.php" class="btn-login">Sair</a></li>
+				<?php } else{ ?>
+				<li><a href="register.php">Registrar-se</a></li>
+				<li><a href="#janela" rel="modal" class="btn-login">Login</a></li>
+			<?php } ?>
+			</ul>
+			
+		</nav>
+	</div>
 
 	<br>
 	<center>
@@ -48,7 +67,7 @@
 					<p><?= $value['SRV_DESCRICAO'];?></p><hr><br>
 					<h3>Localização</h3>
 					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr><br>
-					<a href="editeAnuncio.php?e=<?=md5($value['SRV_ID']);?>"> Editar</a>
+					<a href="editeAnuncio.php"> Editar</a>
 					<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a><br><br><br>
 					
 				</center>	
@@ -57,8 +76,25 @@
 	</div>
 
 	</center>
-	
-	<?php include('login.php'); ?>
+	<div class="window" id="janela">
+			<center>
+				<a href="#" class="fechar">X</a>
+				<h4>Login</h4>
+				<hr>
+				<form action="login2.php" method="POST">
+					<p>Usuário</p><br>
+					<input type="text" name="username" placeholder="Digite aqui"><br>
+					<p>Senha</p><br>
+					<input type="password" name="password" placeholder="Digite aqui"><br>
+					<button type="submit">Entrar</button><br>
+					<a href="#">Esqueceu sua senha?</a>
+				</form>
+			</center>
+		</div>
+
+	<div id="mascara">
+		
+	</div>
 
 	<footer class="rodape">©Copyright 2019</footer>
 

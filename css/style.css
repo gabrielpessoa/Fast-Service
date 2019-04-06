@@ -42,6 +42,11 @@ nav{
 	box-sizing: border-box;
 	transition: .3s;
 	z-index: 500;
+	text-align: center;
+}
+nav ul li a:hover{
+	background: #585858;
+	border-radius: 5px;
 }
 .black{
 	background: rgba(0, 0, 0,0.8);
@@ -56,6 +61,7 @@ nav ul li{
 	display: inline-block;
 	font-size: 17px;
 	padding: 15px;
+	float: center;
 }
 nav ul li a{
 	color: black;
@@ -67,7 +73,9 @@ nav ul li a{
 }
 .black ul li a{
 	color: white;
-
+}
+.black ul li a:hover{
+	
 }
 nav  img{
 	margin-left: 45px;
@@ -96,6 +104,9 @@ nav  img{
 	padding: 10px 15px ;
 	border-radius: 5px;
 	color: white;
+}
+.btn-login:hover{
+	background: #FA5858;
 }
 .header-bg{
 	position: fixed;
