@@ -18,19 +18,7 @@ if (!isLogged()) {
 <body>
     <center>
         <div>
-            <nav> 
-                <a href="../index.php"><img src="../img/3.png"></a>
-                <ul>
-                    <li><a href="../index.php">Início</a></li>
-                    <li><a href="sobre.php">Sobre</a></li>
-                    <li><a href="ajuda.php">Ajuda</a></li>
-                    <li><a href="anuncios.php">Meus anúncios</a></li>
-                    <li><a href="perfil.php">Minha conta</a></li>
-                    <li><a href="servico.php">Anunciar</a></li>
-                    <li><a href="logout.php" class="btn-login">Sair</a></li>
-                </ul>
-                
-            </nav>
+            <?php include('menu.php'); ?>
             <br>
             <div class="busca">
                 <form action="">

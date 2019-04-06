@@ -14,10 +14,9 @@
 <body>
 	<div>
 		<nav>
-			
 			<a href="index.php"><img src="img/3.png"></a>
 			<ul>
-				<li><a href="/">Início</a></li>
+				<li><a href="index.php">Início</a></li>
 				<li><a href="php/sobre.php">Sobre</a></li>
 				<li><a href="php/ajuda.php">Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
@@ -30,7 +29,6 @@
 				<li><a href="#janela" rel="modal" class="btn-login">Login</a></li>
 			<?php } ?>
 			</ul>
-			
 		</nav>
 	</div>
 
@@ -70,25 +68,7 @@
 			?>
 		
 				
-	<div class="window" id="janela">
-		<center>
-			<a href="#" class="fechar">X</a>
-			<h4>Login</h4>
-			<hr>
-			<form action="php/login2.php" method="POST">
-				<p>Usuário</p><br>
-				<input type="text" name="username" placeholder="Digite aqui"><br>
-				<p>Senha</p><br>
-				<input type="password" name="password" placeholder="Digite aqui"><br>
-				<button type="submit">Entrar</button><br>
-				<a href="#">Esqueceu sua senha?</a>
-			</form>
-		</center>
-	</div>
-
-	<div id="mascara">
-		
-	</div>
+	<?php include('php/login.php'); ?>
 
 	<footer class="rodape">©Copyright 2019</footer>
 
