@@ -33,6 +33,7 @@ $(document).ready(function() {
 
 	});
 
+
 	$("#mascara").click(function(){
 		$(this).fadeOut("slow");
 		$(".window").fadeOut("slow");
@@ -42,4 +43,20 @@ $(document).ready(function() {
 		$("#mascara").fadeOut(1000, "linear");
 		$(".window").fadeOut(1000, "linear");
 	});
+
+
+	$(function(){
+	$('.slide ul').cycle({
+		fx: 'fade',
+		speed: 3000,
+		timeout: 2500,
+		prev:'.anterior',
+		next:'.proxima',
+	});
+	$('div.slide').hover(function(){
+		$('section.botao').fadeIn();},
+		function(){
+			$('section.botao').fadeOut();
+	});
+});
 });

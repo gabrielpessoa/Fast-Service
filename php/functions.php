@@ -49,6 +49,7 @@ function deleteServico($dados){
 	$usuario = $_SESSION['userId'];
 	pdoExec("DELETE FROM COMENTARIOS WHERE md5(CMT_SRV_ID)=?", [$id]);
 	pdoExec("DELETE FROM SERVICOS WHERE md5(SRV_ID)=?",[$id]);
+	$caminho = "../produtos/img/";
 	header('location: anuncios.php');
 }
 function rowCount($prepare, $execute = []){

@@ -1,17 +1,15 @@
-<?php include("functions.php"); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<title>Fast-Service</title>
-	
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	<link rel="stylesheet" type="text/css" href="../demo-files/demo.css">
 	<script src="../js/jquery.js"></script>
 	<script src="../js/functions.js"></script>
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
-	<link rel="stylesheet" href="../fontawesome/css/all.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
+<?php include("functions.php"); ?>
 <body>
 	<div>
 		<nav>
@@ -67,35 +65,14 @@
 					<p><?= $value['SRV_DESCRICAO'];?></p><hr><br>
 					<h3>Localização</h3>
 					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr><br>
-					<a href="editeAnuncio.php"> Editar</a>
+					<a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
 					<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a><br><br><br>
 					
 				</center>	
 			</div>
 		<?php endforeach; ?>
 	</div>
-
-	</center>
-	<div class="window" id="janela">
-			<center>
-				<a href="#" class="fechar">X</a>
-				<h4>Login</h4>
-				<hr>
-				<form action="login2.php" method="POST">
-					<p>Usuário</p><br>
-					<input type="text" name="username" placeholder="Digite aqui"><br>
-					<p>Senha</p><br>
-					<input type="password" name="password" placeholder="Digite aqui"><br>
-					<button type="submit">Entrar</button><br>
-					<a href="#">Esqueceu sua senha?</a>
-				</form>
-			</center>
-		</div>
-
-	<div id="mascara">
-		
-	</div>
-
+	<?php include("login.php");?>
 	<footer class="rodape">©Copyright 2019</footer>
 
 </body>
