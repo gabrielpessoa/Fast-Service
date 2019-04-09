@@ -3,7 +3,7 @@
 		<a href="#" class="fechar">X</a>
 		<h4>Login</h4>
 		<hr>
-		<form action="php/login2.php" method="POST">
+		<form action="login2.php" method="POST">
 			<p>Usuário</p><br>
 			<input type="text" name="username" placeholder="Digite aqui"><br>
 			<p>Senha</p><br>

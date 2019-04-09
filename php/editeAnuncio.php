@@ -1,4 +1,10 @@
-<?php include("functions.php"); ?>
+<?php 
+include("functions.php"); 
+if(!isLogged()){
+	header('location: ../index.php');
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,7 +15,6 @@
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
 	<script src="../js/jquery.js"></script>
 	<script src="../js/functions.js"></script>
-	<script type="text/javascript" src="../js/jquery.cycle.all.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <body>
 	<div>
@@ -23,7 +28,7 @@
 					<li><a href="anuncios.php">Meus anúncios</a></li>
 					<li><a href="perfil.php">Minha conta</a></li>
 					<li><a href="servico.php">Anunciar</a></li>
-					<li><a href="logout.php" class="btn-login"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+					<li><a href="logout.php" class="btn-login">Sair</a></li>
 				<?php } else{ ?>
 				<li><a href="register.php">Registrar-se</a></li>
 				<li><a href="#janela" rel="modal" class="btn-login">Login</a></li>
@@ -50,33 +55,40 @@
 			</form>
 		</div>
 
-
-		<div class="slide">
-			<!-- <section class="botao">
-				<a href="#" class="anterior">&laquo;</a>
-				<a herf="#" class="proxima">&raquo;</a>
-			</section> -->
-			<a href="#" class="anterior" id="section">Anterior</a>
-			<a href="#" class="proxima" id="section">Próxima</a>
-			<ul>
-				<a href="php/view.php?i=3653453"><li><img src="../img/1.jpeg"></li></a>
-				<a href="php/view.php?i=4334553"><li><img src="../img/2.jpg"></li></a>
-				<a href="php/view.php?i=3546346"><li><img src="../img/3.png"></li></a>
-			</ul>
-		</div>
 	<div class="search">
-		<form action="edit_anuncio_controler.php" method="POST" enctype="multipart/form-data">
-			<p>Adicionar foto</p>
-			<input type="file" name="img[]" multiple>
-			<input type="submit">
-		</form>
-		
+	<?php 
+		$servico = $_GET['i']; 
+		$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_ID)=?", [$servico]);
+		$resultado = $dados -> fetchAll(); 
+		foreach($resultado as $value):?>
+			<div class="anuncios">
+				<center>
+				<form action="edit_anuncio_controler.php" method="POST" enctype="multipart/form-data">
+					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
+					<p>Adicionar foto</p>
+					<input type="file" name="img[]" multiple style="height: 20px;">
+					<br><p style="margin-top: 80px;"><h2>Nome do servico / Produto</h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><hr><br>
+					<h3>Preço</h3>
+					<input type="text" name="price" value="<?=$value['SRV_PRECO'];?>"><hr><br>
+					<h3>Descrição</h3>
+					<textarea name="description"><?= $value['SRV_DESCRICAO'];?></textarea><hr><br>
+					<h3>Localização</h3>
+					<p></p> <input type="text" name="location" value="<?= $value['SRV_LOCALIZACAO'];?>" ><hr><br>
+					<input type="hidden" name="id_servico" value="<?=$value['SRV_ID'];?>">
+					<button type="submit" name="enviar">Salvar alterações</button>
+				</form>
+					
+				</center>	
+			</div>
+		<?php endforeach; ?>
+
 	</div>
 
 	</center>
 	<?php include("login.php");?>
 
 	<footer class="rodape">©Copyright 2019</footer>
+
 	
 
 </body>

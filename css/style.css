@@ -34,7 +34,6 @@ body{
 nav{
 	padding: 0;
 	margin-top: 0;
-	color: white;
 	width: 100%;
 	height: 86px;
 	opacity: 0.8;
@@ -43,6 +42,7 @@ nav{
 	transition: .3s;
 	z-index: 500;
 	text-align: center;
+	background: black;
 }
 nav ul li a:hover{
 	background: #585858;
@@ -64,7 +64,7 @@ nav ul li{
 	float: center;
 }
 nav ul li a{
-	color: black;
+	color: white;
 	padding: 15px 30px;
 	text-decoration: none;
 	cursor: pointer;
@@ -379,8 +379,8 @@ div.search div.anuncios{
 	margin: auto;
 }
 div.anuncios img{
-	width: 50%;
-	height: 50%;
+	width: 25%;
+	height: 30%;
 	margin-top: 40px;
 }
 div.anuncios form{
@@ -466,12 +466,6 @@ div.anuncios form button{
 .ajuda h1{
 	margin-left:-25px;
 }	
-@media screen and(max-width: 500px){
-	body{
-		background-color: red;
-	}
-}
-
 .slide{
 	width: 300px;
 	height: 350px;

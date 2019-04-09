@@ -12,24 +12,52 @@ function pdoExec($prepare, $execute){
 	$stmt -> execute($execute);
 	return $stmt;
 }
+function rowCount($prepare, $execute = []){
+	$stmt = pdoExec($prepare, $execute)->rowCount();
+	return $stmt;
+}
 
-function addServico($dados){
+function addServico($dados, $img){
 	$nome = $dados['name'];
 	$tipo = $dados['type'];
 	$descricao = $dados['description'];
 	$localizacao = $dados['location'];
 	$preco = $dados['price'];
-	$arquivo = $dados['foto'];
 	$usuario = $dados['user_id'];
 	
 	if(!empty($dados)){
-		pdoExec("INSERT INTO SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=?, SRV_IMAGEM=?, SRV_USER_ID=?", [$nome, $tipo, $descricao, $localizacao, $preco, $arquivo, $usuario]);
-		header('location: ../index.php');
+		pdoExec("INSERT INTO SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=?, SRV_USER_ID=?", [$nome, $tipo, $descricao, $localizacao, $preco, $usuario]);
+		if (!empty($img["name"])) :
+        	$caminho = "../produtos/img/";
+			$count = count(array_filter($img['name']));
+			$permite = ['image/jpeg', 'image/png', 'image/jpg'];
+			$id_servico= 0;
+			$conn = conexao();
+			echo($count);
+			for($i=0; $i< $count; $i++):
+				$name = $img['name'][$i];
+				$tmp = $img['tmp_name'][$i];
+				$ext = @end(explode('.', $name));
+				$newname = rand().".$ext";
+				$diretorio = $caminho.$newname;
+				move_uploaded_file($tmp, $diretorio);
+				$data = pdoExec("SELECT * FROM SERVICOS WHERE SRV_NOME=? AND SRV_USER_ID=?", [$nome, $usuario]);
+				if ($data -> rowCount() >0) :
+					$resultado = $data -> fetchAll();
+					foreach ($resultado as $value) :
+						$id_servico = $value['SRV_ID'];
+					endforeach;
+				endif;
+				$stmt = $conn -> prepare("INSERT INTO IMAGENS SET IMG_NOME=?, IMG_SRV_ID=?");
+				$stmt -> execute([$diretorio, $id_servico]);			
+			endfor;
+		endif;
+		header('location: anuncios.php');
 	}else{
 		header('location: servico.php');
 	}
 }
-function updateServico($dados){
+function updateServico($dados, $img){
 	$nome = $dados['name'];
 	$descricao = $dados['description'];
 	$localizacao = $dados['location'];
@@ -38,8 +66,26 @@ function updateServico($dados){
 	$usuario = $_SESSION['userId'];
 	if(!empty($dados)){
 		$stmt =pdoExec("UPDATE SERVICOS SET SRV_NOME=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=? WHERE SRV_ID=? AND SRV_USER_ID=?", [$nome, $descricao, $localizacao, $preco, $id, $usuario]);
+		$caminho = "../produtos/img/";
+		$count = count(array_filter($img['name']));
+		$permite = ['image/jpeg', 'image/png', 'image/jpg'];
+		$id_servico= 0;
+		$conn = conexao();
+		for($i=0; $i< $count; $i++){
+			$name = $img['name'][$i];
+			$tmp = $img['tmp_name'][$i];
+			$ext = @end(explode('.', $name));
+			$newname = rand().".$ext";
+			$diretorio = $caminho.$newname;
+			move_uploaded_file($tmp, $diretorio);
+			if (!empty($_FILES['img'])) {
+				$stmt = $conn -> prepare("INSERT INTO IMAGENS SET IMG_NOME=?, IMG_SRV_ID=?");
+				$stmt -> execute([$diretorio, $dados['id_servico']]);
+			}
+
+		}
 	
-		header('location:'.$_SERVER['HTTP_REFERER']);
+		header('location: anuncios.php');
 	}else{
 		header('location:'.$_SERVER['HTTP_REFERER']);
 	}
@@ -48,13 +94,15 @@ function deleteServico($dados){
 	$id = $dados['id_servico'];
 	$usuario = $_SESSION['userId'];
 	pdoExec("DELETE FROM COMENTARIOS WHERE md5(CMT_SRV_ID)=?", [$id]);
+	$stmt = pdoExec("SELECT * FROM IMAGENS WHERE md5(IMG_SRV_ID)=?", [$id]);
+	$delete = $stmt -> fetchAll();
+	foreach ($delete as $value) {
+		unlink($value['IMG_NOME']);
+	}
+	pdoExec("DELETE FROM IMAGENS WHERE md5(IMG_SRV_ID)=?", [$id]);
 	pdoExec("DELETE FROM SERVICOS WHERE md5(SRV_ID)=?",[$id]);
 	$caminho = "../produtos/img/";
 	header('location: anuncios.php');
-}
-function rowCount($prepare, $execute = []){
-	$stmt = pdoExec($prepare, $execute)->rowCount();
-	return $stmt;
 }
 
 function addUser($data){

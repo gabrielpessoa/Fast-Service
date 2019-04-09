@@ -9,7 +9,7 @@ if(!isLogged()){
 <html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
-	<title>Cadastro de usuários</title>
+	<title>Cadastro de servico</title>
 	<link rel="stylesheet" href="../css/style.css">
 	<script src="../js/jquery.js"></script>	
 	<script src="../js/functions.js"></script>
@@ -18,7 +18,7 @@ if(!isLogged()){
 <body>
 	<center>
 		<div>
-            <nav class="black">	
+            <nav>	
                 <a href="../index.php"><img src="../img/3.png"></a>
                 <ul>
                     <li><a href="../">Início</a></li>
@@ -68,7 +68,7 @@ if(!isLogged()){
                     <br><p>Preço</p>
                     <input type="number" name="price" required placeholder="Digite aqui"><br>
                     <br><p>Anexar Imagem</p><br>
-                    <input type="file" name="foto" required><br>
+                    <input type="file" name="foto[]" multiple><br>
                     <button type="submit" name="cadastrar">Cadastrar</button>
                 </form>
 			</div>

@@ -1,3 +1,10 @@
+<?php 
+include("functions.php");
+if (!isLogged()) {
+	header('location: ../index.php');
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,7 +16,6 @@
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
-<?php include("functions.php"); ?>
 <body>
 	<div>
 		<nav>
@@ -55,9 +61,24 @@
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
-			<div class="anuncios">
+			<div class="anuncios" style="">
 				<center>
-					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
+					<br><h3 style="margin-top: 20px;">Imagens do anúncio</h3>
+					<div class="imgs" style=" display: flex; flex-wrap: wrap; border: solid 1px #babaca;  align-items: center; overflow: hidden;">
+					<?php
+					$id_img = $value['SRV_ID'];
+					$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=?", [$id_img]);
+					$dados2 = $data -> fetchAll();
+					foreach ($dados2 as $data) :?>
+						
+						<div style="text-align: center; padding: 15px;">
+							<img src="<?=$data['IMG_NOME'];?>" style="margin: 10px auto; width: 190px; height: 160px;"><br>
+							<p><a href="delete_img.php?i=<?=$data['IMG_NOME'];?>">Excluir</a></p>
+							
+						</div>
+
+					<?php endforeach; ?>
+					</div>
 					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr><br>
 					<h3>Preço</h3>
 					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr><br>
@@ -72,7 +93,6 @@
 			</div>
 		<?php endforeach; ?>
 	</div>
-	<?php include("login.php");?>
 	<footer class="rodape">©Copyright 2019</footer>
 
 </body>
