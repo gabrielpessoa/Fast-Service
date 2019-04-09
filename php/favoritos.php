@@ -1,10 +1,3 @@
-<?php 
-include("functions.php");
-if (!isLogged()) {
-	header('location: ../index.php');
-	exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,6 +9,7 @@ if (!isLogged()) {
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
+<?php include("functions.php"); ?>
 <body>
 	<div>
 		<nav>
@@ -25,7 +19,7 @@ if (!isLogged()) {
 				<li><a href="/">Início</a></li>
 				<li><a href="ajuda.php">Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
-				<li><a href="favoritos.php">Meus favoritos</a></li>
+					<li><a href="favoritos.php">Meus favoritos</a></li>
 					<li><a href="anuncios.php">Meus anúncios</a></li>
 					<li><a href="perfil.php">Minha conta</a></li>
 					<li><a href="servico.php">Anunciar</a></li>
@@ -59,41 +53,22 @@ if (!isLogged()) {
 	<div class="search">
 		<?php 
 		$usuario = $_SESSION['userId']; 
-		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
-		$resultado = $dados -> fetchAll(); 
-		foreach($resultado as $value):?>
-			<div class="anuncios" style="">
-				<center>
-					<br><h3 style="margin-top: 20px;">Imagens do anúncio</h3>
-					<div class="imgs" style=" display: flex; flex-wrap: wrap; border: solid 1px #babaca;  align-items: center; overflow: hidden;">
-					<?php
-					$id_img = $value['SRV_ID'];
-					$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=?", [$id_img]);
-					$dados2 = $data -> fetchAll();
-					foreach ($dados2 as $data) :?>
-						
-						<div style="text-align: center; padding: 15px;">
-							<img src="<?=$data['IMG_NOME'];?>" style="margin: 10px auto; width: 190px; height: 160px;"><br>
-							<p><a href="delete_img.php?i=<?=$data['IMG_NOME'];?>">Excluir</a></p>
-							
-						</div>
-
-					<?php endforeach; ?>
+		$dados = pdoExec("SELECT SERVICOS.* FROM SERVICOS INNER JOIN FAVORITOS ON FAVORITOS.FVR_SRV_ID = SERVICOS.SRV_ID INNER JOIN USUARIOS ON USUARIOS.USER_ID = FAVORITOS.FVR_USER_ID WHERE USUARIOS.USER_ID = ?", [$usuario]);
+		$resultado = $dados -> fetchAll();
+			foreach ($resultado as $value):?>
+				<center><br>
+					<div class="products">
+						<div class="foto"><img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
+						<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
+							<p><?= $value['SRV_NOME'];?><br>
+							<?= "R$: ".$value['SRV_PRECO']; ?><br>
+							<?= $value['SRV_LOCALIZACAO']; ?></p>
+						</a>
 					</div>
-					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr><br>
-					<h3>Preço</h3>
-					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr><br>
-					<h3>Descrição</h3>
-					<p><?= $value['SRV_DESCRICAO'];?></p><hr><br>
-					<h3>Localização</h3>
-					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr><br>
-					<a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
-					<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a><br><br><br>
-					
 				</center>	
-			</div>
-		<?php endforeach; ?>
+			<?php endforeach; ?>
 	</div>
+	<?php include("login.php");?>
 	<footer class="rodape">©Copyright 2019</footer>
 
 </body>

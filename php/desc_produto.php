@@ -20,6 +20,7 @@
 				<li><a href="sobre.php">Sobre</a></li>
 				<li><a href="ajuda.php">Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
+				<li><a href="favoritos.php">Meus favoritos</a></li>
 					<li><a href="perfil.php">Minha conta</a></li>
 					<li><a href="servico.php">Anunciar</a></li>
 					<li><a href="logout.php" class="btn-login">Sair</a></li>
@@ -58,13 +59,21 @@
 		foreach($resultado as $value):?>
 			<div class="anuncios">
 				<center>
+				<?php 
+					$stmt = rowCount("SELECT * FROM FAVORITOS WHERE FVR_SRV_ID=?", [$value['SRV_ID']]);
+						if($stmt > 0){  ?>
+							<a href="del_favoritos.php?i=<?=$value['SRV_ID'];?>">Remover favorito</a>
+						<?php }else{  ?>
+							<a href="add_favoritos.php?i=<?=$value['SRV_ID'];?>">Favoritos</a>
+					 <?php };
+				 ?>
 					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
 					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
 					<h3>Preço</h3>
 					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr>
 					<h3>Descrição</h3>
 					<p><?= $value['SRV_DESCRICAO'];?></p>
-					<p>Lorem ipsum é um texto utilizado para preencher o espaço de texto em publicações (jornais, revistas, e websites) e testar aspectos visuais(cores, fontes), com a finalidade de verificar o layout, tipografia e formatação antes de utilizar conteúdo real.</p><br><hr>
+					<hr>
 					<h3>Localização</h3>
 					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr>
 						<h3>Comentários</h3>

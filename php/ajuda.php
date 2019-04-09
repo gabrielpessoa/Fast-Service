@@ -19,6 +19,7 @@
 				<li><a href="sobre.php">Sobre</a></li>
 				<li><a href="ajuda.php">Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
+					<li><a href="favoritos.php">Meus favoritos</a></li>
 					<li><a href="anuncios.php">Meus anúncios</a></li>
 					<li><a href="perfil.php">Minha conta</a></li>
 					<li><a href="servico.php">Anunciar</a></li>
