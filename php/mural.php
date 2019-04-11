@@ -51,31 +51,33 @@
 
 		<br>
 		<div class="profile" >
-			<center>	
+			<center>
+				<div style="display: flex; margin-top: 50px;">
 			<?php
 				$id = $_GET['i'];
                 $stmt = pdoExec("SELECT * FROM USUARIOS WHERE md5(USER_ID)=?", [$id]);
                 $dados = $stmt -> fetchAll();
                 foreach ($dados as $value) : ?>
-                	<img src="">
-                	<div style=" margin: 0 auto;  border: solid 1px #babaca; border-radius: 5px; width: 40%;">
+                	<img src="<?=$_SESSION['userIMG'];?>">
+                	<div style=" margin: 0 auto; border-radius: 5px; width: 40%;">
                 	<label>Nome: </label><br>
                 	<p><?=$value['USER_NOME'];?></p><br>
                 	<label>E-mail: </label><br>
                 	<p><?=$value['USER_EMAIL'];?></p><br>
-                	<label>Contato: </label><br>
+                	<label>Telefone para contato: </label><br>
                 	<p><?=$value['USER_TELEFONE'];?></p><br>
                 		
                 	</div>
                 <?php endforeach; ?>
-                <div style="display: flex; margin-top: 20px; padding: 15px; margin-left: 80px;">
+                </div>
+                <div style="display: flex; margin-top: 20px; padding: 15px; ">
                 	
               
                 <?php
                 $stmt = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_USER_ID)=?", [$id]);
                 $data = $stmt -> fetchAll();
                 foreach ($data as $value) {?>
-                	<div style="width: 40%; border: solid 1px #babaca; border-radius: 5px; margin-bottom: 10px; padding: 15px;">
+                	<a href="desc_produto.php?desc=<?=md5($value['SRV_ID']);?>" style="width: 60%;"><div style="width: 90%; border: solid 1px #babaca; border-radius: 5px; margin-bottom: 10px; padding: 15px;">
                 	<?php 
                 	$dt = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
                 	$dados2 = $dt -> fetchAll();
@@ -90,7 +92,7 @@
 					<hr>
 					<h3>Localização</h3>
 					<p><?= $value['SRV_LOCALIZACAO'];?></p>
-                	</div>
+                	</div></a>
                <?php }
                 ?>  </div>
     		</center>

@@ -32,7 +32,7 @@ if (!isLogged()) {
             </nav>
             <br>
             <div class="busca">
-                <form action="">
+                <form action="search.php" method="GET">
                     <input type="text" placeholder="  Estou procurando por..." required>
                     <button type="submit"><i class="fas fa-search" ></i></button>
                 </form>
@@ -44,18 +44,20 @@ if (!isLogged()) {
                         <li class="icons"> <a href=search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
                     </ul>
             </div>
-            <div class="cadastro" style="width: 380px; height: 400px; border: solid 1px #babaca; margin-top: 120px;">
-                
-                <form id="tab">
+            <div class="cadastro" style="width: 50%;border: solid 1px #babaca; margin-top: 120px;">
+                <form action="foto_perfil.php" method="POST"  enctype="multipart/form-data">
+                    <img src="<?=$_SESSION['userIMG'];?>" style="  width: 170px;height: 190px; margin-top: 20px;">
+                    <input type="file" name="img">
+                    <input type="submit" value="Enviar">
+                </form>
                     <br><p>Nome</p>
                     <input type="text" value="<?=$_SESSION['userName']?>"disabled><br>
                     <br><p>Usuário</p>
                     <input type="text" value="<?=$_SESSION['userLogin']?>"disabled><br>
                     <br><p>Email</p>
                     <input type="email" value="<?=$_SESSION['userEmail']?>"disabled><br>
-                    <br><p>Contato</p>
-                    <input type="email" value="<?=$_SESSION['userFone']?>"disabled><br>
-                </form>
+                    <br><p>Telefone para contato</p>
+                    <input type="email" value="<?=$_SESSION['userFone']?>"disabled style="margin-bottom: 50px;"><br>
             </div>
         </div>
     </center>

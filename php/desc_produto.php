@@ -90,6 +90,21 @@
 							<p><a href="mural.php?i=<?=md5($dados1['USER_ID']);?>" style="background: none; color: blue; padding-right: 15px;"><?=$user;?></a><?=":  ".$comentario;?></p>
 						<?php endforeach; ?>
 					</div>
+
+					<br><div class="barra">
+						<span class="bg"></span>
+						<span class="stars">
+							<?php for($i=1; $i<=5; $i++):?>
+
+							<span class="star" data-vote="<?= $i;?>">
+								<span class="starAbsolute"></span>
+							</span>
+							<?php 
+								endfor;?>
+						</span>
+					</div>
+					<br><p class="votos"><span><?= $value['AVL_QTD_PESSOAS'];?></span> votos</p>
+					
 					<form action="add_comentario.php" method="POST">
 						<p>Escrever comentário</p>
 						<textarea name="comentario" placeholder="Digite aqui"></textarea><br>

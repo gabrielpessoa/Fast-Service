@@ -35,7 +35,7 @@
 	<center>
 		<br>
             <div class="busca">
-                <form action="">
+                <form action="search.php">
                     <input type="text" placeholder="  Estou procurando por..." required>
                     <button type="submit"><i class="fas fa-search" ></i></button>
                 </form>

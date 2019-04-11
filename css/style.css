@@ -501,13 +501,11 @@ div.profile{
 .profile img{
 	width: 170px;
 	height: 190px;
-	margin: 25px 25px;
+	margin: 0 25px;
 }
-
-.red {
-	color:red;
+.red{
+	color: red;
 }
-.blue {
-	color:blue;
-	margin-top: 40px;
+.blue{
+	color: blue;
 }

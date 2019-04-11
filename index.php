@@ -45,15 +45,16 @@
 
 				</form>
 					<ul class="icons-busca">
-					     <li class="icons"> <a href=php/search.php?search=<?=md5(4);?> > <i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
+				    <li class="icons"> <a href=php/search.php?search=<?=md5(4);?> > <i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
 				    <li class="icons"> <a href=php/search.php?search=<?=md5(7);?> > <i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
 				    <li class="icons"> <a href=php/search.php?search=<?=md5(8);?> > <i class="fas fa-mortar-pestle"></i>Culinária </a></li>
 				    <li class="icons"> <a href=php/search.php?search=<?=md5(10);?> ><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
 				    <li class="icons"> <a href=php/search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
        				</ul>
 			</div>
+		</center>
 			<?php 
-			if (isset($_SESSION['user_invalid'])) {?> 
+			if (isset($_SESSION['user_invalid'])) { ?>
 				<p class="red">Usuário não existe</p>
 				<?php unset($_SESSION['user_invalid']);
 			}
@@ -66,7 +67,6 @@
 				<?php unset($_SESSION['add_user']);
 			}
 			?>
-		</center>
 		
 				
 	<div class="window" id="janela">

@@ -44,8 +44,6 @@ if (isLogged()) {
 				    <li class="icons"> <a href=search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
 				</ul>
 		</div>
-		<center>
-			
 			<?php if (isset($_SESSION['user_exist'])) : ?>
 				<p class="red">Usuário já existe</p>
 			<?php endif; unset($_SESSION['user_exist']); ?>
@@ -55,24 +53,23 @@ if (isLogged()) {
 			<?php if (isset($_SESSION['email_exist'])) : ?>
 				<p class="red">E-mail já está em uso</p>
 			<?php endif; unset($_SESSION['email_exist']); ?>
-		</center>
 				
 			<div class="cadastro" style="border: solid 1px #babaca; margin-top: 120px;">
         		
             		
 			<form action="register2.php" method="POST">
 				<p class="primary">Nome</p><br>
-				<input type="text" name="name" placeholder="Digite aqui"><br>
+				<input type="text" name="name" required placeholder="Digite aqui"><br>
 				<br><p>Usuário</p>
 				<input type="text" name="username" required placeholder="Digite aqui"><br>
 				<br><p>E-mail</p>
-				<input type="text" name="email" required placeholder="Digite aqui"><br>
-				<br><p>Telefone</p>
-				<input type="text" name="fone" required placeholder="Digite aqui"><br>
+				<input type="email" name="email" required placeholder="Digite aqui"><br>
+				<br><p>Telefone para contato</p>
+				<input type="tel" name="fone" required placeholder="Digite aqui"><br>
 				<br><p>Senha</p>
-				<input type="password" name="password1" required placeholder="Digite aqui"><br>
+				<input type="password" name="password1" required placeholder="Digite aqui" minlength="6" maxlength="8"><br>
 				<br><p>Confirmar senha</p>
-				<input type="password" name="password2"  required placeholder="Digite aqui"><br>
+				<input type="password" name="password2"  required placeholder="Digite aqui" minlength="6" maxlength="8"><br>
 				<button type="submit">Cadastrar</button>
 			</form>
 

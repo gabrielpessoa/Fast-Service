@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
 
 function conexao(){
 	global $conn;
@@ -21,7 +21,7 @@ function addFavoritos($dados){
 	$usuario = $_SESSION['userId'];
 	$servico = $dados;
 	$stmt = pdoExec("INSERT INTO FAVORITOS SET FVR_USER_ID=?, FVR_SRV_ID=? ", [$usuario, $servico]);
-	header('location: anuncios.php');
+	header('location:'.$_SERVER['HTTP_REFERER']);
 }
 
 function delFavoritos($dados){
@@ -66,7 +66,6 @@ function addServico($dados, $img){
 				$stmt -> execute([$diretorio, $id_servico]);			
 			endfor;
 		endif;
-		$_SESSION["anuncio_sucesso"]=1;
 		header('location: anuncios.php');
 	}else{
 		header('location: servico.php');
@@ -99,7 +98,7 @@ function updateServico($dados, $img){
 			}
 
 		}
-	
+		$_SESSION["anuncio_sucesso"]=1;
 		header('location: anuncios.php');
 	}else{
 		header('location:'.$_SERVER['HTTP_REFERER']);
@@ -164,6 +163,7 @@ function login($data){
 			$_SESSION['userEmail'] = $dados['USER_EMAIL'];
 			$_SESSION['userFone'] = $dados['USER_TELEFONE'];
 			$_SESSION['userLogin'] = $dados['USER_USUARIO'];
+			$_SESSION['userIMG'] = $dados['USER_IMAGEM'];
 			header('location: ../index.php');
 		}
 	}
