@@ -1,3 +1,4 @@
+<?php include("functions.php"); if(!isLogged()){header('location: index.php'); exit();} ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,7 +10,6 @@
 	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
-<?php include("functions.php"); ?>
 <body>
 	<div>
 		<nav>
@@ -18,16 +18,11 @@
 			<ul>
 				<li><a href="/">Início</a></li>
 				<li><a href="ajuda.php">Ajuda</a></li>
-				<?php if (isLogged() ){ ?>
-					<li><a href="favoritos.php">Meus favoritos</a></li>
-					<li><a href="anuncios.php">Meus anúncios</a></li>
-					<li><a href="perfil.php">Minha conta</a></li>
-					<li><a href="servico.php">Anunciar</a></li>
-					<li><a href="logout.php" class="btn-login">Sair</a></li>
-				<?php } else{ ?>
-				<li><a href="register.php">Registrar-se</a></li>
-				<li><a href="#janela" rel="modal" class="btn-login">Login</a></li>
-			<?php } ?>
+				<li><a href="favoritos.php">Meus favoritos</a></li>
+				<li><a href="anuncios.php">Meus anúncios</a></li>
+				<li><a href="perfil.php">Minha conta</a></li>
+				<li><a href="servico.php">Anunciar</a></li>
+				<li><a href="logout.php" class="btn-login">Sair</a></li>
 			</ul>
 			
 		</nav>
@@ -58,7 +53,7 @@
 			foreach ($resultado as $value):?>
 				<center><br>
 					<div class="products">
-						<div class="foto"><img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
+						<div class="foto"><img src="<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
 						<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
 							<p><?= $value['SRV_NOME'];?><br>
 							<?= "R$: ".$value['SRV_PRECO']; ?><br>

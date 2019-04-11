@@ -17,7 +17,6 @@
 			<a href="index.php"><img src="../img/3.png"></a>
 			<ul>
 				<li><a href="/">Início</a></li>
-				<li><a href="sobre.php">Sobre</a></li>
 				<li><a href="ajuda.php">Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
 				<li><a href="favoritos.php">Meus favoritos</a></li>
@@ -38,9 +37,7 @@
 		<div class="busca">
 			<form action="">
 				<input type="text" placeholder="  Estou procurando por..." required>
-
 				<button type="submit"><i class="fas fa-search" ></i></button>
-
 				<ul class="icons-busca">
 				    <li class="icons"> <a href=""><i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
 				    <li class="icons"> <a href=""><i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
@@ -60,14 +57,14 @@
 			<div class="anuncios">
 				<center>
 				<?php 
-					$stmt = rowCount("SELECT * FROM FAVORITOS WHERE FVR_SRV_ID=?", [$value['SRV_ID']]);
+					$stmt = rowCount("SELECT * FROM WHERE FVR_SRV_ID=?", [$value['SRV_ID']]);
 						if($stmt > 0){  ?>
 							<a href="del_favoritos.php?i=<?=$value['SRV_ID'];?>">Remover favorito</a>
 						<?php }else{  ?>
 							<a href="add_favoritos.php?i=<?=$value['SRV_ID'];?>">Favoritos</a>
 					 <?php };
 				 ?>
-					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
+					<img src="<?=$value['SRV_IMAGEM'];?>">
 					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
 					<h3>Preço</h3>
 					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr>
@@ -90,7 +87,7 @@
 								$user = $dados1['USER_NOME'];
 							}
 							?>
-							<p><?= $user.":  ".$comentario;?></p>
+							<p><a href="mural.php?i=<?=md5($dados1['USER_ID']);?>" style="background: none; color: blue; padding-right: 15px;"><?=$user;?></a><?=":  ".$comentario;?></p>
 						<?php endforeach; ?>
 					</div>
 					<form action="add_comentario.php" method="POST">

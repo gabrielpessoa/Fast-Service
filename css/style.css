@@ -489,3 +489,17 @@ div.slide a#section{
 	color: white;
 	padding: 0px 10px;
 }
+div.profile{
+	margin-top: 50px;
+	width: 70%;
+	background: white;
+	border-radius: 15px;
+	min-height: 100vh;
+	margin-bottom: 40px;
+	border: solid 1px #babaca;
+}
+.profile img{
+	width: 170px;
+	height: 190px;
+	margin: 25px 25px;
+}
