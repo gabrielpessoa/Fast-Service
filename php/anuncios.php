@@ -57,6 +57,12 @@ if (!isLogged()) {
 		</div>
 
 	<div class="search">
+		<center>
+			<?php if (isset($_SESSION["anuncio_sucesso"])) : ?>
+				<p class="blue">Cadastrado com sucesso</p>
+			<?php endif; unset($_SESSION["anuncio_sucesso"]); ?>
+		</center>
+		
 		<?php 
 		$usuario = $_SESSION['userId']; 
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);

@@ -66,6 +66,7 @@ function addServico($dados, $img){
 				$stmt -> execute([$diretorio, $id_servico]);			
 			endfor;
 		endif;
+		$_SESSION["anuncio_sucesso"]=1;
 		header('location: anuncios.php');
 	}else{
 		header('location: servico.php');
