@@ -44,16 +44,18 @@ if (isLogged()) {
 				    <li class="icons"> <a href=search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
 				</ul>
 		</div>
-			<label>.</label>
+		<center>
+			
 			<?php if (isset($_SESSION['user_exist'])) : ?>
-				<script> alert("Usuário já existe"); </script>
+				<p class="red">Usuário já existe</p>
 			<?php endif; unset($_SESSION['user_exist']); ?>
 			<?php if (isset($_SESSION['passwords_different'])) : ?>
-				<script> alert("Senhas diferentes"); </script>
+				<p class="red">Senhas diferentes</p>
 			<?php endif; unset($_SESSION['passwords_different']); ?>
 			<?php if (isset($_SESSION['email_exist'])) : ?>
-				<script> alert("E-mail já está em uso"); </script>
+				<p class="red">E-mail já está em uso</p>
 			<?php endif; unset($_SESSION['email_exist']); ?>
+		</center>
 				
 			<div class="cadastro" style="border: solid 1px #babaca; margin-top: 120px;">
         		

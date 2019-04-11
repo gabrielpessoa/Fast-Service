@@ -503,3 +503,10 @@ div.profile{
 	height: 190px;
 	margin: 25px 25px;
 }
+
+.red {
+	color:red;
+}
+.blue {
+	color:blue;
+}

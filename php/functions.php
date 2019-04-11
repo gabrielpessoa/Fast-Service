@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
 
 function conexao(){
 	global $conn;
@@ -21,7 +21,7 @@ function addFavoritos($dados){
 	$usuario = $_SESSION['userId'];
 	$servico = $dados;
 	$stmt = pdoExec("INSERT INTO FAVORITOS SET FVR_USER_ID=?, FVR_SRV_ID=? ", [$usuario, $servico]);
-	header('location:'.$_SERVER['HTTP_REFERER']);
+	header('location: anuncios.php');
 }
 
 function delFavoritos($dados){

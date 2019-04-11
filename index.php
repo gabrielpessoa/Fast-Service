@@ -52,21 +52,21 @@
 				    <li class="icons"> <a href=php/search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
        				</ul>
 			</div>
-		</center>
 			<?php 
-			if (isset($_SESSION['user_invalid'])) {
-				echo "<script>alert('Usuário não existe')</script>";
-				unset($_SESSION['user_invalid']);
+			if (isset($_SESSION['user_invalid'])) {?> 
+				<p class="red">Usuário não existe</p>
+				<?php unset($_SESSION['user_invalid']);
 			}
-			elseif(isset($_SESSION['password_incorrect'])){
-				echo "<script>alert('Senha incorreta')</script>";
-				unset($_SESSION['password_incorrect']);
+			elseif(isset($_SESSION['password_incorrect'])){ ?>
+				<p class="red">Senha incorreta</p>
+				<?php unset($_SESSION['password_incorrect']);
 			}
-			elseif(isset($_SESSION['add_user'])){
-				echo "<script>alert('Cadastrado com sucesso')</script>";
-				unset($_SESSION['add_user']);
+			elseif(isset($_SESSION['add_user'])){ ?>
+				<p class="blue">Cadastrado com sucesso</p>
+				<?php unset($_SESSION['add_user']);
 			}
 			?>
+		</center>
 		
 				
 	<div class="window" id="janela">
