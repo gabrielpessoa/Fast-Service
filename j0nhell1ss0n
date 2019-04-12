@@ -1,0 +1,20 @@
+@@ -488,4 +488,18 @@ div.anuncios form button {
+div. Deslize  um #section {
+	cor : branco ;
+	preenchimento : 0 px  10 px ;
+} 
+}
+div .profile {
+	margem superior : 50 px ;
+	largura : 70 % ;
+	fundo : branco ;
+	raio de fronteira : 15 px ;
+	min-height : 100 vh ;
+	margem inferior : 40 px ;
+	borda : sólido  1 px  #babaca ;
+}
+.profile  img {
+	largura : 170 px ;
+	altura : 190 px ;
+	margem : 25 px  25 px ;
+}
