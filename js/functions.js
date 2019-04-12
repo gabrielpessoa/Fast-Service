@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 	});
 
-
+	//LOGIN
 	$("#mascara").click(function(){
 		$(this).fadeOut("slow");
 		$(".window").fadeOut("slow");
@@ -44,19 +44,35 @@ $(document).ready(function() {
 		$(".window").fadeOut(1000, "linear");
 	});
 
+	//AVALIAÇÃO
+	var average = $('.ratingAverage').attr('data-average');
+	function avaliacao(average){
+		average = (Number(average)*20);
+		$('.bg').css('width', 0);		
+		$('.barra .bg').animate({width:average+'%'}, 500);
+	}
+	
+	avaliacao(average);
 
-	$(function(){
-	$('.slide ul').cycle({
-		fx: 'fade',
-		speed: 3000,
-		timeout: 2500,
-		prev:'.anterior',
-		next:'.proxima',
+	$('.star').on('mouseover', function(){
+		var indexAtual = $('.star').index(this);
+		for(var i=0; i<= indexAtual; i++){
+			$('.star:eq('+i+')').addClass('full');
+		}
 	});
-	$('div.slide').hover(function(){
-		$('section.botao').fadeIn();},
-		function(){
-			$('section.botao').fadeOut();
+	$('.star').on('mouseout', function(){
+		$('.star').removeClass('full');
 	});
-});
+
+	$('.star').on('click', function(){
+		var idArticle = $('.article').attr('data-id');//codigo do livro
+		var voto = $(this).attr('data-vote');//quantidade de votos
+		$.post('avaliacao.php', {votar: 'sim', codigo: idArticle, estrela: voto}, function(retorno){
+			avaliacao(retorno.average);
+			$('.votos span').html(retorno.votos);
+		}, 'jSON');
+			location.reload();
+	});
+
+
 });

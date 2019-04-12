@@ -23,6 +23,7 @@ if(!isLogged()){
                 <ul>
                     <li><a href="../">Início</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
+                    <li><a href="favoritos.php">Meus favoritos</a></li>
                     <li><a href="anuncios.php">Meus anúncios</a></li>
                     <li><a href="perfil.php">Minha conta</a></li>
                     <li><a href="servico.php">Anunciar</a></li>

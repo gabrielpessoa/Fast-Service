@@ -23,7 +23,6 @@ if (isLogged()) {
 			<a href="../index.php"><img src="../img/3.png"></a>
 			<ul>
 				<li><a href="../index.php">Início</a></li>
-				<li><a href="sobre.php">Sobre</a></li>
 				<li><a href="ajuda.php">Ajuda</a></li>
 				<li><a href="register.php">Registrar-se</a></li>
 				<li><a href="#janela" rel="modal" class="btn-login">Login</a></li>
@@ -32,7 +31,7 @@ if (isLogged()) {
 		</nav>
 		<br>
 		<div class="busca">
-			<form action="">
+			<form action="search.php">
 				<input type="text" placeholder="  Estou procurando por..." required>
 				<button type="submit"><i class="fas fa-search" ></i></button>
 			</form>

@@ -19,7 +19,8 @@
 				<li><a href="/">Início</a></li>
 				<li><a href="ajuda.php">Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
-				<li><a href="favoritos.php">Meus favoritos</a></li>
+					<li><a href="favoritos.php">Meus favoritos</a></li>
+					<li><a href="anuncios.php">Meus anúncios</a></li>
 					<li><a href="perfil.php">Minha conta</a></li>
 					<li><a href="servico.php">Anunciar</a></li>
 					<li><a href="logout.php" class="btn-login">Sair</a></li>
@@ -35,15 +36,15 @@
 	<br>
 	<center>
 		<div class="busca">
-			<form action="">
+			<form action="search.php">
 				<input type="text" placeholder="  Estou procurando por..." required>
 				<button type="submit"><i class="fas fa-search" ></i></button>
 				<ul class="icons-busca">
-				    <li class="icons"> <a href=""><i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-mortar-pestle"></i>Culinária </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
-				    <li class="icons"> <a href=""><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
+				    <li class="icons"> <a href=search.php?search=<?=md5(4);?> > <i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
+				    <li class="icons"> <a href=search.php?search=<?=md5(7);?> > <i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
+				    <li class="icons"> <a href=search.php?search=<?=md5(8);?> > <i class="fas fa-mortar-pestle"></i>Culinária </a></li>
+				    <li class="icons"> <a href=search.php?search=<?=md5(10);?> ><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
+				    <li class="icons"> <a href=search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
 				</ul>
 			</form>
 		</div>
@@ -56,15 +57,24 @@
 		foreach($resultado as $value):?>
 			<div class="anuncios">
 				<center>
-				<?php 
-					$stmt = rowCount("SELECT * FROM WHERE FVR_SRV_ID=?", [$value['SRV_ID']]);
-						if($stmt > 0){  ?>
-							<a href="del_favoritos.php?i=<?=$value['SRV_ID'];?>">Remover favorito</a>
-						<?php }else{  ?>
-							<a href="add_favoritos.php?i=<?=$value['SRV_ID'];?>">Favoritos</a>
-					 <?php };
-				 ?>
-					<img src="<?=$value['SRV_IMAGEM'];?>">
+				<?php
+					$id_servico = $value['SRV_ID'];
+
+					$stmt = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$id_servico]);
+					$data3 = $stmt -> fetchAll();
+					foreach ($data3 as $val) {?>
+						
+					<img src="<?=$val['IMG_NOME'];?>" style="margin-bottom: 40px; width: 40%; height: 40%;">
+					<?php }
+					if(isLogged()){
+						$stmt = rowCount("SELECT * FROM FAVORITOS WHERE FVR_SRV_ID=?", [$id_servico]);
+							if($stmt > 0){  ?>
+								<br><p><a href="del_favoritos.php?i=<?=md5($value['SRV_ID']);?>">Remover favorito</a></p>
+							<?php }else{  ?>
+								<br><p><a href="add_favoritos.php?i=<?=$value['SRV_ID'];?>">Favoritos</a></p>
+						 <?php }
+						}
+					 ?>	
 					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
 					<h3>Preço</h3>
 					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr>
@@ -90,7 +100,13 @@
 							<p><a href="mural.php?i=<?=md5($dados1['USER_ID']);?>" style="background: none; color: blue; padding-right: 15px;"><?=$user;?></a><?=":  ".$comentario;?></p>
 						<?php endforeach; ?>
 					</div>
-
+					<?php
+					$dt = pdoExec("SELECT * FROM MEDIA_AVALIACOES WHERE MDAV_SRV_ID=?", [$id_servico]);
+					$dt2 = $dt -> fetchAll();
+					foreach ($dt2 as $value) {?>
+					<p style="margin-top: 40px;">Avaliar o serviço</p>
+					<span class="ratingAverage" data-average="<?= $value['MDAV_MEDIA'];?>"></span>
+					<span class="article" data-id="<?= $id_servico;?>"></span>
 					<br><div class="barra">
 						<span class="bg"></span>
 						<span class="stars">
@@ -103,8 +119,9 @@
 								endfor;?>
 						</span>
 					</div>
-					<br><p class="votos"><span><?= $value['AVL_QTD_PESSOAS'];?></span> votos</p>
-					
+					<br><p class="votos"><span><?= $value['MDAV_TOTAL_PESSOAS'];?></span> votos</p>
+					<?php }?>
+
 					<form action="add_comentario.php" method="POST">
 						<p>Escrever comentário</p>
 						<textarea name="comentario" placeholder="Digite aqui"></textarea><br>

@@ -23,6 +23,7 @@ if (!isLogged()) {
                 <ul>
                     <li><a href="../index.php">Início</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
+                    <li><a href="favoritos.php">Meus favoritos</a></li>
                     <li><a href="anuncios.php">Meus anúncios</a></li>
                     <li><a href="perfil.php">Minha conta</a></li>
                     <li><a href="servico.php">Anunciar</a></li>
@@ -45,8 +46,14 @@ if (!isLogged()) {
                     </ul>
             </div>
             <div class="cadastro" style="width: 50%;border: solid 1px #babaca; margin-top: 120px;">
+                <?php 
+                $stmt = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$_SESSION['userId']]);
+                $dados = $stmt -> fetchAll();
+                foreach ($dados as $value) {
+                    $img  = $value['USER_IMAGEM']; 
+                }?>
                 <form action="foto_perfil.php" method="POST"  enctype="multipart/form-data">
-                    <img src="<?=$_SESSION['userIMG'];?>" style="  width: 170px;height: 190px; margin-top: 20px;">
+                    <img src="<?=$value['USER_IMAGEM'];?>" style="  width: 170px;height: 190px; margin-top: 20px;">
                     <input type="file" name="img">
                     <input type="submit" value="Enviar">
                 </form>

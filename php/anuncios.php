@@ -59,7 +59,7 @@ if (!isLogged()) {
 	<div class="search">
 		<center>
 			<?php if (isset($_SESSION["anuncio_sucesso"])) : ?>
-				<p class="blue">Cadastrado com sucesso</p>
+				<p class="blue">Salvo com sucesso</p>
 			<?php endif; unset($_SESSION["anuncio_sucesso"]); ?>
 		</center>
 		<?php 

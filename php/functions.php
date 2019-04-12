@@ -26,8 +26,8 @@ function addFavoritos($dados){
 
 function delFavoritos($dados){
 	$usuario = $_SESSION['userId'];
-	$servico = $dados;
-	rowCount("DELETE FROM FAVORITOS WHERE FVR_USER_ID=$usuario AND FVR_SRV_ID=$servico");
+	$servico = $dados['id_servico'];
+	pdoExec("DELETE FROM FAVORITOS WHERE FVR_USER_ID=? AND md5(FVR_SRV_ID)=?", [$usuario, $servico]);
 	header('location:'.$_SERVER['HTTP_REFERER']);
 }
 
@@ -63,7 +63,8 @@ function addServico($dados, $img){
 					endforeach;
 				endif;
 				$stmt = $conn -> prepare("INSERT INTO IMAGENS SET IMG_NOME=?, IMG_SRV_ID=?");
-				$stmt -> execute([$diretorio, $id_servico]);			
+				$stmt -> execute([$diretorio, $id_servico]);
+				$stmt = pdoExec("INSERT INTO MEDIA_AVALIACOES SET MDAV_TOTAL_PESSOAS=?, MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=?, MDAV_SRV_ID=?", [0, 0, 0, $id_servico]);		
 			endfor;
 		endif;
 		header('location: anuncios.php');
@@ -115,7 +116,6 @@ function deleteServico($dados){
 	}
 	pdoExec("DELETE FROM IMAGENS WHERE md5(IMG_SRV_ID)=?", [$id]);
 	pdoExec("DELETE FROM SERVICOS WHERE md5(SRV_ID)=?",[$id]);
-	$caminho = "../produtos/img/";
 	header('location: anuncios.php');
 }
 
