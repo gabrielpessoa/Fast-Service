@@ -1,7 +1,7 @@
 <?php 
 include("functions.php"); 
 if (!isLogged()) {
-    header('location: /');
+    header('location: ../index.php');
     exit();
 }
 ?>
@@ -21,13 +21,11 @@ if (!isLogged()) {
             <nav> 
                 <a href="../index.php"><img src="../img/3.png"></a>
                 <ul>
-                    <li><a href="../index.php">Início</a></li>
-                    <li><a href="ajuda.php">Ajuda</a></li>
-                    <li><a href="favoritos.php">Meus favoritos</a></li>
-                    <li><a href="anuncios.php">Meus anúncios</a></li>
-                    <li><a href="perfil.php">Minha conta</a></li>
-                    <li><a href="servico.php">Anunciar</a></li>
-                    <li><a href="logout.php" class="btn-login">Sair</a></li>
+                    <li><a href="/"><i class="fas fa-home"></i>Início</a></li>
+                    <li><a href="ajuda.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
+                    <li><a href="servico.php"><i class="fas fa-ad"></i>Anunciar</a></li>
+                    <li><a href="#account" rel="account"><i class="fas fa-user-alt"></i>Minha conta</a></li>
+                    <li><a href="logout.php" class="btn-login"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                 </ul>
                 
             </nav>
@@ -54,7 +52,7 @@ if (!isLogged()) {
                 }?>
                 <form action="foto_perfil.php" method="POST"  enctype="multipart/form-data">
                     <img src="<?=$value['USER_IMAGEM'];?>" style="  width: 170px;height: 190px; margin-top: 20px;">
-                    <input type="file" name="img">
+                    <input type="file" name="img" required>
                     <input type="submit" value="Enviar">
                 </form>
                     <br><p>Nome</p>
@@ -68,7 +66,7 @@ if (!isLogged()) {
             </div>
         </div>
     </center>
-
+    <?php include("conta.php");?>
 	<footer class="rodape">©Copyright 2019</footer>
 </body>
 </html>

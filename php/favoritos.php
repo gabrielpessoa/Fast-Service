@@ -16,13 +16,11 @@
 			
 			<a href="../index.php"><img src="../img/3.png"></a>
 			<ul>
-				<li><a href="/">Início</a></li>
-				<li><a href="ajuda.php">Ajuda</a></li>
-				<li><a href="favoritos.php">Meus favoritos</a></li>
-				<li><a href="anuncios.php">Meus anúncios</a></li>
-				<li><a href="perfil.php">Minha conta</a></li>
-				<li><a href="servico.php">Anunciar</a></li>
-				<li><a href="logout.php" class="btn-login">Sair</a></li>
+				<li><a href="/"><i class="fas fa-home"></i>Início</a></li>
+				<li><a href="ajuda.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
+				<li><a href="servico.php"><i class="fas fa-ad"></i>Anunciar</a></li>
+				<li><a href="#account" rel="account"><i class="fas fa-user-alt"></i>Minha conta</a></li>
+				<li><a href="logout.php" class="btn-login"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
 			</ul>
 			
 		</nav>
@@ -53,7 +51,13 @@
 			foreach ($resultado as $value):?>
 				<center><br>
 					<div class="products">
-						<div class="foto"><img src="<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
+						<?php
+						$stmt = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
+						$data = $stmt -> fetchAll();
+						foreach ($data as $val) {
+							$img = $val['IMG_NOME'];
+						}?>
+						<div class="foto"><img src="<?=$img;?>" style="width: 100%; height: 100%;"></div>
 						<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
 							<p><?= $value['SRV_NOME'];?><br>
 							<?= "R$: ".$value['SRV_PRECO']; ?><br>
@@ -63,7 +67,7 @@
 				</center>	
 			<?php endforeach; ?>
 	</div>
-	<?php include("login.php");?>
+	<?php include("conta.php");?>
 	<footer class="rodape">©Copyright 2019</footer>
 
 </body>

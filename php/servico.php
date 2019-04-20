@@ -21,15 +21,12 @@ if(!isLogged()){
             <nav>	
                 <a href="../index.php"><img src="../img/3.png"></a>
                 <ul>
-                    <li><a href="../">Início</a></li>
-                    <li><a href="ajuda.php">Ajuda</a></li>
-                    <li><a href="favoritos.php">Meus favoritos</a></li>
-                    <li><a href="anuncios.php">Meus anúncios</a></li>
-                    <li><a href="perfil.php">Minha conta</a></li>
-                    <li><a href="servico.php">Anunciar</a></li>
-                    <li><a href="logout.php" class="btn-login">Sair</a></li>
+                    <li><a href="/"><i class="fas fa-home"></i>Início</a></li>
+                    <li><a href="ajuda.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
+                    <li><a href="servico.php"><i class="fas fa-ad"></i>Anunciar</a></li>
+                    <li><a href="#account" rel="account"><i class="fas fa-user-alt"></i>Minha conta</a></li>
+                    <li><a href="logout.php" class="btn-login"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                 </ul>
-                
             </nav>
 
     		<br>
@@ -74,6 +71,7 @@ if(!isLogged()){
 			</div>
 		</div>
 	</center>
+    <?php include("conta.php");?>
 	<footer class="rodape">©Copyright 2019</footer>
 </body>
 </html>

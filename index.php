@@ -16,17 +16,15 @@
 			
 			<a href="index.php"><img src="img/3.png"></a>
 			<ul>
-				<li><a href="/">Início</a></li>
-				<li><a href="php/ajuda.php">Ajuda</a></li>
+				<li><a href="index.php"><i class="fas fa-home"></i>Início</a></li>
+				<li><a href="php/ajuda.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
-				<li><a href="php/favoritos.php">Meus favoritos</a></li>
-					<li><a href="php/anuncios.php">Meus anúncios</a></li>
-					<li><a href="php/perfil.php">Minha conta</a></li>
-					<li><a href="php/servico.php">Anunciar</a></li>
-					<li><a href="php/logout.php" class="btn-login">Sair</a></li>
+					<li><a href="php/servico.php"><i class="fas fa-ad"></i>Anunciar</a></li>
+					<li><a href="#account" rel="account"><i class="fas fa-user-alt"></i>Minha conta</a></li>
+					<li><a href="php/logout.php" class="btn-login"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
 				<?php } else{ ?>
-				<li><a href="php/register.php">Registrar-se</a></li>
-				<li><a href="#janela" rel="modal" class="btn-login">Login</a></li>
+				<li><a href="php/register.php"><i class="fas fa-user-plus"></i>Registrar-se</a></li>
+				<li><a href="#janela" rel="modal" class="btn-login"><i class="fas fa-user-alt"></i>Login</a></li>
 			<?php } ?>
 			</ul>
 			
@@ -34,10 +32,6 @@
 	</div>
 
 		<center>
-			<div class="header-bg">
-				<h2><label>F</label>ast -</h2><br>
-				<h3><label>S</label>ervice</h3>
-			</div>
 			<br><div class="busca">
 				<form action="php/search.php" method="GET">
 					<input type="text" name="search" placeholder="  Estou procurando por..." required>
@@ -51,22 +45,35 @@
 				    <li class="icons"> <a href=php/search.php?search=<?=md5(10);?> ><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
 				    <li class="icons"> <a href=php/search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
        				</ul>
-			</div>
-		</center>
-			<?php 
-			if (isset($_SESSION['user_invalid'])) { ?>
-				<p class="red">Usuário não existe</p>
-				<?php unset($_SESSION['user_invalid']);
-			}
-			elseif(isset($_SESSION['password_incorrect'])){ ?>
-				<p class="red">Senha incorreta</p>
-				<?php unset($_SESSION['password_incorrect']);
-			}
-			elseif(isset($_SESSION['add_user'])){ ?>
-				<p class="blue">Cadastrado com sucesso</p>
-				<?php unset($_SESSION['add_user']);
-			}
-			?>
+			</div><br>
+
+			<div class="search">
+			<center>
+				<br><p style="top: 40px; font-size: 20px;">Anúncios</p>
+				<?php 
+					$dados = pdoExec("SELECT * FROM SERVICOS", []);
+					$resultado = $dados -> fetchAll(); 
+					foreach($resultado as $value):
+						$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
+						$data3 = $data -> fetchAll();
+						foreach ($data3 as $val) {
+							$img = $val['IMG_NOME']; 
+						}
+						?>
+					<br>
+						<div class="products">
+							<div class="foto"><img src="<?= $img;?>" style="width: 100%; height: 100%;"></div>
+							<a href=php/desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
+								<p><?= $value['SRV_NOME'];?><br>
+								<?= "R$: ".$value['SRV_PRECO']; ?><br>
+								<?= $value['SRV_LOCALIZACAO']; ?></p>
+							</a>
+						</div>
+				<?php endforeach; ?> 
+			</center>
+		</div>
+		</center><br>
+		
 		
 				
 	<div class="window" id="janela">
@@ -89,6 +96,16 @@
 		
 	</div>
 
+	<div class="account" id="account">
+		<center>
+			<a href="#" class="fechar">X</a>
+			<h3><i class="fas fa-user-alt"></i> Minha conta</h3>
+			<hr>
+			<p><a href="php/perfil.php" class="link"><i class="fas fa-user-circle"></i><br>Meu perfil</a></p><hr class="hr">
+			<p><a href="php/anuncios.php" class="link"><i class="fas fa-ad"></i><br>Meus anúncios</a></p><hr class="hr">
+			<p><a href="php/favoritos.php" class="link"><i class="fas fa-star"></i><br>Meus favoritos</a></p>
+		</center>
+	</div>
 	<footer class="rodape">©Copyright 2019</footer>
 
 </body>

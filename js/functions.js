@@ -2,12 +2,12 @@ $(document).ready(function() {
 	
 	// $(window).on('scroll', function () {
 	// 	if($(window).scrollTop()){
-	// 		$('nav').addClass('black');
+	// 		$('html,body').scrollTop(0);
 	// 	}
-	// 	else{
-	// 		$('nav').removeClass('black');
+	// 	// else{
+	// 	// 	$('nav').removeClass('black');
 
-	// 	}
+	// 	// }
 	// });
 
 	$(window).scroll(function(){
@@ -65,7 +65,7 @@ $(document).ready(function() {
 	});
 
 	$('.star').on('click', function(){
-		var idArticle = $('.article').attr('data-id');//codigo do livro
+		var idArticle = $('.article').attr('data-id');//codigo do servico
 		var voto = $(this).attr('data-vote');//quantidade de votos
 		$.post('avaliacao.php', {votar: 'sim', codigo: idArticle, estrela: voto}, function(retorno){
 			avaliacao(retorno.average);
@@ -74,5 +74,34 @@ $(document).ready(function() {
 			location.reload();
 	});
 
+	$('a[rel=account]').click(function(e){
+		e.preventDefault();
+		var id = $(this).attr("href");
+		var alturaTela = $(document).height();
+		var larguraTela = $(window).width();
+
+		var left = ($(window).width()/2) - ($(id).width()/2);
+		var top = ($(window).height()/2) - ($(id).height()/2);
+		$(".account").fadeIn(500, 'linear');
+		 $(id).css({'margin-top': 86});
+		// $(id).show();
+
+	});
+
+	$(".account").click('outside', function(){
+	$(this).fadeOut("slow");
+	});
+
+	$(".fechar").click(function(e){
+		e.preventDefault();
+		$(".account").fadeOut(1000, "linear");
+	});
+	
+	$(".top").click(function(e){
+		e.preventDefault();
+		if($(window).scrollTop()){
+			$('html,body').scrollTop(0);
+		}
+	});
 
 });

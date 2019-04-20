@@ -35,36 +35,33 @@ if ($stmt ->rowCount() >0) {
 		}
 
 		else{
-			
-				$stmt = pdoExec("SELECT * FROM MEDIA_AVALIACOES WHERE MDAV_SRV_ID=?", [$codigo]);
-				$dados = $stmt -> fetchAll();
-				foreach ($dados as $value) {
-					$qtd_estrela = $value['MDAV_QTD_ESTRELAS']-$star;
-					$media = $qtd_estrela/$value['MDAV_TOTAL_PESSOAS'];
-					$pessoas = $value['MDAV_TOTAL_PESSOAS'];
+			$stmt = pdoExec("SELECT * FROM MEDIA_AVALIACOES WHERE MDAV_SRV_ID=?", [$codigo]);
+			$dados = $stmt -> fetchAll();
+			foreach ($dados as $value) {
+				$qtd_estrela = $value['MDAV_QTD_ESTRELAS']-$star;
+				$media = $qtd_estrela/$value['MDAV_TOTAL_PESSOAS'];
+				$pessoas = $value['MDAV_TOTAL_PESSOAS'];
 				pdoExec("UPDATE MEDIA_AVALIACOES SET MDAV_QTD_ESTRELAS=?, WHERE MDAV_SRV_ID=?", [$qtd_estrela, $codigo]);
-				}
-			
-
+			}
+		
 			pdoExec('UPDATE AVALIACOES SET AVL_QTD_ESTRELAS=? WHERE AVL_USER_ID=? AND AVL_SRV_ID=?', [$estrela, $usuario, $codigo]);
 			$qtd_estrela += $estrela;
 			$media = $qtd_estrela/$pessoas;
 			pdoExec("UPDATE MEDIA_AVALIACOES SET MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=? WHERE MDAV_SRV_ID=?", [$qtd_estrela, $media, $codigo]);
-
 		}
 	endforeach;
 }
 
 else{
 	pdoExec("INSERT INTO AVALIACOES SET AVL_USER_ID=?, AVL_SRV_ID=?, AVL_QTD_ESTRELAS=?", [$usuario, $codigo, $estrela]);
-$stmt = pdoExec("SELECT * FROM MEDIA_AVALIACOES WHERE MDAV_SRV_ID=?", [$codigo]);
-$dados = $stmt -> fetchAll();
-foreach ($dados as $value) {
-	$pessoas+=$value['MDAV_TOTAL_PESSOAS'];
-	$qtd_estrela+=$value['MDAV_QTD_ESTRELAS'];
-}
-$media=$qtd_estrela/$pessoas;
-$estrela+=$qtd_estrela;
-$stmt = pdoExec("UPDATE MEDIA_AVALIACOES SET MDAV_TOTAL_PESSOAS=?, MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=? WHERE MDAV_SRV_ID=?", [$pessoas, $estrela, $media, $codigo]);
-}
+	$stmt = pdoExec("SELECT * FROM MEDIA_AVALIACOES WHERE MDAV_SRV_ID=?", [$codigo]);
+	$dados = $stmt -> fetchAll();
+	foreach ($dados as $value) {
+		$pessoas+=$value['MDAV_TOTAL_PESSOAS'];
+		$qtd_estrela+=$value['MDAV_QTD_ESTRELAS'];
+	}
+	$media=$qtd_estrela/$pessoas;
+	$estrela+=$qtd_estrela;
+	$stmt = pdoExec("UPDATE MEDIA_AVALIACOES SET MDAV_TOTAL_PESSOAS=?, MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=? WHERE MDAV_SRV_ID=?", [$pessoas, $estrela, $media, $codigo]);
+	}
 ?>

@@ -16,17 +16,15 @@
 			
 			<a href="index.php"><img src="../img/3.png"></a>
 			<ul>
-				<li><a href="/">Início</a></li>
-				<li><a href="ajuda.php">Ajuda</a></li>
+				<li><a href="/"><i class="fas fa-home"></i>Início</a></li>
+				<li><a href="ajuda.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
-				<li><a href="favoritos.php">Meus favoritos</a></li>
-					<li><a href="anuncios.php">Meus anúncios</a></li>
-					<li><a href="perfil.php">Minha conta</a></li>
-					<li><a href="servico.php">Anunciar</a></li>
-					<li><a href="logout.php" class="btn-login">Sair</a></li>
+					<li><a href="servico.php"><i class="fas fa-ad"></i>Anunciar</a></li>
+					<li><a href="#account" rel="account"><i class="fas fa-user-alt"></i>Minha conta</a></li>
+					<li><a href="logout.php" class="btn-login"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
 				<?php } else{ ?>
-				<li><a href="register.php">Registrar-se</a></li>
-				<li><a href="#janela" rel="modal" class="btn-login">Login</a></li>
+				<li><a href="register.php"><i class="fas fa-user-plus"></i>Registrar-se</a></li>
+				<li><a href="#janela" rel="modal" class="btn-login"><i class="fas fa-user-alt"></i>Login</a></li>
 			<?php } ?>
 			</ul>
 			
@@ -110,7 +108,10 @@
 		</div>
 	</center>
 
-	<?php include("login.php");?>
+	<?php 
+	include("login.php");
+	include("conta.php");
+	?>
 
 	<footer class="rodape">©Copyright 2019</footer>
 
