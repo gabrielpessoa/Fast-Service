@@ -121,7 +121,7 @@
 					</div>
 					<br><p class="votos"><span><?= $value['MDAV_TOTAL_PESSOAS'];?></span> votos</p>
 					<?php }?>
-
+					<?=$_SESSION['teste']."<br>".$_SESSION['teste2']; unset($_SESSION['teste'], $_SESSION['teste2']); ?>
 					<form action="add_comentario.php" method="POST">
 						<p>Escrever comentário</p>
 						<textarea name="comentario" placeholder="Digite aqui"></textarea><br>

@@ -154,7 +154,7 @@ function login($data){
 		$dados = $stmt -> fetch();
 		if ($dados['USER_USUARIO']==$username && $dados['USER_SENHA']!=$password) {
 			$_SESSION['password_incorrect'] = 1;
-			header('location: ../index.php?i='.$password);
+			header('location:'.$_SERVER['HTTP_REFERER']);
 			exit();
 		}
 		else{
@@ -164,7 +164,7 @@ function login($data){
 			$_SESSION['userFone'] = $dados['USER_TELEFONE'];
 			$_SESSION['userLogin'] = $dados['USER_USUARIO'];
 			$_SESSION['userIMG'] = $dados['USER_IMAGEM'];
-			header('location: ../index.php');
+			header('location:'.$_SERVER['HTTP_REFERER']);
 		}
 	}
 	else{
@@ -185,7 +185,7 @@ function isLogged(){
 
 function logout(){
 	session_destroy();
-	header('location: /');
+	header('location:'.$_SERVER['HTTP_REFERER']);
 }
 
 function addComentario($data){

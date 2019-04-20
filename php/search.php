@@ -70,10 +70,15 @@
 					$row = 1;
 					$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_CATEGORIA)=?", [$search]);
 					$resultado = $dados -> fetchAll(); 
-					foreach($resultado as $value):?>
+					foreach($resultado as $value):
+						$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
+						$data3 = $data -> fetchAll();
+						foreach ($data3 as $val) {
+							$img = $val['IMG_NOME']; 
+						}?>
 					<br>
 						<div class="products">
-							<div class="foto"><img src="<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
+							<div class="foto"><img src="<?=$img;?>" style="width: 100%; height: 100%;"></div>
 							<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
 								<p><?= $value['SRV_NOME'];?><br>
 								<?= "R$: ".$value['SRV_PRECO']; ?><br>
@@ -84,10 +89,16 @@
 				<?php if($search=="todos"){
 					$dados = pdoExec("SELECT * FROM SERVICOS", []);
 					$resultado = $dados -> fetchAll(); 
-					foreach($resultado as $value):?>
+					foreach($resultado as $value):
+						$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
+						$data3 = $data -> fetchAll();
+						foreach ($data3 as $val) {
+							$img = $val['IMG_NOME']; 
+						}
+						?>
 					<br>
 						<div class="products">
-							<div class="foto"><img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
+							<div class="foto"><img src="<?= $img;?>" style="width: 100%; height: 100%;"></div>
 							<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
 								<p><?= $value['SRV_NOME'];?><br>
 								<?= "R$: ".$value['SRV_PRECO']; ?><br>
