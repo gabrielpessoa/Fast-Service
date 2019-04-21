@@ -239,6 +239,7 @@ div.cadastro{
 	margin-top: 40px;
 	border: solid 1px;
 	width: 450px;
+	height: 700px;
 	border-radius: 5px;
 	background: white;
 	border: solid 1px #babaca; 
@@ -309,6 +310,9 @@ div.busca form input:focus{
 a{
 	text-decoration: none;
 }
+a:focus{
+	outline: none;
+}
 div.busca .icons-busca{
 	list-style: none;
 	display: flex;
@@ -322,6 +326,9 @@ div.busca .icons-busca{
 	text-decoration: none;
 	color: black;
 	cursor: pointer;
+}
+.icons-busca li a:focus{
+	outline: none;
 }
 .icons-busca li a:hover{
 	text-decoration: underline;
@@ -603,7 +610,7 @@ div.account p a.link:hover{
 }
 div.account a.fechar{
 	width: 10px;
-	color: red;
+	color: blue;
 	float: right;
 	padding: 4px;
 	margin-right: -7px;
@@ -625,4 +632,10 @@ a.top{
 }
 a.top:hover{
 	text-decoration: underline;
+}
+div.cadastro select.subtype{
+	display: none;
+}
+div.cadastro p.subtype{
+	display: none;
 }

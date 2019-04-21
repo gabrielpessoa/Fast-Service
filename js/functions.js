@@ -15,6 +15,7 @@ $(document).ready(function() {
 			$(window).scrollTop()/700);
 	});
 
+	//LOGIN
 	$("a[rel=modal]").click(function(e){
 		e.preventDefault();
 		var id = $(this).attr("href");
@@ -33,7 +34,6 @@ $(document).ready(function() {
 
 	});
 
-	//LOGIN
 	$("#mascara").click(function(){
 		$(this).fadeOut("slow");
 		$(".window").fadeOut("slow");
@@ -74,6 +74,7 @@ $(document).ready(function() {
 			location.reload();
 	});
 
+	//CONTA DO USUÁRIO
 	$('a[rel=account]').click(function(e){
 		e.preventDefault();
 		var id = $(this).attr("href");
@@ -84,12 +85,6 @@ $(document).ready(function() {
 		var top = ($(window).height()/2) - ($(id).height()/2);
 		$(".account").fadeIn(500, 'linear');
 		 $(id).css({'margin-top': 86});
-		// $(id).show();
-
-	});
-
-	$(".account").click('outside', function(){
-	$(this).fadeOut("slow");
 	});
 
 	$(".fechar").click(function(e){
@@ -102,6 +97,34 @@ $(document).ready(function() {
 		if($(window).scrollTop()){
 			$('html,body').scrollTop(0);
 		}
+	});
+
+	// $("form#register").submit(function(e){
+	// 	var dados = $(this).serialize();
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url: "register2.php",
+	// 		dados: data,
+	// 		success:function (retorno){
+	// 			$(".cadastro").text("Success");
+	// 		}
+
+	// 	});
+	// });
+
+	$("select.type").click(function(){
+		var value = $(this).val();
+		var consulta = "SELECT * FROM SUBCATEGORIAS WHERE SCTG_CTG_ID="+value;
+		$("p.subtype").fadeIn(500, 'linear');
+		$("select.subtype").fadeIn(500, 'linear');
+		$.ajax({
+			url: "subcategorias.php",
+			type: "POST",
+			data: {type: value},
+			success: function(retorno){
+				$("select.subtype").html(retorno);
+			}
+		});
 	});
 
 });

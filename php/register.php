@@ -1,7 +1,8 @@
 <?php 
 include("functions.php"); 
 if (isLogged()) {
-	header('location: /');
+	header('location: ../index.php');
+	exit();
 }
 ?>
 <!DOCTYPE html>
@@ -56,7 +57,7 @@ if (isLogged()) {
 			<div class="cadastro" style="border: solid 1px #babaca; margin-top: 120px;">
         		
             		
-			<form action="register2.php" method="POST">
+			<form  method="POST" action="register2.php" id="register">
 				<p class="primary">Nome</p><br>
 				<input type="text" name="name" required placeholder="Digite aqui"><br>
 				<br><p>Usuário</p>
@@ -75,6 +76,31 @@ if (isLogged()) {
 			</div>
 		</div>
 	</center>
+	
+	<!-- <script type="text/javascript">
+		$(document).ready(function(){
+			$("#register").submit(function(e){
+				e.preventDefault();
+				var data = $(this).serialize();
+				$.ajax({
+					url: "register2.php",
+					dados: data,
+					type: "POST",
+					success:function (retorno){
+						if(retorno=="ok"){
+							$(".cadastro").html("Success");
+						}
+					}
+					error: function(data){
+		            	$(".cadastro").text("Fail");
+		            }
+
+				});
+				return false;
+			});
+		});
+	</script> -->
+
 	<?php include("login.php");?>
 
 	<footer class="rodape">©Copyright 2019</footer>

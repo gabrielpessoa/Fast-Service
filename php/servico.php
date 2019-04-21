@@ -1,7 +1,7 @@
 <?php 
 include("functions.php"); 
 if(!isLogged()){
-    header('location: /');
+    header('location: ../index.php');
     exit();
 }
 ?>
@@ -11,6 +11,7 @@ if(!isLogged()){
 	<meta charset="UTF-8">
 	<title>Cadastro de servico</title>
 	<link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" type="image/x-png" href="../img/3.png">
 	<script src="../js/jquery.js"></script>	
 	<script src="../js/functions.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -48,15 +49,18 @@ if(!isLogged()){
                 <form action="servico_proc.php" method="POST" enctype="multipart/form-data">
                     <p class="primary">Nome do Serviço</p><br>
                     <input type="text" name="name" placeholder="Digite aqui"><br>
-                    <br><p>Tipo</p>
-                    <select name="type">
+                    <br><p>Categoria</p>
+                    <select name="type" class="type">
                         <option disabled>Selecione</option>
                         <?php 
                         $dados = pdoExec("SELECT * FROM CATEGORIAS",[]);
                         $resultado = $dados -> fetchAll();
                         foreach ($resultado as $value) : ?>                            
                         <option value=<?=$value['CTG_ID'];?> > <?= utf8_encode($value['CTG_NOME']);?> </option>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </select>
+                    <br><p class="subtype">Subcategoria</p>
+                    <select name="subtype" class="subtype">
                     </select>
                     <br><p>Descrição</p>
                     <textarea name="description" placeholder="Digite aqui"></textarea><br>

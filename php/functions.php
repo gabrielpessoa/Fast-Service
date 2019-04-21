@@ -38,9 +38,10 @@ function addServico($dados, $img){
 	$localizacao = $dados['location'];
 	$preco = $dados['price'];
 	$usuario = $dados['user_id'];
+	$subcategoria = $dados['subtype'] ?? 0;
 	
 	if(!empty($dados)){
-		pdoExec("INSERT INTO SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=?, SRV_USER_ID=?", [$nome, $tipo, $descricao, $localizacao, $preco, $usuario]);
+		pdoExec("INSERT INTO SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=?, SRV_USER_ID=?, SRV_SUBCATEGORIA=?", [$nome, $tipo, $descricao, $localizacao, $preco, $usuario, $subcategoria]);
 		if (!empty($img["name"])) :
         	$caminho = "../produtos/img/";
 			$count = count(array_filter($img['name']));
