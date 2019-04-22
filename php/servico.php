@@ -29,50 +29,54 @@ if(!isLogged()){
                     <li><a href="logout.php" class="btn-login"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                 </ul>
             </nav>
+        </div>
+		<br>
+        <div class="busca">
+            <form action="search.php">
+                <input type="text" placeholder="  Estou procurando por..." required>
+                <button type="submit"><i class="fas fa-search" ></i></button>
+            </form>
+            <ul class="icons-busca">
+                <li class="icons"> <a href=search.php?search=<?=md5(4);?> > <i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
+                <li class="icons"> <a href=search.php?search=<?=md5(7);?> > <i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
+                <li class="icons"> <a href=search.php?search=<?=md5(8);?> > <i class="fas fa-mortar-pestle"></i>Culinária </a></li>
+                <li class="icons"> <a href=search.php?search=<?=md5(10);?> ><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
+                <li class="icons"> <a href=search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
+            </ul>
+        </div>
 
-    		<br>
-            <div class="busca">
-                <form action="search.php">
-                    <input type="text" placeholder="  Estou procurando por..." required>
-                    <button type="submit"><i class="fas fa-search" ></i></button>
-                </form>
-                    <ul class="icons-busca">
-                        <li class="icons"> <a href=search.php?search=<?=md5(4);?> > <i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
-                        <li class="icons"> <a href=search.php?search=<?=md5(7);?> > <i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
-                        <li class="icons"> <a href=search.php?search=<?=md5(8);?> > <i class="fas fa-mortar-pestle"></i>Culinária </a></li>
-                        <li class="icons"> <a href=search.php?search=<?=md5(10);?> ><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
-                        <li class="icons"> <a href=search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
-                    </ul>
-            </div>
-
-			<div class="cadastro">		
-                <form action="servico_proc.php" method="POST" enctype="multipart/form-data">
-                    <p class="primary">Nome do Serviço</p><br>
-                    <input type="text" name="name" placeholder="Digite aqui"><br>
-                    <br><p>Categoria</p>
-                    <select name="type" class="type">
-                        <option disabled>Selecione</option>
-                        <?php 
-                        $dados = pdoExec("SELECT * FROM CATEGORIAS",[]);
-                        $resultado = $dados -> fetchAll();
-                        foreach ($resultado as $value) : ?>                            
-                        <option value=<?=$value['CTG_ID'];?> > <?= utf8_encode($value['CTG_NOME']);?> </option>
-                        <?php endforeach; ?>
-                    </select>
-                    <br><p class="subtype">Subcategoria</p>
-                    <select name="subtype" class="subtype">
-                    </select>
-                    <br><p>Descrição</p>
-                    <textarea name="description" placeholder="Digite aqui"></textarea><br>
-                    <br><p>Cidade</p><br>
-                    <input type="text" name="location" required placeholder="Digite aqui"><br>
-                    <br><p>Preço</p>
-                    <input type="number" name="price" required placeholder="Digite aqui"><br>
-                    <br><p>Anexar Imagem</p><br>
-                    <input type="file" name="foto[]" multiple><br>
-                    <button type="submit" name="cadastrar">Cadastrar</button>
-                </form>
-			</div>
+		<div class="cadastro">
+            <h2>Cadastro de serviço</h2>		
+            <form action="servico_proc.php" method="POST" enctype="multipart/form-data">
+                <p class="primary">Nome do Serviço</p><br>
+                <input type="text" name="name" placeholder="Digite aqui"><br>
+                <br><p>Categoria</p>
+                <select name="type" class="type">
+                    <option disabled>Selecione</option>
+                    <?php 
+                    $dados = pdoExec("SELECT * FROM CATEGORIAS",[]);
+                    $resultado = $dados -> fetchAll();
+                    foreach ($resultado as $value) : ?>                            
+                    <option value=<?=$value['CTG_ID'];?> > <?= utf8_encode($value['CTG_NOME']);?> </option>
+                    <?php endforeach; ?>
+                </select>
+                <br><p class="subtype">Subcategoria</p>
+                <select name="subtype" class="subtype">
+                </select>
+                <br><p>Descrição</p>
+                <textarea name="description" placeholder="Digite aqui"></textarea><br>
+                <br><p>Cidade</p><br>
+                <input type="text" name="location" required placeholder="Digite aqui"><br>
+                <br><p>Preço</p>
+                <input type="number" name="price" required placeholder="Digite aqui"><br>
+                <br><p>Fotos para o anúncio</p><br>
+                <!-- <div class='input-wrapper'>
+                    <label for="seleciona-foto">Selecionar foto</label><br> -->
+                <input type="file" name="foto[]" id="seleciona-foto" multiple><br>
+                    <!-- <p id='file-name'></p>
+                </div> -->
+                <button type="submit" name="cadastrar">Cadastrar</button>
+            </form>
 		</div>
 	</center>
     <?php include("conta.php");?>

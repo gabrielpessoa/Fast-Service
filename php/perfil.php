@@ -51,9 +51,9 @@ if (!isLogged()) {
                     $img  = $value['USER_IMAGEM']; 
                 }?>
                 <form action="foto_perfil.php" method="POST"  enctype="multipart/form-data">
-                    <img src="<?=$value['USER_IMAGEM'];?>" style="  width: 170px;height: 190px; margin-top: 20px;">
+                    <img src="<?=$value['USER_IMAGEM'];?>" style="  width: 170px;height: 190px; margin-top: 20px;"><br>
                     <input type="file" name="img" required>
-                    <input type="submit" value="Enviar">
+                    <button type="submit" >Enviar</button>
                 </form>
                     <br><p>Nome</p>
                     <input type="text" value="<?=$_SESSION['userName']?>"disabled><br>

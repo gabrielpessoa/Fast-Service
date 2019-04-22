@@ -238,9 +238,9 @@ div.cadastro{
 	text-align: center;
 	margin-top: 40px;
 	border: solid 1px;
-	width: 450px;
-	height: 700px;
-	border-radius: 5px;
+	width: 80%;
+	height: 850px;
+	border-radius: 15px;
 	background: white;
 	border: solid 1px #babaca; 
 	margin-top: 120px;
@@ -254,27 +254,63 @@ div.cadastro form button{
 	padding: 15px;
 	cursor: pointer;
 	margin-top: 20px;
-	width: 80%;
+	width: 50%;
 	margin-bottom: 30px;
 }
 div.cadastro form button:hover{
 	background: #FA5858;
 }
-div.cadastro p.primary{
+div.cadastro h2{
 	margin-top: 20px;
 }
+div.cadastro p.primary{
+	margin-top: 30px;
+}
 div.cadastro input{
-	width: 80%;
+	width: 50%;
 	height: 27px;
+	height: 35px;
+	border-radius: 5px;
+	border: solid 1px #babaca;
+}
+div.cadastro input[type=file]{
+	height: 20px;
+}
+div.cadastro form label{
+	background-color: #3498db;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	margin: 10px;
+	padding: 6px 20px;
 }
 div.cadastro form textarea{
-	width:80% ; 
-	height: 70px; 
+	width:51% ; 
+	height: 90px; 
 	resize: none;
+	border-radius: 5px;
 }
+/*.input-wrapper{
+	height: 100px;
+	border: solid;
+}
+.input-wrapper label {
+  background-color: #3498db;
+  border-radius: 5px;
+  color: #fff;
+  margin: 10px;
+  padding: 6px 20px
+}
+
+.input-wrapper label:hover {
+  background-color: #2980b9
+}*/
 div.cadastro select{
-	width: 81%;
+	width: 51%;
 	height: 30px;
+	height: 35px;
+	border-radius: 5px;
+	outline: none;
 }
 div.busca {
 	position: relative;
