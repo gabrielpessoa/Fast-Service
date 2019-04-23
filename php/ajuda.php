@@ -52,7 +52,6 @@
 		 			<li>Digite seu nome;</li>
 		 			<li>Nome do usuário;</li>
 		 			<li>E-mail;</li>
-		 			<li>Sexo (Masculino ou feminino);</li>
 		 			<li>Selecionar tipo de conta (Anuciante ou Cliente);</li>
 		 			<li>Criar senha;</li>
 		 			<li>Confirmar senha;</li>
