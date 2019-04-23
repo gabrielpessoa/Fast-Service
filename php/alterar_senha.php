@@ -43,35 +43,34 @@ if (!isLogged()) {
                         <li class="icons"> <a href=search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
                     </ul>
             </div>
-            <div class="cadastro" style="width: 50%;border: solid 1px #babaca; margin-top: 120px;">
-                <?php if(isset($_SESSION['senha_sucesso'])){ ?>
-                    <p class="blue">Senha alterada com sucesso</p>
-                    <?php } unset($_SESSION['senha_sucesso']);?>
 
+            <div class="search"> 
                 <?php 
-                $stmt = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$_SESSION['userId']]);
-                $dados = $stmt -> fetchAll();
-                foreach ($dados as $value) {
-                    $img  = $value['USER_IMAGEM']; 
-                }?>
-                <form action="foto_perfil.php" method="POST"  enctype="multipart/form-data">
-                    <img src="<?=$img?>" style="  width: 170px;height: 190px; margin-top: 20px;"><br>
-                    <input type="file" name="img" required>
-                    <button type="submit" >Enviar</button>
+                    if(isset($_SESSION['erro_senha'])){ ?>
+                    <p class="red">Senha atual incorreta</p>
+                    <?php } unset($_SESSION['erro_senha']);?>
+                  
+                  <?php if(isset($_SESSION['erro_senha_diferente'])){ ?>
+                    <p class="red">Senhas não correspondem</p>
+                    <?php } unset($_SESSION['erro_senha_diferente']);?>
+
+                
+
+                <form method="POST" action="alterar_senha_control.php">
+                    <p>Senha atual</p>
+                    <input type="password" name="password" required> 
+                    <p>Nova senha</p>
+                    <input type="password" name="newpassword" required>
+                    <p>Confirmar nova senha</p>
+                    <input type="password" name="newpassword2" required>
+                    <br>
+                    <button type="submit">Alterar senha</button>
+
                 </form>
-                    <br><p>Nome</p>
-                    <input type="text" value="<?=$_SESSION['userName']?>"disabled><br>
-                    <br><p>Usuário</p>
-                    <input type="text" value="<?=$_SESSION['userLogin']?>"disabled><br>
-                    <br><p>Email</p>
-                    <input type="email" value="<?=$_SESSION['userEmail']?>"disabled><br>
-                    <br><p>Telefone para contato</p>
-                    <input type="email" value="<?=$_SESSION['userFone']?>"disabled style="margin-bottom: 50px;"><br>
-                    <a href="alterar_senha.php">Alterar Senha</a>
+
             </div>
-        </div>
-    </center>
+             </center>
     <?php include("conta.php");?>
-	<footer class="rodape">©Copyright 2019</footer>
+    <footer class="rodape">©Copyright 2019</footer>
 </body>
 </html>
