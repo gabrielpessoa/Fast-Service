@@ -51,6 +51,7 @@
 			<center>
 				<div class="info">
 					<?php
+					$contador = 0; $media = 0; $mediaUsuario=0;
 					$id = $_GET['i'];
 	                $stmt = pdoExec("SELECT * FROM USUARIOS WHERE md5(USER_ID)=?", [$id]);
 	                $dados = $stmt -> fetchAll();
@@ -62,16 +63,30 @@
 		                	<label>E-mail: </label><br>
 		                	<p><?=$value['USER_EMAIL'];?></p><br>
 		                	<label>Telefone para contato: </label><br>
-		                	<p><?=$value['USER_TELEFONE'];?></p><br>  		
+		                	<p><?=$value['USER_TELEFONE'];?></p><br>
+		                	<?php 
+		                		$stmt = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_USER_ID)=?", [$id]);
+	                			$data = $stmt -> fetchAll();
+	                			foreach ($data as $contar) {
+	                				$contador++;
+	                			$md = pdoExec("SELECT * FROM MEDIA_AVALIACOES WHERE MDAV_SRV_ID=?", [$contar['SRV_ID']]);
+	                			$mdr = $md -> fetchAll();
+	                			foreach ($mdr as $resultado) {
+	                				$media = $media + $resultado['MDAV_MEDIA'];
+	                				}
+		                		} 
+		                		$mediaUsuario = $media/$contador;
+		                	?>
+		                	<label>Avaliacão do usuarios</label>
+		                	<p><?= $mediaUsuario; ?></p>
+		                	 
 	                	</div>
 	                <?php endforeach; ?>
                 </div>
 
                 <div class="adverts">
 	                <?php
-	                $stmt = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_USER_ID)=?", [$id]);
-	                $data = $stmt -> fetchAll();
-	                foreach ($data as $value) {?>
+	                	foreach ($data as $value) {?>
 	                	<a href="desc_produto.php?desc=<?=md5($value['SRV_ID']);?>">
 	                		<div>
 		                	<?php 
