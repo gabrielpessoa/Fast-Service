@@ -51,7 +51,7 @@
 		<?php 
 		$search = $_GET['desc'];
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_ID)=?", [$search]);
-		$resultado = $dados -> fetchAll(); 
+		$resultado = $dados -> fetchAll();
 		foreach($resultado as $value):?>
 			<div class="anuncios">
 				<center>
@@ -119,6 +119,27 @@
 					</div>
 					<br><p class="votos"><span><?= $value['MDAV_TOTAL_PESSOAS'];?></span> votos</p>
 					<?php }?>
+					<?php if (isLogged()): 
+						$data = pdoExec("SELECT * FROM AVALIACOES WHERE AVL_USER_ID=? AND AVL_SRV_ID=?", [$_SESSION['userId'], $id_servico]);
+						$dados = $data -> fetchAll();
+						foreach ($dados as $value) {
+							$voto_usuario = $value['AVL_QTD_ESTRELAS'];
+							echo $voto_usuario;
+						}
+						?>
+						<!-- <span class="ratingAverage" data-average="<?= $voto_usuario;?>"></span><br>
+						<div class="barra" style="width: 150px;">
+							<span class="bg"></span>
+							<span class="stars">
+								<?php for($i=1; $i<=5; $i++):?>
+									<span class="estrela">
+									<span class="starAbsolute"></span>
+									</span>
+								<?php endfor;?>
+							</span>
+						</div> -->
+					<?php endif ?>
+
 					<form action="add_comentario.php" method="POST">
 						<p>Escrever comentário</p>
 						<textarea name="comentario" placeholder="Digite aqui"></textarea><br>

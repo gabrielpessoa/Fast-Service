@@ -1,15 +1,5 @@
 $(document).ready(function() {
 	
-	// $(window).on('scroll', function () {
-	// 	if($(window).scrollTop()){
-	// 		$('html,body').scrollTop(0);
-	// 	}
-	// 	// else{
-	// 	// 	$('nav').removeClass('black');
-
-	// 	// }
-	// });
-
 	$(window).scroll(function(){
 		$('.header-bg').css('opacity', 1 -
 			$(window).scrollTop()/700);
@@ -98,19 +88,6 @@ $(document).ready(function() {
 			$('html,body').scrollTop(0);
 		}
 	});
-
-	// $("form#register").submit(function(e){
-	// 	var dados = $(this).serialize();
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		url: "register2.php",
-	// 		dados: data,
-	// 		success:function (retorno){
-	// 			$(".cadastro").text("Success");
-	// 		}
-
-	// 	});
-	// });
 
 	$("select.type").click(function(){
 		var value = $(this).val();

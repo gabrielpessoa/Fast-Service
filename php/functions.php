@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
 
 function conexao(){
 	global $conn;

@@ -47,7 +47,7 @@
 		</div>
 		
 		<br>
-		<div class="profile" >
+		<div class="profile">
 			<center>
 				<div class="info">
 					<?php
@@ -77,11 +77,23 @@
 		                		} 
 		                		$mediaUsuario = $media/$contador;
 		                	?>
-		                	<label>Avaliacão do usuarios</label>
-		                	<p><?= $mediaUsuario; ?></p>
+		                	<label>Média de serviço do usuário</label>
+	                <?php endforeach; ?>
+		                	<span class="ratingAverage" data-average="<?= $mediaUsuario;?>"></span>
+							
+							<br><div class="barra" style="width: 150px;">
+								<span class="bg"></span>
+								<span class="stars">
+									<?php for($i=1; $i<=5; $i++):?>
+										<span class="estrela" >
+										<span class="starAbsolute"></span>
+									</span>
+									<?php 
+										endfor;?>
+								</span>
+							</div>
 		                	 
 	                	</div>
-	                <?php endforeach; ?>
                 </div>
 
                 <div class="adverts">

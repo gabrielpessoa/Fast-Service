@@ -597,6 +597,14 @@ div.profile{
     background:url(../img/starpng.png) top left no-repeat; 
     background-size:cover;
 }
+.estrela{
+    float:left; 
+    width:30px; 
+    height:30px;
+    text-align:center; 
+    position:relative;
+    overflow: hidden;
+}
 div.profile div.info{
 	display: flex; 
 	margin-top: 50px;
@@ -604,7 +612,7 @@ div.profile div.info{
 div.info div{
 	margin: 0 auto; 
 	border-radius: 5px; 
-	width: 40%;
+	width: 50%;
 }
 div.profile div.adverts{
 	display: flex; 
