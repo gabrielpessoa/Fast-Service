@@ -124,12 +124,12 @@
 						$dados = $data -> fetchAll();
 						foreach ($dados as $value) {
 							$voto_usuario = $value['AVL_QTD_ESTRELAS'];
-							echo $voto_usuario;
 						}
 						?>
-						<!-- <span class="ratingAverage" data-average="<?= $voto_usuario;?>"></span><br>
-						<div class="barra" style="width: 150px;">
-							<span class="bg"></span>
+						<p style="margin-top: 40px">Minha avaliação</p>
+						<span class="Average" data-average="<?= $voto_usuario;?>"></span><br>
+						<div class="bar" style="width: 150px;">
+							<span class="bt"></span>
 							<span class="stars">
 								<?php for($i=1; $i<=5; $i++):?>
 									<span class="estrela">
@@ -137,12 +137,12 @@
 									</span>
 								<?php endfor;?>
 							</span>
-						</div> -->
+						</div>
 					<?php endif ?>
 
 					<form action="add_comentario.php" method="POST">
 						<p>Escrever comentário</p>
-						<textarea name="comentario" placeholder="Digite aqui"></textarea><br>
+						<textarea name="comentario" placeholder="Digite aqui" required=""></textarea><br>
 						<input type="hidden" name="id_servico" value=<?=$id;?> >
 						<button type="submit">Enviar comentário</button>
 					</form>

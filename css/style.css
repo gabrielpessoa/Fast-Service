@@ -567,6 +567,13 @@ div.profile{
     position:relative;
     margin: auto;
 }
+.bar{
+    width:150px;
+    height:30px;
+    background: #ebebeb;
+    position:relative;
+    margin: auto;
+}
 .stars{
     position:absolute; left:0; top:0; width:100%;
 }
@@ -583,6 +590,12 @@ div.profile{
     background:linear-gradient(to bottom, #fee24f, #f4bb2f);
 }
 .bg{
+    float:left;
+    height:30px;
+    width:30%;
+    background:linear-gradient(to bottom, #fee24f, #f4bb2f);
+}
+.bt{
     float:left;
     height:30px;
     width:30%;

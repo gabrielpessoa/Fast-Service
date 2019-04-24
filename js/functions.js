@@ -64,6 +64,16 @@ $(document).ready(function() {
 			location.reload();
 	});
 
+	var average = $('.Average').attr('data-average');
+	function teste(average){
+		average = (Number(average)*20);
+		$('.bt').css('width', 0);		
+		$('.bar .bt').animate({width:average+'%'}, 500);
+	}
+	
+	teste(average);
+
+
 	//CONTA DO USUÁRIO
 	$('a[rel=account]').click(function(e){
 		e.preventDefault();
