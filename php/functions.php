@@ -1,6 +1,7 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
+//$conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_23605681_FASTSERVICE",'epiz_23605681','2U0ZNu9aI1GhW');
 
 function conexao(){
 	global $conn;
@@ -65,9 +66,10 @@ function addServico($dados, $img){
 				endif;
 				$stmt = $conn -> prepare("INSERT INTO IMAGENS SET IMG_NOME=?, IMG_SRV_ID=?");
 				$stmt -> execute([$diretorio, $id_servico]);
-				$stmt = pdoExec("INSERT INTO MEDIA_AVALIACOES SET MDAV_TOTAL_PESSOAS=?, MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=?, MDAV_SRV_ID=?", [0, 0, 0, $id_servico]);		
 			endfor;
 		endif;
+		$stmt = pdoExec("INSERT INTO MEDIA_AVALIACOES SET MDAV_SRV_ID=?, MDAV_TOTAL_PESSOAS=?, MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=?", [$id_servico, 0, 0, 0]);
+		$_SESSION['anuncio_sucesso'] = true;
 		header('location: anuncios.php');
 	}else{
 		header('location: servico.php');
@@ -100,7 +102,7 @@ function updateServico($dados, $img){
 			}
 
 		}
-		$_SESSION["anuncio_sucesso"]=1;
+		$_SESSION["anuncio_edite"]=1;
 		header('location: anuncios.php');
 	}else{
 		header('location:'.$_SERVER['HTTP_REFERER']);
@@ -117,6 +119,8 @@ function deleteServico($dados){
 	}
 	pdoExec("DELETE FROM IMAGENS WHERE md5(IMG_SRV_ID)=?", [$id]);
 	pdoExec("DELETE FROM SERVICOS WHERE md5(SRV_ID)=?",[$id]);
+	pdoExec("DELETE FROM MEDIA_AVALIACOES WHERE md5(MDAV_SRV_ID)=?", [$id]);
+	pdoExec("DELETE FROM AVALIACOES WHERE md5(AVL_SRV_ID)=?", [$id]);
 	header('location: anuncios.php');
 }
 

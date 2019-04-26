@@ -101,6 +101,7 @@
 					<?php
 					$dt = pdoExec("SELECT * FROM MEDIA_AVALIACOES WHERE MDAV_SRV_ID=?", [$id_servico]);
 					$dt2 = $dt -> fetchAll();
+					
 					foreach ($dt2 as $value) {?>
 					<p style="margin-top: 40px;">Avaliar o serviço</p>
 					<span class="ratingAverage" data-average="<?= $value['MDAV_MEDIA'];?>"></span>
@@ -122,6 +123,9 @@
 					<?php if (isLogged()): 
 						$data = pdoExec("SELECT * FROM AVALIACOES WHERE AVL_USER_ID=? AND AVL_SRV_ID=?", [$_SESSION['userId'], $id_servico]);
 						$dados = $data -> fetchAll();
+						if ($data -> rowCount()<=0) {
+							$voto_usuario = 0;
+						}
 						foreach ($dados as $value) {
 							$voto_usuario = $value['AVL_QTD_ESTRELAS'];
 						}

@@ -68,7 +68,7 @@ if(!isLogged()){
                 <br><p>Cidade</p><br>
                 <input type="text" name="location" required placeholder="Digite aqui"><br>
                 <br><p>Preço</p>
-                <input type="number" name="price" required placeholder="Digite aqui"><br>
+                <input type="number" name="price" placeholder="Digite aqui" min="0" max="500000"><br>
                 <br><p>Fotos para o anúncio</p><br>
                 <!-- <div class='input-wrapper'>
                     <label for="seleciona-foto">Selecionar foto</label><br> -->
