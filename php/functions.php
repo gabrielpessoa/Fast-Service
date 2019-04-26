@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
 //$conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_23605681_FASTSERVICE",'epiz_23605681','2U0ZNu9aI1GhW');
 
 function conexao(){
@@ -43,11 +43,20 @@ function addServico($dados, $img){
 	
 	if(!empty($dados)){
 		pdoExec("INSERT INTO SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=?, SRV_USER_ID=?, SRV_SUBCATEGORIA=?", [$nome, $tipo, $descricao, $localizacao, $preco, $usuario, $subcategoria]);
+			$id_servico= 0;
+			$data = pdoExec("SELECT * FROM SERVICOS WHERE SRV_NOME=? AND SRV_USER_ID=?", [$nome, $usuario]);
+			if ($data -> rowCount() >0) :
+				$resultado = $data -> fetchAll();
+				foreach ($resultado as $value) :
+					$id_servico = $value['SRV_ID'];
+				endforeach;
+			endif;
+		$stmt = pdoExec("INSERT INTO MEDIA_AVALIACOES SET MDAV_SRV_ID=?, MDAV_TOTAL_PESSOAS=?, MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=?", [$id_servico, 0, 0, 0]);
+		$_SESSION['anuncio_sucesso'] = true;
 		if (!empty($img["name"])) :
         	$caminho = "../produtos/img/";
 			$count = count(array_filter($img['name']));
 			$permite = ['image/jpeg', 'image/png', 'image/jpg'];
-			$id_servico= 0;
 			$conn = conexao();
 			echo($count);
 			for($i=0; $i< $count; $i++):
@@ -57,19 +66,10 @@ function addServico($dados, $img){
 				$newname = rand().".$ext";
 				$diretorio = $caminho.$newname;
 				move_uploaded_file($tmp, $diretorio);
-				$data = pdoExec("SELECT * FROM SERVICOS WHERE SRV_NOME=? AND SRV_USER_ID=?", [$nome, $usuario]);
-				if ($data -> rowCount() >0) :
-					$resultado = $data -> fetchAll();
-					foreach ($resultado as $value) :
-						$id_servico = $value['SRV_ID'];
-					endforeach;
-				endif;
 				$stmt = $conn -> prepare("INSERT INTO IMAGENS SET IMG_NOME=?, IMG_SRV_ID=?");
 				$stmt -> execute([$diretorio, $id_servico]);
 			endfor;
 		endif;
-		$stmt = pdoExec("INSERT INTO MEDIA_AVALIACOES SET MDAV_SRV_ID=?, MDAV_TOTAL_PESSOAS=?, MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=?", [$id_servico, 0, 0, 0]);
-		$_SESSION['anuncio_sucesso'] = true;
 		header('location: anuncios.php');
 	}else{
 		header('location: servico.php');

@@ -51,12 +51,17 @@
 			<center>
 				<?php
 				$search = $_GET['search'];
-				$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_NOME LIKE '%$search%' ", []);
+				$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_NOME LIKE '%$search%' ", [$search]);
 				$resultado = $dados -> fetchAll(); 
 				foreach($resultado as $value):?>
 				<br>
 					<div class="products">
-						<div class="foto"><img src="<?=$value['SRV_IMAGEM'];?>" style="width: 100%; height: 100%;"></div>
+					<?php $data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
+						$data3 = $data -> fetchAll();
+						foreach ($data3 as $val) {
+							$img = $val['IMG_NOME']; 
+						}?>
+						<div class="foto"><img src="<?=$img;?>" style="width: 100%; height: 100%;"></div>
 						<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
 							<p><?= $value['SRV_NOME'];?><br>
 							<?= "R$: ".$value['SRV_PRECO']; ?><br>
