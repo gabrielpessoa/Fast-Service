@@ -14,8 +14,8 @@ $usuario = $_SESSION['userId'];
 $stmt = pdoExec('SELECT * FROM USUARIOS WHERE USER_ID =?', [$usuario]);
 $dados = $stmt -> fetchAll();
 foreach ($dados as $value) {
-	if($novasenha2 == $novasenha){
-		pdoExec('UPDATE USUARIOS SET USER_SENHA =? WHERE USER_ID =?', [$novasenha, $usuario]);
+	if($novasenha2 == $novasenha && $senha==$value['USER_SENHA']){
+		pdoExec('UPDATE USUARIOS SET USER_SENHA =? WHERE USER_ID =?', [md5($novasenha), $usuario]);
 		$_SESSION['senha_sucesso'] = true;
 		header('location:perfil.php');
 	}

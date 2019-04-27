@@ -230,9 +230,26 @@ section p{
 	background: #FA5858;
 }
 .window input{
-	border: solid 0.5 #babaca;
+	border: solid 1px #babaca;
 	width: 80%;
 	height: 35px;
+	height: 40px;
+	border-radius: 5px;
+	outline: none;
+}
+.window input.red{
+	border: solid 2px red;
+	background: #F5A9A9;
+}
+input{
+	padding-left: 10px;
+}
+div.window div.alerts{
+	width: 80%; 
+	text-align: center; 
+	color: red; 
+	margin-bottom: -26px; 
+	display: none;
 }
 div.cadastro{
 	text-align: center;
@@ -544,7 +561,7 @@ div.profile{
 	height: 190px;
 	margin: 0 25px;
 }
-.red{
+p.red{
 	color: red;
 	background: #babaca;
 	font-size: 29px;
@@ -554,7 +571,7 @@ div.profile{
 	margin: 25px auto;
 	z-index: 500;
 }
-.blue{
+p.blue{
 	color: blue;
 	background: #babaca;
 	font-size: 29px;

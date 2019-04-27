@@ -114,4 +114,35 @@ $(document).ready(function() {
 		});
 	});
 
+	$("button#login").click(function(e){
+		e.preventDefault();
+		var user = $("input#user").val();
+		var pw = $("input#password").val();
+		$.ajax({
+			url: "php/login2.php",
+			type: "POST",
+			data: {username: user, password: pw},
+			success: function(retorno){
+				if (retorno=='senha incorreta') {
+					$(".usuario").fadeOut();
+					$("input#user").removeClass("red");
+					$(".senha").show();
+					$(".senha").html("Senha incorreta");
+					$("input#password").addClass("red");
+				}
+				else if(retorno=='logado'){
+					location.reload();
+				}
+				else{
+					$(".senha").fadeOut();
+					$("input#password").removeClass("red");	
+					$(".usuario").show();
+					$(".usuario").html("Usuário não existe");
+					$("input#user").addClass("red");	
+				}
+			}
+		});
+
+	});
+
 });
