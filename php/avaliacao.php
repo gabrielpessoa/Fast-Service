@@ -56,12 +56,14 @@ else{
 	pdoExec("INSERT INTO AVALIACOES SET AVL_USER_ID=?, AVL_SRV_ID=?, AVL_QTD_ESTRELAS=?", [$usuario, $codigo, $estrela]);
 	$stmt = pdoExec("SELECT * FROM MEDIA_AVALIACOES WHERE MDAV_SRV_ID=?", [$codigo]);
 	$dados = $stmt -> fetchAll();
+	$md = 0;
 	foreach ($dados as $value) {
 		$pessoas+=$value['MDAV_TOTAL_PESSOAS'];
 		$qtd_estrela+=$value['MDAV_QTD_ESTRELAS'];
+		$md+=$qtd_estrela/$pessoas;
 	}
-	$media=$qtd_estrela/$pessoas;
 	$estrela+=$qtd_estrela;
+	$media = $estrela/$pessoas;
 	$stmt = pdoExec("UPDATE MEDIA_AVALIACOES SET MDAV_TOTAL_PESSOAS=?, MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=? WHERE MDAV_SRV_ID=?", [$pessoas, $estrela, $media, $codigo]);
 	}
 ?>

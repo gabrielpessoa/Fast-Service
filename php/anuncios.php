@@ -36,7 +36,7 @@ if (!isLogged()) {
 	<center>
 		<div class="busca">
 			<form action="search.php" method="GET">
-				<input type="text" placeholder="  Estou procurando por..." required>
+				<input type="text" placeholder="Estou procurando por..." required>
 				<button type="submit"><i class="fas fa-search" ></i></button>
 
 				<ul class="icons-busca">

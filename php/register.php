@@ -19,17 +19,17 @@ if (isLogged()) {
 <body>
 	<center>
 		<div>
-		<nav class="black">
-			
-			<a href="../index.php"><img src="../img/3.png"></a>
-			<ul>
-				<li><a href="/"><i class="fas fa-home"></i>Início</a></li>
-				<li><a href="ajuda.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
-				<li><a href="register.php"><i class="fas fa-user-plus"></i>Registrar-se</a></li>
-				<li><a href="#janela" rel="modal" class="btn-login"><i class="fas fa-user-alt"></i>Login</a></li>
-			</ul>
-			
-		</nav>
+			<nav class="black">
+				
+				<a href="../index.php"><img src="../img/3.png"></a>
+				<ul>
+					<li><a href="/"><i class="fas fa-home"></i>Início</a></li>
+					<li><a href="ajuda.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
+					<li><a href="register.php"><i class="fas fa-user-plus"></i>Registrar-se</a></li>
+					<li><a href="#janela" rel="modal" class="btn-login"><i class="fas fa-user-alt"></i>Login</a></li>
+				</ul>
+			</nav>
+		</div>
 		<br>
 		<div class="busca">
 			<form action="search.php">
@@ -55,51 +55,25 @@ if (isLogged()) {
 			<?php endif; unset($_SESSION['email_exist']); ?>
 				
 			<div class="cadastro" style="border: solid 1px #babaca; margin-top: 120px;">
-        		
-            		
-			<form  method="POST" action="register2.php" id="register">
-				<p class="primary">Nome</p><br>
-				<input type="text" name="name" required placeholder="Digite aqui"><br>
-				<br><p>Usuário</p>
-				<input type="text" name="username" required placeholder="Digite aqui"><br>
-				<br><p>E-mail</p>
-				<input type="email" name="email" required placeholder="Digite aqui"><br>
-				<br><p>Telefone para contato</p>
-				<input type="tel" name="fone" required placeholder="Digite aqui"><br>
-				<br><p>Senha</p>
-				<input type="password" name="password1" required placeholder="Digite aqui" minlength="6" maxlength="8"><br>
-				<br><p>Confirmar senha</p>
-				<input type="password" name="password2"  required placeholder="Digite aqui" minlength="6" maxlength="8"><br>
-				<button type="submit">Cadastrar</button>
-			</form>
+        		<h2 style="margin: 50px;">Cadastro de usuários</h2>
+				<form  method="POST" action="register2.php" id="register">
+					<p class="primary">Nome</p><br>
+					<input type="text" name="name" required placeholder="Digite aqui"><br>
+					<br><p>Usuário</p>
+					<input type="text" name="username" required placeholder="Digite aqui"><br>
+					<br><p>E-mail</p>
+					<input type="email" name="email" required placeholder="Digite aqui"><br>
+					<br><p>Telefone para contato</p>
+					<input type="tel" name="fone" required placeholder="Digite aqui"><br>
+					<br><p>Senha</p>
+					<input type="password" name="password1" required placeholder="Digite aqui" minlength="6" maxlength="8"><br>
+					<br><p>Confirmar senha</p>
+					<input type="password" name="password2"  required placeholder="Digite aqui" minlength="6" maxlength="8"><br>
+					<button type="submit">Cadastrar</button>
+				</form>
 
 			</div>
-		</div>
 	</center>
-	
-	<!-- <script type="text/javascript">
-		$(document).ready(function(){
-			$("#register").submit(function(e){
-				e.preventDefault();
-				var data = $(this).serialize();
-				$.ajax({
-					url: "register2.php",
-					dados: data,
-					type: "POST",
-					success:function (retorno){
-						if(retorno=="ok"){
-							$(".cadastro").html("Success");
-						}
-					}
-					error: function(data){
-		            	$(".cadastro").text("Fail");
-		            }
-
-				});
-				return false;
-			});
-		});
-	</script> -->
 
 	<?php include("login.php");?>
 

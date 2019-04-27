@@ -119,7 +119,7 @@ $(document).ready(function() {
 		var user = $("input#user").val();
 		var pw = $("input#password").val();
 		$.ajax({
-			url: "php/login2.php",
+			url: "login2.php",
 			type: "POST",
 			data: {username: user, password: pw},
 			success: function(retorno){
