@@ -145,4 +145,19 @@ $(document).ready(function() {
 
 	});
 
+	$(function(){
+		$('.slide ul').cycle({
+			fx: 'fade',
+			speed: 0,
+			timeout: 0,
+			prev:'.anterior',
+			next:'.proxima',
+		});
+		$('div.slide').hover(function(){
+			$('div.botao').fadeIn();},
+			function(){
+				$('div.botao').fadeOut();
+		});
+	});
+
 });

@@ -9,6 +9,7 @@
 	<script src="../js/functions.js"></script>
 	<link rel="shortcut icon" type="image/x-png" href="../img/3.png">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<script type="text/javascript" src="../js/jquery.cycle.all.js"></script>
 </head>
 <body>
 	<div>
@@ -53,23 +54,31 @@
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_ID)=?", [$search]);
 		$resultado = $dados -> fetchAll();
 		foreach($resultado as $value):?>
-			<div class="anuncios">
-				<center>
-				<?php
-					$id_servico = $value['SRV_ID'];
 
-					$stmt = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$id_servico]);
+				<center>
+			<div class="anuncios" style="width: 100%;">
+				<div class="slide">
+					<div class="botao" style="width: 300px;">
+						<a href="#" class="anterior" id="section"><</a>
+						<a href="#" class="proxima" id="section">></a>
+					</div>
+					<ul>
+					<?php
+					$id_servico = $value['SRV_ID'];
+					$stmt = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=?", [$id_servico]);
 					$data3 = $stmt -> fetchAll();
 					foreach ($data3 as $val) {?>
 						
-					<img src="<?=$val['IMG_NOME'];?>" style="margin-bottom: 40px; width: 40%; height: 40%;">
-					<?php }
-					if(isLogged()){
+					<li><img src="<?=$val['IMG_NOME'];?>"></li>
+					<?php } ?>
+					</ul>
+				</div>
+					<?php if(isLogged()){
 						$stmt = rowCount("SELECT * FROM FAVORITOS WHERE FVR_SRV_ID=?", [$id_servico]);
 							if($stmt > 0){  ?>
-								<br><p><a href="del_favoritos.php?i=<?=md5($value['SRV_ID']);?>">Remover favorito</a></p>
+								<br><p class="link"><a href="del_favoritos.php?i=<?=md5($value['SRV_ID']);?>">Remover favorito</a></p>
 							<?php }else{  ?>
-								<br><p><a href="add_favoritos.php?i=<?=$value['SRV_ID'];?>">Favoritos</a></p>
+								<br><p class="link"><a href="add_favoritos.php?i=<?=$value['SRV_ID'];?>">Favoritos</a></p>
 						 <?php }
 						}
 					 ?>	
@@ -150,9 +159,9 @@
 						<input type="hidden" name="id_servico" value=<?=$id;?> >
 						<button type="submit">Enviar comentário</button>
 					</form>
-				</center>	
 			</div>
 		<?php endforeach; ?>
+				</center>	
 	</div>
 
 	</center>

@@ -15,6 +15,7 @@ if (!isLogged()) {
 	<script src="../js/functions.js"></script>
 	<link rel="shortcut icon" type="image/x-png" href="../img/3.png">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<script type="text/javascript" src="../js/jquery.cycle.all.js"></script>
 </head>
 <body>
 	<div>
@@ -57,43 +58,59 @@ if (!isLogged()) {
 			<?php if (isset($_SESSION["anuncio_edite"])) : ?>
 				<p class="blue">Editado com sucesso</p>
 			<?php endif; unset($_SESSION["anuncio_edite"]); ?>
-		</center>
+		
 		<?php 
 		$usuario = $_SESSION['userId']; 
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
-			<div class="anuncios" style="">
+			<br><div class="anuncios">
+
 				<center>
-					<br><h3 style="margin-top: 20px;">Imagens do anúncio</h3>
-					<div class="imgs" style=" display: flex; flex-wrap: wrap; border: solid 1px #babaca;  align-items: center; overflow: hidden;">
+					<div class="info">
 					<?php
 					$id_img = $value['SRV_ID'];
+					$img = 0;
 					$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=?", [$id_img]);
 					$dados2 = $data -> fetchAll();
-					foreach ($dados2 as $data) :?>
-						
-						<div style="text-align: center; padding: 15px;">
-							<img src="<?=$data['IMG_NOME'];?>" style="margin: 10px auto; width: 190px; height: 160px;"><br>
-							<p><a href="delete_img.php?i=<?=$data['IMG_NOME'];?>">Excluir</a></p>
-							
-						</div>
+					if ($data->rowCount() >0) { ?>
+						<div class="slide">
+							<div class="botao">
+								<a href="#" class="anterior" id="section"><</a>
+								<a href="#" class="proxima" id="section">></a>
+							</div>
+							<ul>	
+								<?php foreach ($dados2 as $data) { ?>
 
-					<?php endforeach; ?>
-					</div>
-					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr><br>
+									<li><img src="<?= $data['IMG_NOME']; ?>"></li>
+
+								<?php } ?>
+							</ul>
+						</div>
+					<?php } else{?>
+						<div class="slide">
+							<ul>
+								<li><img src="../img/default.jpeg"></li>
+							</ul>
+						</div>
+						<?php } ?>
+					<div class="adverts">
+					<p><h2><?= $value['SRV_NOME'];?></h2></p><hr>
 					<h3>Preço</h3>
-					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr><br>
+					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr>
 					<h3>Descrição</h3>
-					<p><?= $value['SRV_DESCRICAO'];?></p><hr><br>
+					<p><?= $value['SRV_DESCRICAO'];?></p><hr>
 					<h3>Localização</h3>
-					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr><br>
-					<a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
-					<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a><br><br><br>
-					
+					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr>
+					<p class="link"><a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
+					<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a></p>
+					</div>
 				</center>	
-			</div>
+			</div><br>
 		<?php endforeach; ?>
+
+		</div>
+		</center>
 	</div>
 	
     <?php include("conta.php");?>

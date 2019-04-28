@@ -433,13 +433,15 @@ div.search div.products div.foto{
 	overflow: hidden;
 }
 div.search div.anuncios{
-	width: 100%;
-	margin: auto;
+	margin-top: 50px;
+	width: 70%;
+	background: white;
+	border-radius: 5px;
+	border: solid 1px #babaca;
 }
 div.anuncios img{
-	width: 25%;
-	height: 30%;
-	margin-top: 40px;
+	width: 300px;
+	height: 350px;
 }
 div.anuncios form{
 	margin-top: 80px;
@@ -462,16 +464,24 @@ div.anuncios form button:hover{
 div.anuncios h3{
 	margin-top: 30px;
 }
-div.anuncios a{
-	background: red;
+div.anuncios div.info{
+	display: flex; 
+}
+div.anuncios div.adverts{
+	margin: 0;
+}
+div.anuncios  p a{
+	background: blue;
 	cursor: pointer;
 	color: white;
-	padding: 12px;
+	padding: 8px;
 	border-radius: 5px;
-	margin-bottom: 20px;
 }
-div.anuncios a:hover{
-	background: #FA5858;
+div.adverts p.link{
+	margin-top: 15px;
+}
+div.anuncios p a:hover{
+	background: #819FF7;
 }
 div.anuncios div.comentarios{
 	margin-top: 40px;
@@ -527,25 +537,49 @@ div.anuncios form button{
 .slide{
 	width: 300px;
 	height: 350px;
-	margin: auto;
+	margin: 0 auto;
 	overflow: hidden;
 	border-radius: 4px;
 	margin-top: 40px;
+	border: none;
 }
 .slide ul{
 	margin: auto; 
 	padding: 0;
+	border: none;
 }
-.slide a li img{
+.slide li img{
     width: 100%;
     height: 350px;
     position: center;
     margin: auto;
-
 }
-div.slide a#section{
+div.slide div a#section{
 	color: white;
-	padding: 0px 10px;
+	background: #333;
+	padding: 15px;
+	text-align: center;
+	opacity: 0.7;
+	font-size: 30px;
+	line-height: 30px;
+	border-radius: 5px;
+}
+div.slide div.botao{
+	position: absolute;
+	z-index: 500;
+	margin-top: 160px;
+	width: 317px;
+	display: none;
+}
+.slide div a.proxima{
+float: right;
+}
+.slide div a.anterior{
+	float: left;
+}
+div.slide div.botao a#section:hover{
+	background: #555;
+
 }
 div.profile{
 	margin-top: 50px;

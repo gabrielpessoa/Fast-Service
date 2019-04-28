@@ -104,10 +104,13 @@
 		                	<?php 
 		                	$dt = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
 		                	$dados2 = $dt -> fetchAll();
-		                	foreach($dados2 as $val){?>
-		                		<img src="<?=$val['IMG_NOME'];?>">
-		                	<?php }?>
-		                		<br><p style="margin-top: 20px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
+		                	if($dt->rowCount()<=0){ ?>
+			                		<img src="../img/default.jpeg">
+			                <?php }
+			                foreach($dados2 as $val){?>
+			                	<img src="<?=$val['IMG_NOME'];?>">
+			                <?php } ?>
+		                	<br><p style="margin-top: 20px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
 							<h3>Preço</h3>
 							<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr>
 							<h3>Descrição</h3>
@@ -123,25 +126,8 @@
     		</center>
 		</div>
 
-		
-
-	<div class="window" id="janela">
-		<center>
-			<a href="#" class="fechar">X</a>
-			<h4>Login</h4>
-			<hr>
-			<form action="login2.php" method="POST">
-				<p>Usuário</p><br>
-				<input type="text" name="username" placeholder="Digite aqui"><br>
-				<p>Senha</p><br>
-				<input type="password" name="password" placeholder="Digite aqui"><br>
-				<button type="submit">Entrar</button><br>
-				<a href="#">Esqueceu sua senha?</a>
-			</form>
-		</center>
-	</div>
-
 	<?php include("conta.php");?>
+	<?php include("login.php");?>
 
 	<footer class="rodape">©Copyright 2019</footer>
 

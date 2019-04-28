@@ -12,7 +12,7 @@ if(!isLogged()){
 	<title>Fast-Service</title>
 	
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	<link rel="shortcut icon" type="image/x-png" href="img/3.png">
+	<link rel="shortcut icon" type="image/x-png" href="../img/3.png">
 	<script src="../js/jquery.js"></script>
 	<script src="../js/functions.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -62,10 +62,10 @@ if(!isLogged()){
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_ID)=?", [$servico]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
-			<div class="anuncios">
+			<div class="anuncios" style="width: 100%;">
 				<center>
 				<form action="edit_anuncio_controler.php" method="POST" enctype="multipart/form-data">
-					<img src="../produtos/img/<?=$value['SRV_IMAGEM'];?>">
+					<img src="<?=$value['SRV_IMAGEM'];?>">
 					<p>Adicionar foto</p>
 					<input type="file" name="img[]" multiple style="height: 20px;">
 					<br><p style="margin-top: 80px;"><h2>Nome do servico / Produto</h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><hr><br>

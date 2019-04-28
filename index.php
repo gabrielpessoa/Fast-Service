@@ -61,20 +61,18 @@
 						}
 						?>
 					<br>
-						<div class="products">
-							<div class="foto"><img src="<?= $img;?>" style="width: 100%; height: 100%;"></div>
-							<a href=php/desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
-								<p><?= $value['SRV_NOME'];?><br>
-								<?= "R$: ".$value['SRV_PRECO']; ?><br>
-								<?= $value['SRV_LOCALIZACAO']; ?></p>
-							</a>
-						</div>
+					<div class="products">
+						<div class="foto"><img src="<?= $img;?>" style="width: 100%; height: 100%;"></div>
+						<a href=php/desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
+							<p><?= $value['SRV_NOME'];?><br>
+							<?= "R$: ".$value['SRV_PRECO']; ?><br>
+							<?= $value['SRV_LOCALIZACAO']; ?></p>
+						</a>
+					</div>
 				<?php endforeach; ?> 
 			</center>
 		</div>
 		</center><br>
-		
-		
 				
 	<div class="window" id="janela">
 		<center>
@@ -88,7 +86,7 @@
 				<p>Senha</p><br>
 				<input type="password" name="password" id="password" placeholder="Digite aqui"><br>
 				<div class="alerts senha"></div>
-				<button type="submit" id="login">Entrar</button><br>
+				<button type="submit" id="entrar">Entrar</button><br>
 				<a href="#">Esqueceu sua senha?</a>
 			</form>
 		</center>
@@ -111,7 +109,7 @@
 	<footer class="rodape">©Copyright 2019</footer>
 	<script>
 		$(document).ready(function() {
-			$("button#login").click(function(e){
+			$("button#entrar").click(function(e){
 			e.preventDefault();
 			var user = $("input#user").val();
 			var pw = $("input#password").val();
