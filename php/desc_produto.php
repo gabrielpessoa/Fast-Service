@@ -70,7 +70,9 @@
 					foreach ($data3 as $val) {?>
 						
 					<li><img src="<?=$val['IMG_NOME'];?>"></li>
-					<?php } ?>
+					<?php } if($stmt->rowCount()<=0){?>
+					<li><img src="../img/default.jpeg"></li>
+				<?php } ?>
 					</ul>
 				</div>
 					<?php if(isLogged()){
@@ -82,38 +84,29 @@
 						 <?php }
 						}
 					 ?>	
-					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
+					<br><p style="margin-top: 80px;"><h2><?= $value['SRV_NOME'];?></h2></p>
 					<h3>Preço</h3>
-					<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr>
+					<p><?= "R$: ".$value['SRV_PRECO'];?></p>
 					<h3>Descrição</h3>
 					<p><?= $value['SRV_DESCRICAO'];?></p>
-					<hr>
-					<h3>Localização</h3>
-					<p><?= $value['SRV_LOCALIZACAO'];?></p><hr>
-						<h3>Comentários</h3>
-					<div class="comentarios">
-						<?php
-						$id = $value['SRV_ID'];
-						$stmt = pdoExec("SELECT * FROM COMENTARIOS WHERE CMT_SRV_ID=?", [$id]);
-						$dados = $stmt->fetchAll();
-						foreach ($dados as $value) :
-							$comentario = $value['CMT_COMENTARIO'];
-							$data = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$value['CMT_USER_ID']]);
-							$result = $data -> fetchAll();
-							foreach($result as $dados1){
-								$user = $dados1['USER_NOME'];
-							}
-							?>
-							<p><a href="mural.php?i=<?=md5($dados1['USER_ID']);?>" style="background: none; color: blue; padding-right: 15px;"><?=$user;?></a><?=":  ".$comentario;?></p>
-						<?php endforeach; ?>
-					</div>
+					<h3>Localização</h3><br>
+					<p>CEP: <?= $value['SRV_CEP']; ?></p>
+					<p>Número: <?= $value['SRV_NUMERO']; ?></p>
+					<p>Logradouro: <?= $value['SRV_LOGRADOURO']; ?></p>
+					<p>Bairro: <?= $value['SRV_BAIRRO']; ?></p>
+					<p>Cidade: <?= $value['SRV_CIDADE']; ?></p>
+					<p>Estado: <?= $value['SRV_ESTADO']; ?></p>
+						
 					<?php
 					$dt = pdoExec("SELECT * FROM MEDIA_AVALIACOES WHERE MDAV_SRV_ID=?", [$id_servico]);
 					$dt2 = $dt -> fetchAll();
 					
 					foreach ($dt2 as $value) {?>
+					
+					<br><p><i class="fas fa-star"> </i> <?= $value['MDAV_MEDIA'];?></p>
+					<p class="votos"><span><?= $value['MDAV_TOTAL_PESSOAS'];?></span> avaliações</p>
 					<p style="margin-top: 40px;">Avaliar o serviço</p>
-					<span class="ratingAverage" data-average="<?= $value['MDAV_MEDIA'];?>"></span>
+					<span class="ratingAverage" data-average=""></span>
 					<span class="article" data-id="<?= $id_servico;?>"></span>
 					<br><div class="barra">
 						<span class="bg"></span>
@@ -127,7 +120,6 @@
 								endfor;?>
 						</span>
 					</div>
-					<br><p class="votos"><span><?= $value['MDAV_TOTAL_PESSOAS'];?></span> votos</p>
 					<?php }?>
 					<?php if (isLogged()): 
 						$data = pdoExec("SELECT * FROM AVALIACOES WHERE AVL_USER_ID=? AND AVL_SRV_ID=?", [$_SESSION['userId'], $id_servico]);
@@ -152,11 +144,28 @@
 							</span>
 						</div>
 					<?php endif ?>
+					
+					<h3>Comentários</h3>
+					<div class="comentarios">
+						<?php
+						$stmt = pdoExec("SELECT * FROM COMENTARIOS WHERE CMT_SRV_ID=?", [$id_servico]);
+						$dados = $stmt->fetchAll();
+						foreach ($dados as $value) :
+							$comentario = $value['CMT_COMENTARIO'];
+							$data = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$value['CMT_USER_ID']]);
+							$result = $data -> fetchAll();
+							foreach($result as $dados1){
+								$user = $dados1['USER_NOME'];
+							}
+							?>
+							<p><a href="mural.php?i=<?=md5($dados1['USER_ID']);?>" style="background: none; color: blue; padding-right: 15px;"><?=$user;?></a><?=":  ".$comentario;?></p>
+						<?php endforeach; ?>
+					</div>
 
 					<form action="add_comentario.php" method="POST">
 						<p>Escrever comentário</p>
 						<textarea name="comentario" placeholder="Digite aqui" required=""></textarea><br>
-						<input type="hidden" name="id_servico" value=<?=$id;?> >
+						<input type="hidden" name="id_servico" value=<?=$id_servico;?> >
 						<button type="submit">Enviar comentário</button>
 					</form>
 			</div>

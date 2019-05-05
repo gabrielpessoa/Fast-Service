@@ -655,7 +655,7 @@ p.blue{
     float:left;
     height:30px;
     width:30%;
-    background:linear-gradient(to bottom, #fee24f, #f4bb2f);
+    background:#848484;
 }
 .starAbsolute{
     position:absolute; 
@@ -690,6 +690,9 @@ div.profile div.adverts{
 }
 div.adverts a{
 	width: 60%;
+}
+div.adverts p.h2{
+	margin-top: 55px;
 }
 div.adverts a div{
 	width: 90%; 
