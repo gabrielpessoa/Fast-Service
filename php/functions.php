@@ -36,13 +36,18 @@ function addServico($dados, $img){
 	$nome = $dados['name'];
 	$tipo = $dados['type'];
 	$descricao = $dados['description'];
-	$localizacao = $dados['location'];
 	$preco = $dados['price'];
 	$usuario = $dados['user_id'];
-	$subcategoria = $dados['subtype'] ?? 0;
+	$subcategoria = $dados['subtype'];
+	$cep = $dados["cep"];
+	$numero = $dados["numero"];
+	$logradouro = $dados["logradouro"];
+	$bairro = $dados["bairro"];
+	$cidade = $dados["cidade"];
+	$estado = $dados["estado"];
 	
 	if(!empty($dados)){
-		pdoExec("INSERT INTO SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=?, SRV_USER_ID=?, SRV_SUBCATEGORIA=?", [$nome, $tipo, $descricao, $localizacao, $preco, $usuario, $subcategoria]);
+		$stmt = pdoExec("INSERT INTO SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_PRECO=?, SRV_USER_ID=?, SRV_SUBCATEGORIA=?, SRV_CEP=?, SRV_NUMERO=?, SRV_LOGRADOURO=?, SRV_BAIRRO=?, SRV_CIDADE=?, SRV_ESTADO=?", [$nome, $tipo, $descricao, $preco, $usuario, $subcategoria, $cep, $numero, $logradouro, $bairro, $cidade, $estado]);
 			$id_servico= 0;
 			$data = pdoExec("SELECT * FROM SERVICOS WHERE SRV_NOME=? AND SRV_USER_ID=?", [$nome, $usuario]);
 			if ($data -> rowCount() >0) :
@@ -51,8 +56,10 @@ function addServico($dados, $img){
 					$id_servico = $value['SRV_ID'];
 				endforeach;
 			endif;
-		$stmt = pdoExec("INSERT INTO MEDIA_AVALIACOES SET MDAV_SRV_ID=?, MDAV_TOTAL_PESSOAS=?, MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=?", [$id_servico, 0, 0, 0]);
-		$_SESSION['anuncio_sucesso'] = true;
+		$stmt2 = pdoExec("INSERT INTO MEDIA_AVALIACOES SET MDAV_SRV_ID=?, MDAV_TOTAL_PESSOAS=?, MDAV_QTD_ESTRELAS=?, MDAV_MEDIA=?", [$id_servico, 0, 0, 0]);
+		if($stmt->rowCount()>0 && $stmt2->rowCount()>0){
+			$_SESSION['anuncio_sucesso'] = true;
+		}
 		if (!empty($img["name"])) :
         	$caminho = "../produtos/img/";
 			$count = count(array_filter($img['name']));

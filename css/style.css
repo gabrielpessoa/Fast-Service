@@ -13,6 +13,7 @@ body{
 	background: url("../img/8.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-position: relative;
 }
 
 .content{
@@ -256,7 +257,6 @@ div.cadastro{
 	margin-top: 40px;
 	border: solid 1px;
 	width: 80%;
-	height: 850px;
 	border-radius: 15px;
 	background: white;
 	border: solid 1px #babaca; 
@@ -302,10 +302,14 @@ div.cadastro form label{
 	padding: 6px 20px;
 }
 div.cadastro form textarea{
-	width:51% ; 
+	width:49% ; 
 	height: 90px; 
 	resize: none;
 	border-radius: 5px;
+	padding: 8px;
+}
+div.cadastro span{
+	color: red;
 }
 /*.input-wrapper{
 	height: 100px;
@@ -457,6 +461,7 @@ div.anuncios form textarea{
 	border-radius: 5px;
 	outline: none;
 	margin-bottom: 20px;
+	padding: 8px;
 }
 div.anuncios form button:hover{
 	background: #FA5858;

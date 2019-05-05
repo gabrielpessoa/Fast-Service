@@ -15,6 +15,7 @@ if(!isLogged()){
 	<script src="../js/jquery.js"></script>	
 	<script src="../js/functions.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script type="text/javascript" src="../js/jquery.maskedinput-1.1.4.pack.js"/></script>
 </head>
 <body>
 	<center>
@@ -48,11 +49,11 @@ if(!isLogged()){
 		<div class="cadastro">
             <h2>Cadastro de serviço</h2>		
             <form action="servico_proc.php" method="POST" enctype="multipart/form-data">
-                <p class="primary">Nome do Serviço</p><br>
+                <p class="primary">Nome do Serviço <span>*</span></p><br>
                 <input type="text" name="name" placeholder="Digite aqui"><br>
-                <br><p>Categoria</p>
-                <select name="type" class="type">
-                    <option disabled>Selecione</option>
+                <br><p>Categoria <span>*</span></p>
+                <select name="type" class="type" required="">
+                    <option value="null" class='null' readonly >Selecione</option>
                     <?php 
                     $dados = pdoExec("SELECT * FROM CATEGORIAS",[]);
                     $resultado = $dados -> fetchAll();
@@ -60,13 +61,30 @@ if(!isLogged()){
                     <option value=<?=$value['CTG_ID'];?> > <?= utf8_encode($value['CTG_NOME']);?> </option>
                     <?php endforeach; ?>
                 </select>
-                <br><p class="subtype">Subcategoria</p>
-                <select name="subtype" class="subtype">
+                <br><p class="subtype">Subcategoria <span>*</span></p>
+                <select name="subtype" class="subtype" required="">
                 </select>
                 <br><p>Descrição</p>
                 <textarea name="description" placeholder="Digite aqui"></textarea><br>
-                <br><p>Cidade</p><br>
-                <input type="text" name="location" required placeholder="Digite aqui"><br>
+                <!-- <br><p>Cidade <span>*</span></p><br> -->
+
+                <br><p>CEP <span>*</span></p>
+                <input  type="text" name="cep" id="cep" minlength="9" maxlength="10" required>
+
+                <br><p>Número do estabelecimento<span>*</span></p>     
+                <input type="text" name="numero" id="numero" required>
+
+                <br><p>Logradouro <span>*</span></p>
+                <input type="text" name="logradouro" id="rua" required autofocus  maxlength="45"/>
+
+                <br><p>Bairro <span>*</span></p>
+                <input type="text" name="bairro" id="bairro" required>
+
+                <br><p>Cidade <span>*</span></p>
+                <input type="text" name="cidade" id="cidade" required autofocus  maxlength="25" />
+
+                <br><p>Estado <span>*</span></p>
+                <input type="text" name="estado" id="uf" required>
                 <br><p>Preço</p>
                 <input type="number" name="price" placeholder="Digite aqui" min="0" max="500000"><br>
                 <br><p>Fotos para o anúncio</p><br>

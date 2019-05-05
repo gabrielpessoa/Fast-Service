@@ -99,19 +99,23 @@ $(document).ready(function() {
 		}
 	});
 
+	// Subcategorias
 	$("select.type").click(function(){
 		var value = $(this).val();
 		var consulta = "SELECT * FROM SUBCATEGORIAS WHERE SCTG_CTG_ID="+value;
-		$("p.subtype").fadeIn(500, 'linear');
-		$("select.subtype").fadeIn(500, 'linear');
-		$.ajax({
-			url: "subcategorias.php",
-			type: "POST",
-			data: {type: value},
-			success: function(retorno){
-				$("select.subtype").html(retorno);
-			}
-		});
+		if (value!="null") {
+			$('option.null').attr('disabled', true);
+			$("p.subtype").fadeIn(500, 'linear');
+			$("select.subtype").fadeIn(500, 'linear');
+			$.ajax({
+				url: "subcategorias.php",
+				type: "POST",
+				data: {type: value},
+				success: function(retorno){
+					$("select.subtype").html(retorno);
+				}
+			});
+		}
 	});
 
 	$("button#login").click(function(e){
@@ -145,6 +149,7 @@ $(document).ready(function() {
 
 	});
 
+	//Slide com fotos dos anúncios
 	$(function(){
 		$('.slide ul').cycle({
 			fx: 'fade',
@@ -159,5 +164,74 @@ $(document).ready(function() {
 				$('div.botao').fadeOut();
 		});
 	});
+
+
+	function limpa_cep() {
+        // Limpa valores do formulário de cep.
+        $("#rua").val("");
+        $("#bairro").val("");
+        $("#cidade").val("");
+        $("#uf").val("");
+        $("#ibge").val("");
+    }
+    
+    //Quando o campo cep perde o foco.
+    $("#cep").blur(function() {
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, '');
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#rua").val(dados.logradouro);
+                        $("#bairro").val(dados.bairro);
+                        $("#cidade").val(dados.localidade);
+                        $("#uf").val(dados.uf);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            } //end if.
+            else {
+                limpa_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_cep();
+        }
+    });
+
+    // $('#numero').on('change', function() {
+    //             var numero = $(this).val();
+    //             var rua = $("#rua").val();
+    //             var cidade = $("#cidade").val();
+    //             var uf = $("#uf").val();
+    //             rua = rua.replace(' ','+');
+    //             $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address="+ rua + "+" 
+    //                 +  numero + "," + cidade + "-"+ uf +"&key=AIzaSyC-xE7a7Pi92cA69kmk-zwtGg5M9l0N2Ag", function(result){
+    //             $('#latitude').val(result.results[0].geometry.location.lat);
+    //             $('#longitude').val(result.results[0].geometry.location.lng);
+    //             $('#complet').val(result.results[0].formatted_address);
+
+    //         });
+    //     });
+        
+    //     $('#cep').on('change', function() {
+    //         $( "input" ).prop( "disabled", false ); //Disable
+    //     });
+    $("#cep").mask("99999-999");
+    $("#tel").mask("(99)99999-9999");
+ 
 
 });

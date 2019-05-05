@@ -15,6 +15,8 @@ if (isLogged()) {
 	<script src="../js/functions.js"></script>
 	<link rel="shortcut icon" type="image/x-png" href="../img/3.png">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script type="text/javascript" src="../js/jquery.maskedinput-1.1.4.pack.js"/></script>
+	
 </head>
 <body>
 	<center>
@@ -64,7 +66,7 @@ if (isLogged()) {
 					<br><p>E-mail</p>
 					<input type="email" name="email" required placeholder="Digite aqui"><br>
 					<br><p>Telefone para contato</p>
-					<input type="tel" name="fone" required placeholder="Digite aqui"><br>
+					<input type="tel" name="fone" id="tel" required placeholder="Digite aqui" maxlength="11"><br>
 					<br><p>Senha</p>
 					<input type="password" name="password1" required placeholder="Digite aqui" minlength="6" maxlength="8"><br>
 					<br><p>Confirmar senha</p>
