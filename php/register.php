@@ -60,17 +60,17 @@ if (isLogged()) {
         		<h2 style="margin: 50px;">Cadastro de usuários</h2>
 				<form  method="POST" action="register2.php" id="register">
 					<p class="primary">Nome</p><br>
-					<input type="text" name="name" required placeholder="Digite aqui"><br>
+					<input type="text" name="name" required placeholder="Seu nome"><br>
 					<br><p>Usuário</p>
-					<input type="text" name="username" required placeholder="Digite aqui"><br>
+					<input type="text" name="username" required placeholder="Seu usuario"><br>
 					<br><p>E-mail</p>
-					<input type="email" name="email" required placeholder="Digite aqui"><br>
+					<input type="email" name="email" required placeholder="Seu e-mail"><br>
 					<br><p>Telefone para contato</p>
-					<input type="tel" name="fone" id="tel" required placeholder="Digite aqui" maxlength="11"><br>
+					<input type="tel" name="fone" id="tel" required placeholder="Seu telefone" maxlength="11"><br>
 					<br><p>Senha</p>
-					<input type="password" name="password1" required placeholder="Digite aqui" minlength="6" maxlength="8"><br>
+					<input type="password" name="password1" required placeholder="Sua senha" minlength="6" maxlength="8"><br>
 					<br><p>Confirmar senha</p>
-					<input type="password" name="password2"  required placeholder="Digite aqui" minlength="6" maxlength="8"><br>
+					<input type="password" name="password2"  required placeholder="Confirme sua senha" minlength="6" maxlength="8"><br>
 					<button type="submit">Cadastrar</button>
 				</form>
 

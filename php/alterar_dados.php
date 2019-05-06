@@ -43,9 +43,28 @@ if (!isLogged()) {
                         <li class="icons"> <a href=search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
                     </ul>
             </div>
+            <?php
+                $id = $_SESSION['userId'] ;
+                $stmt = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$id]);
+                $dados = $stmt -> fetchAll();
+                foreach ($dados as $value) {
+                    
+             ?>
 
             <div class="search"> 
+                <form action="foto_perfil.php" method="POST"  enctype="multipart/form-data">
+                    <img src="<?=$value['USER_IMAGEM']?>" style="  width: 170px;height: 190px; margin-top: 20px;"><br>
+                    <input type="file" name="img">
+                    <button type="submit" >Enviar</button>
+                <form method="POST" action="alterar_dados_control.php" enctype="multipart/form-data">
+                    <br><p>Nome</p>
+                    <input type="text" name="nome" value="<?=$value['USER_NOME']?>"><br>
+                    <br><p>Email</p>
+                    <input type="email" name="email" value="<?=$value['USER_EMAIL']?>"><br>
+                    <br><p>Telefone para contato</p>
+                    <input type="tel" name="telefone" value="<?=$value['USER_TELEFONE']?>" style="margin-bottom: 50px;"><br>
                 <?php 
+                    }
                     if(isset($_SESSION['erro_senha'])){ ?>
                     <p class="red">Senha atual incorreta</p>
                     <?php } unset($_SESSION['erro_senha']);?>
@@ -54,17 +73,15 @@ if (!isLogged()) {
                     <p class="red">Senhas não correspondem</p>
                     <?php } unset($_SESSION['erro_senha_diferente']);?>
 
-                
 
-                <form method="POST" action="alterar_senha_control.php">
                     <p>Senha atual</p>
-                    <input type="password" name="password" required> 
+                    <input type="password" name="password"> 
                     <p>Nova senha</p>
-                    <input type="password" name="newpassword" required>
+                    <input type="password" name="newpassword">
                     <p>Confirmar nova senha</p>
-                    <input type="password" name="newpassword2" required>
+                    <input type="password" name="newpassword2">
                     <br>
-                    <button type="submit">Alterar senha</button>
+                    <button type="submit">Alterar dados</button>
 
                 </form>
 

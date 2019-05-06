@@ -123,8 +123,8 @@
 	               <?php }?>  
       			</div>
       			<p class="topo"><a href="#" class="top">Início da página</a></p><br>
-    		</center>
 		</div>
+    		</center>
 
 	<?php include("conta.php");?>
 	<?php include("login.php");?>

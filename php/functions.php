@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
 //$conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_23605681_FASTSERVICE",'epiz_23605681','2U0ZNu9aI1GhW');
 
 function conexao(){
@@ -77,11 +77,24 @@ function addServico($dados, $img){
 				$stmt -> execute([$diretorio, $id_servico]);
 			endfor;
 		endif;
+		$_SESSION['userIMG'] = $diretorio;
 		header('location: anuncios.php');
 	}else{
 		header('location: servico.php');
 	}
 }
+
+function updateUsuairo($dados){
+	$id = $dados['userId'];
+	$nome = $dados['name'];
+	$email = $dados['email'];
+	$telefone = $dados['fone'];
+
+	if(!empty($dados)){
+		$stmt =pdoExec("UPDATE USUARIOS SET USER_NOME=?, USER_EMAIL=?, USER_TELEFONE=? WHERE USER_ID=?", [$nome, $email, $telefone, $id]);
+	}
+}
+
 function updateServico($dados, $img){
 	$nome = $dados['name'];
 	$descricao = $dados['description'];
