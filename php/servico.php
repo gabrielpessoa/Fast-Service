@@ -75,13 +75,13 @@ if(!isLogged()){
                 <input type="text" name="numero" id="numero" required>
 
                 <br><p>Logradouro <span>*</span></p>
-                <input type="text" name="logradouro" id="rua" required autofocus  maxlength="45"/>
+                <input type="text" name="logradouro" id="rua" required  maxlength="45"/>
 
                 <br><p>Bairro <span>*</span></p>
                 <input type="text" name="bairro" id="bairro" required>
 
                 <br><p>Cidade <span>*</span></p>
-                <input type="text" name="cidade" id="cidade" required autofocus  maxlength="25" />
+                <input type="text" name="cidade" id="cidade" required  maxlength="25" />
 
                 <br><p>Estado <span>*</span></p>
                 <input type="text" name="estado" id="uf" required>
