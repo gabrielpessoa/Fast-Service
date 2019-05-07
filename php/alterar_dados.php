@@ -55,7 +55,8 @@ if (!isLogged()) {
                 <form action="foto_perfil.php" method="POST"  enctype="multipart/form-data">
                     <img src="<?=$value['USER_IMAGEM']?>" style="  width: 170px;height: 190px; margin-top: 20px;"><br>
                     <input type="file" name="img">
-                    <button type="submit" >Enviar</button>
+                    <button type="submit" name="editarFoto" >Enviar</button>
+                </form>
                 <form method="POST" action="alterar_dados_control.php" enctype="multipart/form-data">
                     <br><p>Nome</p>
                     <input type="text" name="nome" value="<?=$value['USER_NOME']?>"><br>

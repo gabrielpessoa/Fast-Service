@@ -84,7 +84,7 @@ function addServico($dados, $img){
 	}
 }
 
-function updateUsuairo($dados){
+function updateUsuario($dados){
 	$id = $dados['userId'];
 	$nome = $dados['name'];
 	$email = $dados['email'];
