@@ -158,7 +158,14 @@
 								$user = $dados1['USER_NOME'];
 							}
 							?>
-							<p><a href="mural.php?i=<?=md5($dados1['USER_ID']);?>" style="background: none; color: blue; padding-right: 15px;"><?=$user;?></a><?=":  ".$comentario;?> <a href="editar_comentario.php?i=<?=md5($value['CMT_ID']);?>" style="background: none; color: blue;">editar</a><a href="excluir_comentario.php?i=<?=md5($value['CMT_ID']);?>" style="background: none; color: blue;">excluir</a></p>
+							<p>
+								<a href="mural.php?i=<?=md5($dados1['USER_ID']);?>" style="background: none; color: blue; padding-right: 15px;"><?=$user;?></a><?=":  ".$comentario;?> 
+								<?php if (isLogged() && $dados1['USER_ID']==$_SESSION['userId']) { ?>
+									
+									<a href="editar_comentario.php?i=<?=md5($value['CMT_ID']);?>" style="background: none; color: blue;">editar</a>	
+									<a href="excluir_comentario.php?i=<?=md5($value['CMT_ID']);?>" style="background: none; color: blue;">excluir</a>
+								<?php } ?>
+							</p>
 						<?php endforeach; ?>
 					</div>
 
