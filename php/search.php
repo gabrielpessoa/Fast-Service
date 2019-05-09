@@ -35,7 +35,7 @@
 	<center>
 		<div class="busca">
 			<form action="">
-				<input type="text" placeholder="  Estou procurando por..." required>
+				<input type="text" name="search" placeholder="Estou procurando por..." required>
 				<button type="submit"><i class="fas fa-search" ></i></button>
 			</form>
 				<ul class="icons-busca">
@@ -60,7 +60,11 @@
 						$data3 = $data -> fetchAll();
 						foreach ($data3 as $val) {
 							$img = $val['IMG_NOME']; 
-						}?>
+						}
+						if($data->rowCount()<=0){
+							$img = "../img/default.jpeg";
+						}
+						?>
 						<div class="foto"><img src="<?=$img;?>" style="width: 100%; height: 100%;"></div>
 						<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
 							<p><?= $value['SRV_NOME'];?><br>
@@ -78,7 +82,11 @@
 						$data3 = $data -> fetchAll();
 						foreach ($data3 as $val) {
 							$img = $val['IMG_NOME']; 
-						}?>
+						}
+						if($data->rowCount()<=0){
+							$img = "../img/default.jpeg";
+						}
+						?>
 					<br>
 						<div class="products">
 							<div class="foto"><img src="<?=$img;?>" style="width: 100%; height: 100%;"></div>
@@ -97,6 +105,9 @@
 						$data3 = $data -> fetchAll();
 						foreach ($data3 as $val) {
 							$img = $val['IMG_NOME']; 
+						}
+						if($data->rowCount()<=0){
+							$img = "../img/default.jpeg";
 						}
 						?>
 					<br>

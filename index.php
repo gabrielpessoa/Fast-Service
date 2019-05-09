@@ -59,6 +59,9 @@
 						foreach ($data3 as $val) {
 							$img = $val['IMG_NOME']; 
 						}
+						if($data->rowCount()<=0){
+							$img = "img/default.jpeg";
+						}
 						?>
 					<br>
 					<div class="products">
