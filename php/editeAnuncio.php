@@ -61,13 +61,13 @@ if(!isLogged()){
 					<img src="<?=$value['SRV_IMAGEM'];?>">
 					<p>Adicionar foto</p>
 					<input type="file" name="img[]" multiple style="height: 20px;">
-					<br><p style="margin-top: 80px;"><h2>Nome do servico / Produto</h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><hr><br>
+					<br><p style="margin-top: 80px;"><h2>Nome do servico / Produto</h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><br>
 					<h3>Preço</h3>
-					<input type="text" name="price" value="<?=$value['SRV_PRECO'];?>"><hr><br>
+					<input type="text" name="price" value="<?=$value['SRV_PRECO'];?>"><br>
 					<h3>Descrição</h3>
-					<textarea name="description"><?= $value['SRV_DESCRICAO'];?></textarea><hr><br>
+					<textarea name="description"><?= $value['SRV_DESCRICAO'];?></textarea><br>
 					<h3>Localização</h3>
-					<p></p> <input type="text" name="location" value="<?= $value['SRV_LOCALIZACAO'];?>" ><hr><br>
+					<p></p> <input type="text" name="location" value="<?= $value['SRV_LOCALIZACAO'];?>" ><br>
 					<input type="hidden" name="id_servico" value="<?=$value['SRV_ID'];?>">
 					<button type="submit" name="enviar">Salvar alterações</button>
 				</form>
@@ -83,8 +83,5 @@ if(!isLogged()){
 	<?php include("conta.php");?>
 
 	<footer class="rodape">©Copyright 2019</footer>
-
-	
-
 </body>
 </html>

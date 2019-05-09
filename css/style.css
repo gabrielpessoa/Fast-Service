@@ -689,7 +689,7 @@ div.profile div.adverts{
 	padding: 15px;
 }
 div.adverts a{
-	width: 60%;
+	width: 200px;
 }
 div.adverts p.h2{
 	margin-top: 55px;
@@ -701,6 +701,10 @@ div.adverts a div{
 	margin-bottom: 10px; 
 	padding: 15px;
 }
+div.adverts a div img{
+	margin: auto;
+}
+
 div.account{
 	display: none;
 	width: 300px;
@@ -754,4 +758,38 @@ div.cadastro select.subtype{
 }
 div.cadastro p.subtype{
 	display: none;
+}
+div.coment{
+	display: none;
+	z-index: 10000;  
+	position: fixed; 
+	top: 0; 
+	left: 0; 
+	overflow: hidden;
+}
+div.coment form{
+	width: 450px; height: 215px;
+}
+div.coment form textarea{
+	 resize: none; 
+	 width:430px; 
+	 height: 70%; 
+	 padding: 8px; 
+	 border-radius: 15px;
+	 outline: none;
+}
+div.coment form button{
+	padding: 8px; 
+	width: 130px; 
+	height: 40px; 
+	border-radius: 5px; 
+	border: none; 
+	cursor: pointer;
+	font-size: 20px;
+	background: red;
+	color: white;
+	outline: none;
+}
+div.coment form button:hover{
+	background: #FA5858;
 }

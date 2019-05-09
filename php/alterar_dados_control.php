@@ -15,7 +15,7 @@ if(empty($_POST['password'])){
 }else{
 	if($novasenha != $novasenha2) {
 		$_SESSION['erro_senha_diferente'] = true;
-		header('location:alterar_senha.php');
+		header('location:alterar_dados.php');
 		exit;
 	}
 
@@ -30,7 +30,7 @@ if(empty($_POST['password'])){
 		}
 	 	elseif($senha != $value['USER_SENHA']) {
 			$_SESSION['erro_senha'] = true;
-			header('location:alterar_senha.php');
+			header('location:alterar_dados.php');
 		 } 
 	}
 

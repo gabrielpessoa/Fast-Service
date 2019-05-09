@@ -29,6 +29,7 @@ if (!isLogged()) {
                 </ul>
                 
             </nav>
+        </div>
             <br>
             <div class="busca">
                 <form action="search.php" method="GET">
@@ -51,15 +52,15 @@ if (!isLogged()) {
                     
              ?>
 
-            <div class="search"> 
+            <div class="cadastro"> 
                 <form action="foto_perfil.php" method="POST"  enctype="multipart/form-data">
                     <img src="<?=$value['USER_IMAGEM']?>" style="  width: 170px;height: 190px; margin-top: 20px;"><br>
-                    <input type="file" name="img">
+                    <input type="file" name="img" required="">
                     <button type="submit" name="editarFoto" >Enviar</button>
                 </form>
                 <form method="POST" action="alterar_dados_control.php" enctype="multipart/form-data">
                     <br><p>Nome</p>
-                    <input type="text" name="nome" value="<?=$value['USER_NOME']?>"><br>
+                    <input type="text" name="nome" value="<?= $value['USER_NOME']?>"><br>
                     <br><p>Email</p>
                     <input type="email" name="email" value="<?=$value['USER_EMAIL']?>"><br>
                     <br><p>Telefone para contato</p>
@@ -76,7 +77,7 @@ if (!isLogged()) {
 
 
                     <p>Senha atual</p>
-                    <input type="password" minlength="6" maxlength="8" placeholder="Min.6  Max.8" name="password"> 
+                    <input type="password"  maxlength="8" placeholder="Min.6  Max.8" name="password"> 
                     <p>Nova senha</p>
                     <input type="password" minlength="6" maxlength="8" placeholder="Min.6  Max.8" name="newpassword">
                     <p>Confirmar nova senha</p>

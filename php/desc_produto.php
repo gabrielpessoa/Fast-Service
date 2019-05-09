@@ -181,11 +181,11 @@
 		<?php endforeach; ?>
 				</center>	
 	</div>
-		<div class="coment" style="display: none; z-index: 10000;  position: fixed; top: 0; left: 0; overflow: hidden;">
-			<form action="" method="POST" style="width: 450px; height: 215px;">
+		<div class="coment">
+			<form action="" method="POST">
 				<input type="hidden" value="" name="id">
-				<textarea name="comentario" id="edit" style=" resize: none; width: 100%; height: 70%; padding: 8px;"></textarea><br>
-				<button type="submit" class="btn-coment" style="padding: 8px; width: 130px; height: 40px; border-radius: 5px; border: none; cursor: pointer;">Salvar</button>
+				<textarea name="comentario" id="edit"></textarea><br>
+				<button type="submit" class="btn-coment">Salvar</button>
 			</form>
 		</div>
 	</center>
@@ -194,8 +194,6 @@
 	include("login.php");
 	include("conta.php");
 	?>
-
-
 
 	<footer class="rodape">©Copyright 2019</footer>
 

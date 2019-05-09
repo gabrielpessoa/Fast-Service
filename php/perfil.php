@@ -115,12 +115,7 @@ if (!isLogged()) {
                                 <?php } ?>
                                 <br><p style="margin-top: 20px;"><h2><?= $value1['SRV_NOME'];?></h2></p><hr>
                                 <h3>Preço</h3>
-                                <p><?= "R$: ".$value1['SRV_PRECO'];?></p><hr>
-                                <h3>Descrição</h3>
-                                <p><?= $value1['SRV_DESCRICAO'];?></p>
-                                <hr>
-                                <h3>Localização</h3>
-                                <p><?= $value1['SRV_LOCALIZACAO'];?></p>
+                                <p><?= "R$: ".$value1['SRV_PRECO'];?></p>
                                 </div>
                             </a>
                        <?php }?>  
