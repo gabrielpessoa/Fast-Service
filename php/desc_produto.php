@@ -159,12 +159,12 @@
 								$user = $dados1['USER_NOME'];
 							}
 							?>
-							<p>
+							<p style="margin: 15px 0px;">
 
-								<a class="tet" href="mural.php?i=<?=md5($dados1['USER_ID']);?>" style="background: none; color: blue; padding-right: 15px;"> <?=$user;?> </a> <?=":  ".$comentario;?> 
+								<a href="mural.php?i=<?=md5($dados1['USER_ID']);?>" style="background: none; color: blue; padding-right: 15px;"> <?=$user;?></a>:<?="ㅤ".$comentario."ㅤ";?> 
 								<?php if (isLogged() && $dados1['USER_ID']==$_SESSION['userId']) { ?>
 	
-									<a href="<?=$value['CMT_ID'];?>" id="<?=$value['CMT_ID'];?>:<?= $comentario; ?>" class="edit_comentario" style="background: none; color: blue;">editar</a>
+									<a href="<?=$value['CMT_ID'];?>:<?= $comentario; ?>" class="edit_comentario" style="background: none; color: blue;">editar</a>
 									<a href="excluir_comentario.php?i=<?=md5($value['CMT_ID']);?>" style="background: none; color: blue;">excluir</a>
 								<?php } ?>
 							</p>
@@ -183,7 +183,8 @@
 	</div>
 		<div class="coment" style="display: none; z-index: 10000;  position: fixed; top: 0; left: 0; overflow: hidden;">
 			<form action="" method="POST" style="width: 450px; height: 215px;">
-				<textarea name="" id="edit" style=" resize: none; width: 100%; height: 70%; padding: 8px;"></textarea><br>
+				<input type="hidden" value="" name="id">
+				<textarea name="comentario" id="edit" style=" resize: none; width: 100%; height: 70%; padding: 8px;"></textarea><br>
 				<button type="submit" class="btn-coment" style="padding: 8px; width: 130px; height: 40px; border-radius: 5px; border: none; cursor: pointer;">Salvar</button>
 			</form>
 		</div>
@@ -195,49 +196,7 @@
 	?>
 
 
-	<script>
-		$("a.edit_comentario").on('click', function(e){
-    	e.preventDefault();
-    	
-    	var div = $('div.coment');
-		var alturaTela = $(document).height();
-		var larguraTela = $(window).width();
 
-		$("#mascara").css({'width': larguraTela, 'height': alturaTela});
-		$("#mascara").fadeIn(1000);
-		$("#mascara").fadeTo("slow", 0.8);
-
-		var left = ($(window).width()/2) - ($(div).width()/2);
-		var top = ($(window).height()/2) - ($(div).height()/2);
-
-		$(div).css({'left': left, 'top': top});
-		$(div).show();
-    	var value = $('a.edit_comentario').attr('href');
-    	//var split = value.split(':');
-    	//var id = split[0];
-    	//var comentario = split[1];
-    	alert(value);
-		$("#edit").val(comentario);
-    	});
-
-    	$("#mascara").click(function(){
-		$(this).fadeOut("slow");
-		$("div.coment").fadeOut();
-		});
-
-    	$("button.btn-coment").click(function(){
-    		var value = $('.edit_comentario').attr('href');
-			$.ajax({
-				url: 'edita_comentario.php',
-				type: 'POST',
-				data: {id: value, comentario: 'fdfdfds'},
-				success: function(){
-					window.reload();
-				}
-			});
-    	});
-
-	</script>
 	<footer class="rodape">©Copyright 2019</footer>
 
 </body>

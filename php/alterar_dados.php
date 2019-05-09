@@ -76,11 +76,11 @@ if (!isLogged()) {
 
 
                     <p>Senha atual</p>
-                    <input type="password" name="password"> 
+                    <input type="password" minlength="6" maxlength="8" placeholder="Min.6  Max.8" name="password"> 
                     <p>Nova senha</p>
-                    <input type="password" name="newpassword">
+                    <input type="password" minlength="6" maxlength="8" placeholder="Min.6  Max.8" name="newpassword">
                     <p>Confirmar nova senha</p>
-                    <input type="password" name="newpassword2">
+                    <input type="password" minlength="6" maxlength="8" placeholder="Min.6  Max.8" name="newpassword2">
                     <br>
                     <button type="submit">Alterar dados</button>
 

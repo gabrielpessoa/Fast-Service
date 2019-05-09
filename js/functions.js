@@ -212,6 +212,51 @@ $(document).ready(function() {
         }
     });
 
+    $("a.edit_comentario").on('click', function(e){
+	    	e.preventDefault();
+	    	
+	    	var div = $('div.coment');
+			var alturaTela = $(document).height();
+			var larguraTela = $(window).width();
+
+			$("#mascara").css({'width': larguraTela, 'height': alturaTela});
+			$("#mascara").fadeIn(1000);
+			$("#mascara").fadeTo("slow", 0.8);
+
+			var left = ($(window).width()/2) - ($(div).width()/2);
+			var top = ($(window).height()/2) - ($(div).height()/2);
+
+			$(div).css({'left': left, 'top': top});
+			$(div).show();
+	    	var value = $(this).attr('href');
+	    	var split = value.split(':');
+	    	var id = split[0];
+	    	var comentario = split[1];
+	    	var t = $(".coment, input[type=hidden]").val(id);
+			$("#edit").val(comentario);
+    	});
+
+    	$("#mascara").click(function(){
+			$(this).fadeOut("slow");
+			$("div.coment").fadeOut();
+		});
+
+    	$(".btn-coment").click(function(e){
+    		e.preventDefault();
+    		var id =  $(".coment, input[type=hidden]").val();
+    		var comentario = $("#edit").val();
+			$.ajax({
+				url: 'edita_comentario.php',
+				type: 'POST',
+				data: {id: id, comentario: comentario},
+				success: function(retorno){
+					if (retorno=='ok') {
+						location.reload();
+					}
+				}
+			});
+		});
+
     $("#cep").mask("99999-999");
     $("#tel").mask("(99)99999-9999");
     
