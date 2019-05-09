@@ -43,10 +43,10 @@ if (!isLogged()) {
                         <li class="icons"> <a href=search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
                     </ul>
             </div>
+            <div class="profile">
                 <?php if(isset($_SESSION['senha_sucesso'])){ ?>
                     <p class="blue">Senha alterada com sucesso</p>
                     <?php } unset($_SESSION['senha_sucesso']);?>
-            <div class="profile">
                 <center>
                     <div class="info">
                         <?php

@@ -257,8 +257,14 @@ $(document).ready(function() {
 			});
 		});
 
+    $("div.products a").click(function() {
+    	var id = $(this).attr('id');
+    	$.ajax({
+    		url: '../php/add_visualizacao.php',
+    		type: 'POST',
+    		data: {id: id}
+     	});
+    });
     $("#cep").mask("99999-999");
     $("#tel").mask("(99)99999-9999");
-    
-
 });

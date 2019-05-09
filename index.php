@@ -65,7 +65,7 @@
 						?>
 					<br>
 					<div class="products">
-						<a href=php/desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
+						<a href="php/desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
 						<div class="foto"><img src="<?= $img;?>" style="width: 100%; height: 100%;"></div>
 							<p><?= $value['SRV_NOME'];?><br>
 							<?= "R$: ".$value['SRV_PRECO']; ?></p><br>

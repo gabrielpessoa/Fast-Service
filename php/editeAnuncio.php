@@ -52,13 +52,23 @@ if(!isLogged()){
 	<div class="search">
 	<?php 
 		$servico = $_GET['i']; 
-		$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_ID)=?", [$servico]);
+		$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_ID)=? LIMIT 1", [$servico]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
 			<div class="anuncios" style="width: 100%;">
 				<center>
 				<form action="edit_anuncio_controler.php" method="POST" enctype="multipart/form-data">
-					<img src="<?=$value['SRV_IMAGEM'];?>">
+					<?php
+					$stmt = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=?", [$value['SRV_ID']]);
+					$data = $stmt -> fetchAll();
+					foreach ($data as $value2) {
+						$img = $value2['IMG_NOME'];
+					}
+					if($stmt->rowCount() <= 0){
+						$img = "../img/default.jpeg";
+					}
+					?>
+					<img src="<?=$img;?>">
 					<p>Adicionar foto</p>
 					<input type="file" name="img[]" multiple style="height: 20px;">
 					<br><p style="margin-top: 80px;"><h2>Nome do servico / Produto</h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><br>
@@ -66,8 +76,6 @@ if(!isLogged()){
 					<input type="text" name="price" value="<?=$value['SRV_PRECO'];?>"><br>
 					<h3>Descrição</h3>
 					<textarea name="description"><?= $value['SRV_DESCRICAO'];?></textarea><br>
-					<h3>Localização</h3>
-					<p></p> <input type="text" name="location" value="<?= $value['SRV_LOCALIZACAO'];?>" ><br>
 					<input type="hidden" name="id_servico" value="<?=$value['SRV_ID'];?>">
 					<button type="submit" name="enviar">Salvar alterações</button>
 				</form>
