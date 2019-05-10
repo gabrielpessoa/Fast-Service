@@ -98,7 +98,7 @@ if (!isLogged()) {
 					<p 	class="h2"><h2><?= $value['SRV_NOME'];?></h2></p>
 					<h3>Descrição</h3>
 					<p><?= $value['SRV_DESCRICAO'];?></p>
-					<p class="link"><a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
+					<br><p class="link"><a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
 					<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a></p>
 					</div>
 				</center>	

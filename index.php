@@ -106,7 +106,8 @@
 			<hr>
 			<p><a href="php/perfil.php" class="link"><i class="fas fa-user-circle"></i><br>Meu perfil</a></p><hr class="hr">
 			<p><a href="php/anuncios.php" class="link"><i class="fas fa-ad"></i><br>Meus anúncios</a></p><hr class="hr">
-			<p><a href="php/favoritos.php" class="link"><i class="fas fa-star"></i><br>Meus favoritos</a></p>
+			<p><a href="php/favoritos.php" class="link"><i class="fas fa-star"></i><br>Meus favoritos</a></p><hr class="hr">
+			<p><a href="php/views.php" class="link"><i class="fas fa-eye"></i><br>Anúncios visitados</a></p>
 		</center>
 	</div>
 	<footer class="rodape">©Copyright 2019</footer>

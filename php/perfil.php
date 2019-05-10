@@ -9,7 +9,7 @@ if (!isLogged()) {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de usuários</title>
+    <title>Perfil do usuário</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/jquery.js"></script> 
     <script src="../js/functions.js"></script> 

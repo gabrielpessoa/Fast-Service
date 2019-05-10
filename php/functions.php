@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
 //$conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_23605681_FASTSERVICE",'epiz_23605681','2U0ZNu9aI1GhW');
 
 function conexao(){
@@ -219,4 +219,11 @@ function addComentario($data){
 	$stmt = pdoExec("INSERT INTO COMENTARIOS SET CMT_COMENTARIO = ?, CMT_USER_ID = ?, CMT_SRV_ID=? ", [$comentario, $usuario, $servico]);
 	header('location:'.$_SERVER['HTTP_REFERER']);
 
+}
+function addVisualizacao($data){
+	$stmt = pdoExec("SELECT * FROM VISUALIZACOES WHERE VISU_USER_ID=? AND VISU_SRV_ID=?", [$_SESSION['userId'], $data]);
+	if ($stmt->rowCount()>0) {
+		exit();
+	}
+	pdoExec("INSERT INTO VISUALIZACOES SET VISU_SRV_ID=?, VISU_USER_ID=?", [$data, $_SESSION['userId']]);
 }

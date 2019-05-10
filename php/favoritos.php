@@ -56,7 +56,11 @@
 						$data = $stmt -> fetchAll();
 						foreach ($data as $val) {
 							$img = $val['IMG_NOME'];
-						}?>
+						}
+						if($stmt->rowCount()<=0){
+							$img = "../img/default.jpeg";
+						}
+						?>
 						<div class="foto"><img src="<?=$img;?>" style="width: 100%; height: 100%;"></div>
 						<a href=desc_produto.php?desc=<?= md5($value['SRV_ID']);?>>
 							<p><?= $value['SRV_NOME'];?><br>
