@@ -227,3 +227,17 @@ function addVisualizacao($data){
 	}
 	pdoExec("INSERT INTO VISUALIZACOES SET VISU_SRV_ID=?, VISU_USER_ID=?", [$data, $_SESSION['userId']]);
 }
+function addVisitas($data){
+	$now=date('Y-m-d H:i:s');
+	$stmt = pdoExec("SELECT * FROM SERVICOS WHERE SRV_ID=?",[$data]);
+	$resultado = $stmt->fetchAll();
+	$user = null;
+	foreach ($resultado as $value) {
+		$user = $value['SRV_USER_ID'];
+	}
+	$stmt = pdoExec("SELECT * FROM VISITAS WHERE VISI_USER_ID=? AND VISI_PESSOA_ID=? AND VISI_SRV_ID=? AND VISI_DATA=?",[$user, $_SESSION['userId'], $data, $now]);
+	if ($stmt->rowCount()>0) {
+		exit();
+	}
+	pdoExec("INSERT INTO VISITAS SET VISI_USER_ID=?, VISI_PESSOA_ID=?, VISI_SRV_ID=?, VISI_DATA=?",[$user, $_SESSION['userId'], $data, $now]);
+}

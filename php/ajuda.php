@@ -13,7 +13,7 @@
 <body>
 	<div>
 		<nav>
-			<a href="index.php"><img src="../img/3.png"></a>
+			<a href="../index.php"><img src="../img/3.png"></a>
 			<ul>
 				<li><a href="/"><i class="fas fa-home"></i>Início</a></li>
 				<li><a href="ajuda.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
@@ -34,7 +34,7 @@
 		<br>
             <div class="busca">
                 <form action="search.php">
-                    <input type="text" placeholder="  Estou procurando por..." required>
+                    <input type="text" name="search" placeholder="  Estou procurando por..." required>
                     <button type="submit"><i class="fas fa-search" ></i></button>
                 </form>
                     <ul class="icons-busca">

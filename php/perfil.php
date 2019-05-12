@@ -31,7 +31,7 @@ if (!isLogged()) {
             <br>
     <center>
             <div class="busca">
-                <form action="search.php" method="GET">
+                <form action="search.php" name="search" method="GET">
                     <input type="text" placeholder="  Estou procurando por..." required>
                     <button type="submit"><i class="fas fa-search" ></i></button>
                 </form>
@@ -56,8 +56,8 @@ if (!isLogged()) {
                         $dados = $stmt -> fetchAll();
                         foreach ($dados as $value) : ?>
                             <img src="<?=$value['USER_IMAGEM'];?>">
-                            <a href="alterar_dados.php">Alterar Dados</a>
-                            <div>
+                            
+                            <div class="dados">
                                 <label>Nome: </label><br>
                                 <p><?=$value['USER_NOME'];?></p><br>
                                 <label>E-mail: </label><br>
@@ -95,9 +95,15 @@ if (!isLogged()) {
                                     </span>
                                 </div>
                                  
+                            </div><!-- div.dados -->
+                            <div class="link">
+                                <p>Links</p><br> 
+                                <a href="alterar_dados.php">Alterar meus dados</a><br>
+                                <a href="#" class="visit">Quem acessou meus anúncios?</a><br>
+                                <a href="anuncios.php">Meus anúncios</a>
                             </div>
                     </div>
-                    <div class="adverts">
+                    <div class="adverts"  style="justify-content: center;">
                         <?php
                             $ser = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_USER_ID)=?", [md5($id)]);
                                 $valor = $ser -> fetchAll();
@@ -122,6 +128,32 @@ if (!isLogged()) {
                     </div>
                     <p class="topo"><a href="#" class="top">Início da página</a></p><br>
             </div>
+        <div class="visitas">
+            <a href="#" class="fechar">X</a>
+
+            <h2>Pessoas que acessaram meus anúncios</h2><br>
+           <?php 
+            $stmt = pdoExec("SELECT * FROM VISITAS WHERE VISI_USER_ID=?", [$_SESSION['userId']]);
+            $result = $stmt->fetchAll();
+            foreach ($result as $value) { 
+                $dt = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$value['VISI_PESSOA_ID']]);
+                $dt2 = $dt -> fetchAll();
+                foreach ($dt2 as $dado) {
+                    $username = $dado['USER_NOME'];
+                }
+                $dt3 = pdoExec("SELECT* FROM SERVICOS WHERE SRV_ID=?", [$value['VISI_SRV_ID']]);
+                $dt4 = $dt3 -> fetchAll();
+                foreach ($dt4 as $serv) {
+                    $servico = $serv['SRV_NOME'];
+                }
+                ?>
+                <p><?=$username;?>  acessou seu anúncio  <?=$servico;?>  <label><?=$value['VISI_DATA'];?></label></p><br>
+            <?php }
+            ?>
+            <center>
+            <p class="limpa"><a href="">Limpar</a></p>
+        </center>
+        </div>
                 </center>
     <?php include("conta.php");?>
 	<footer class="rodape">©Copyright 2019</footer>

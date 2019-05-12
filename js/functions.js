@@ -100,7 +100,7 @@ $(document).ready(function() {
 	});
 
 	// Subcategorias
-	$("select.type").click(function(){
+	$("select.type").change(function(){
 		var value = $(this).val();
 		var consulta = "SELECT * FROM SUBCATEGORIAS WHERE SCTG_CTG_ID="+value;
 		if (value!="null") {
@@ -259,12 +259,58 @@ $(document).ready(function() {
 
     $("div.products a").click(function() {
     	var id = $(this).attr('id');
+    	//alert(id);
     	$.ajax({
     		url: '../php/add_visualizacao.php',
     		type: 'POST',
     		data: {id: id}
      	});
+     	$.ajax({
+    		url: '../php/visitas.php',
+    		type: 'POST',
+    		data: {id: id}
+     	});
     });
+
+    $("div.link a.visit").click(function(e){
+    	e.preventDefault();
+	    	
+    	var div = $('div.visitas');
+		var alturaTela = $(document).height();
+		var larguraTela = $(window).width();
+
+		$("#mascara").css({'width': larguraTela, 'height': alturaTela});
+		$("#mascara").fadeIn(1000);
+		$("#mascara").fadeTo("slow", 0.8);
+
+		var left = ($(window).width()/2) - ($(div).width()/2);
+		var top = ($(window).height()/2) - ($(div).height()/2);
+
+		$(div).css({'left': left, 'top': top});
+		$(div).show();
+    });
+
+    $("#mascara").click(function(){
+		$(this).fadeOut("slow");
+		$("div.visitas").fadeOut();
+	});
+	$("div.visitas a.fechar").click(function(e){
+		e.preventDefault();
+		$("#mascara").fadeOut("slow");
+		$("div.visitas").fadeOut(1000);
+	});
+
+	$("p.limpa a").click(function(e){
+		e.preventDefault();
+		$.ajax({
+			url: '../php/delete_visitas.php',
+			type: 'POST',
+			success: function(){
+				location.reload();
+			}
+		});
+	});
+
     $("#cep").mask("99999-999");
     $("#tel").mask("(99)99999-9999");
 });

@@ -36,7 +36,7 @@ if (!isLogged()) {
 	<br>
 	<center>
 		<div class="busca">
-			<form action="search.php" method="GET">
+			<form action="search.php" name="search" method="GET">
 				<input type="text" placeholder="Estou procurando por..." required>
 				<button type="submit"><i class="fas fa-search" ></i></button>
 
@@ -64,42 +64,34 @@ if (!isLogged()) {
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
-			<br><div class="anuncios">
-
+			<br>
+			<div class="anuncios">
 				<center>
-					<div class="info">
-					<?php
-					$id_img = $value['SRV_ID'];
-					$img = 0;
-					$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=?", [$id_img]);
-					$dados2 = $data -> fetchAll();
-					if ($data->rowCount() >0) { ?>
-						<div class="slide">
-							<div class="botao">
-								<a href="#" class="anterior" id="section"><</a>
-								<a href="#" class="proxima" id="section">></a>
-							</div>
-							<ul>	
-								<?php foreach ($dados2 as $data) { ?>
+					<div class="adverts">
+                        <a href="desc_produto.php?desc=<?=md5($value['SRV_ID']);?>">
 
-									<li><img src="<?= $data['IMG_NOME']; ?>"></li>
-
-								<?php } ?>
-							</ul>
-						</div>
-					<?php } else{?>
-						<div class="slide">
-							<ul>
-								<li><img src="../img/default.jpeg"></li>
-							</ul>
-						</div>
-						<?php } ?>
-					<div class="">
-					<p 	class="h2"><h2><?= $value['SRV_NOME'];?></h2></p>
-					<h3>Descrição</h3>
-					<p><?= $value['SRV_DESCRICAO'];?></p>
-					<br><p class="link"><a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
-					<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a></p>
+							<?php
+							$id_img = $value['SRV_ID'];
+							$img = 0;
+							$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$id_img]);
+							$dados2 = $data -> fetchAll();
+							if ($data->rowCount() >0) { ?>
+								<?php foreach ($dados2 as $data) : ?>
+									<img src="<?= $data['IMG_NOME']; ?>">
+							<?php endforeach; 
+							}///if 
+							else{?>
+								<img src="../img/default.jpeg">
+							<?php } ?>
+							
+							<p style="margin-top: 10px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
+							<h3>Preço</h3>
+							<p>R$: <?= $value['SRV_PRECO'];?></p>
+						</a>
+						<p class="link">
+							<a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
+							<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a>
+						</p><br>
 					</div>
 				</center>	
 			</div><br>
@@ -107,7 +99,6 @@ if (!isLogged()) {
 
 		</div>
 		</center>
-	</div>
 	
     <?php include("conta.php");?>
 
