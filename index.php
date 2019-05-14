@@ -106,8 +106,12 @@
 			<hr>
 			<p><a href="php/perfil.php" class="link"><i class="fas fa-user-circle"></i><br>Meu perfil</a></p><hr class="hr">
 			<p><a href="php/anuncios.php" class="link"><i class="fas fa-ad"></i><br>Meus anúncios</a></p><hr class="hr">
-			<p><a href="php/favoritos.php" class="link"><i class="fas fa-star"></i><br>Meus favoritos</a></p><hr class="hr">
-			<p><a href="php/views.php" class="link"><i class="fas fa-eye"></i><br>Anúncios visitados</a></p>
+			<p><a href="favoritos.php" class="link"><i class="fas fa-star"></i></i><br>Favoritos</a></p><hr class="hr"><hr class="hr">
+			<p><a href="views.php" class="link"><i class="fas fa-eye"></i><br>Anúncios visitados</a></p><hr class="hr">
+			<?php if ($_SESSION['userTipo'] == 2 ): ?>
+				<hr class="hr">
+				<p><a href="views.php" class="link"><i class="fas fa-eye"></i><br>Gerenciamento de Usuarios</a></p>
+			<?php endif ?>
 		</center>
 	</div>
 	<footer class="rodape">©Copyright 2019</footer>

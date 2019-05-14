@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
 //$conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_23605681_FASTSERVICE",'epiz_23605681','2U0ZNu9aI1GhW');
 
 function conexao(){
@@ -188,6 +188,7 @@ function login($data){
 			$_SESSION['userFone'] = $dados['USER_TELEFONE'];
 			$_SESSION['userLogin'] = $dados['USER_USUARIO'];
 			$_SESSION['userIMG'] = $dados['USER_IMAGEM'];
+			$_SESSION['userTipo'] = $dados['USER_TIPO'];
 			echo 'logado';
 		}
 	}
@@ -240,4 +241,14 @@ function addVisitas($data){
 		exit();
 	}
 	pdoExec("INSERT INTO VISITAS SET VISI_USER_ID=?, VISI_PESSOA_ID=?, VISI_SRV_ID=?, VISI_DATA=?",[$user, $_SESSION['userId'], $data, $now]);
+}
+function tornarAdm($id){
+	$valor = 1;
+	$stmt =pdoExec("UPDATE USUARIOS SET USER_TIPO WHERE USER_ID=?", [$valor, $id]);
+	header('location: ../index.php');
+}
+function tornarPadrao($id){
+	$valor = 0;
+	$stmt =pdoExec("UPDATE USUARIOS SET USER_TIPO WHERE USER_ID=?", [$valor, $id]);
+	header('location: ../index.php');
 }
