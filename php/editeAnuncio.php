@@ -16,6 +16,7 @@ if(!isLogged()){
 	<script src="../js/jquery.js"></script>
 	<script src="../js/functions.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script type="text/javascript" src="../js/jquery.maskedinput-1.1.4.pack.js"/></script>
 <body>
 	<div>
 		<nav>
@@ -72,11 +73,42 @@ if(!isLogged()){
 					<p>Adicionar foto</p>
 					<input type="file" name="img[]" multiple style="height: 20px;">
 					<br><p style="margin-top: 80px;"><h2>Nome do servico / Produto</h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><br>
+					<input type="text" name="name" placeholder="Digite aqui"><br>
+	                <br><p>Categoria <span>*</span></p>
+	                <select name="type" class="type" required="">
+	                    <option value="null" class='null' readonly >Selecione</option>
+	                    <?php 
+	                    $dados = pdoExec("SELECT * FROM CATEGORIAS",[]);
+	                    $resultado = $dados -> fetchAll();
+	                    foreach ($resultado as $subcategoria) : ?>                            
+	                    <option value=<?=$subcategoria['CTG_ID'];?> > <?= utf8_encode($subcategoria['CTG_NOME']);?> </option>
+	                    <?php endforeach; ?>
+	                </select>
+                <br><p class="subtype">Subcategoria <span>*</span></p>
+                <select name="subtype" class="subtype" required="">
+                </select>
 					<h3>Preço</h3>
 					<input type="text" name="price" value="<?=$value['SRV_PRECO'];?>"><br>
 					<h3>Descrição</h3>
 					<textarea name="description"><?= $value['SRV_DESCRICAO'];?></textarea><br>
 					<input type="hidden" name="id_servico" value="<?=$value['SRV_ID'];?>">
+					<br><p>CEP <span>*</span></p>
+	                <input  type="text" name="cep" id="cep" minlength="9" maxlength="10" value="<?=$value['SRV_CEP'];?>" required>
+
+	                <br><p>Número do estabelecimento<span>*</span></p>     
+	                <input type="text" name="numero" id="numero" value="<?=$value['SRV_NUMERO'];?>" required>
+
+	                <br><p>Logradouro <span>*</span></p>
+	                <input type="text" name="logradouro" id="rua" value="<?=$value['SRV_LOGRADOURO'];?>" required  maxlength="45"/>
+
+	                <br><p>Bairro <span>*</span></p>
+	                <input type="text" name="bairro" id="bairro" value="<?=$value['SRV_BAIRRO'];?>" required>
+
+	                <br><p>Cidade <span>*</span></p>
+	                <input type="text" name="cidade" id="cidade" value="<?=$value['SRV_CIDADE'];?>" required  maxlength="25" />
+
+	                <br><p>Estado <span>*</span></p>
+	                <input type="text" name="estado" id="uf" value="<?=$value['SRV_ESTADO'];?>" required><br>	
 					<button type="submit" name="enviar">Salvar alterações</button>
 				</form>
 					

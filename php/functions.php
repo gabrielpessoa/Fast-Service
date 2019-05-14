@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
 //$conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_23605681_FASTSERVICE",'epiz_23605681','2U0ZNu9aI1GhW');
 
 function conexao(){
@@ -102,8 +102,16 @@ function updateServico($dados, $img){
 	$preco = $dados['price'];
 	$id = $dados['id_servico'];
 	$usuario = $_SESSION['userId'];
+	$type = $dados['type'];
+	$subtype = $dados['subtype'];
+	$cep = $dados['cep'];
+	$numero = $dados['numero'];
+	$logradouro = $dados['logradouro'];
+	$bairro = $dados['bairro'];
+	$cidade = $dados['cidade'];
+	$estado = $dados['estado'];
 	if(!empty($dados)){
-		$stmt =pdoExec("UPDATE SERVICOS SET SRV_NOME=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=? WHERE SRV_ID=? AND SRV_USER_ID=?", [$nome, $descricao, $localizacao, $preco, $id, $usuario]);
+		$stmt =pdoExec("UPDATE SERVICOS SET SRV_NOME=?, SRV_CATEGORIA=?, SRV_DESCRICAO=?, SRV_LOCALIZACAO=?, SRV_PRECO=?, SRV_SUBCATEGORIA=?, SRV_CEP=?, SRV_NUMERO=?, SRV_LOGRADOURO=?, SRV_BAIRRO=?, SRV_CIDADE=?, SRV_ESTADO=? WHERE SRV_ID=? AND SRV_USER_ID=?", [$nome, $type, $descricao, $localizacao, $preco, $subtype, $cep, $numero, $logradouro, $bairro, $cidade, $estado, $id, $usuario]);
 		$caminho = "../produtos/img/";
 		$count = count(array_filter($img['name']));
 		$permite = ['image/jpeg', 'image/png', 'image/jpg'];

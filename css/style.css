@@ -276,6 +276,7 @@ div.cadastro form button{
 div.cadastro form button:hover{
 	background: #FA5858;
 }
+
 div.cadastro h2{
 	margin-top: 20px;
 }
@@ -284,7 +285,6 @@ div.cadastro p.primary{
 }
 div.cadastro input{
 	width: 50%;
-	height: 27px;
 	height: 35px;
 	border-radius: 5px;
 	border: solid 1px #babaca;
@@ -419,6 +419,13 @@ div.search div.products{
 	text-align: center;
 	border: solid 1px #babaca;
 	border-radius: 5px;
+}
+div.search select{
+	width: 51%;
+	height: 30px;
+	height: 35px;
+	border-radius: 5px;
+	outline: none;
 }
 div.products a{
 	margin-top: -60px;
