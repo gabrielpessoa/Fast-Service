@@ -9,7 +9,7 @@
 			<p><a href="views.php" class="link"><i class="fas fa-eye"></i><br>Anúncios visitados</a></p>
 			<?php if ($_SESSION['userTipo'] == 2 ): ?>
 				<hr class="hr">
-				<p><a href="gerenciaUser.php" class="link"><i class="fas fa-eye"></i><br>Gerenciamento de Usuarios</a></p>
+				<p><a href="gerenciaUser.php" class="link"><i class="fas fa-user-edit"></i><br>Gerenciamento de Usuarios</a></p>
 			<?php endif ?>
 
 		</center>

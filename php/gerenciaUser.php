@@ -50,7 +50,7 @@
 
 	<div class="profile">
 		<center>
-			<div>
+			<div class="adm">
 				<?php 
 					$stmt = pdoExec("SELECT * FROM USUARIOS",[]);
 					$dados = $stmt->fetchAll();
@@ -76,9 +76,9 @@
 											Administrador
 										<?php endif ?>
 									</td>
-									<td><a href="gerenciaAddAdm.php?id=<?=md5($value['USER_ID']);?>"">ADM</a></td>
+									<td><a href="gerenciaAddAdm.php?id=<?=md5($value['USER_ID']);?>">ADM</a></td>
 									<?php if ($_SESSION['userTipo'] == 2): ?>
-										<td><a href="gerenciaRmAdm.php?id=<?=md5($value['USER_ID']);?>"">Padrão</a></td>
+										<td><a href="gerenciaRmAdm.php?id=<?=md5($value['USER_ID']);?>">Padrão</a></td>
 									<?php endif ?>
 								<?php } ?>	
 						</tr>	

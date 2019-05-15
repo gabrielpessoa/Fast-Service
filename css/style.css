@@ -17,6 +17,21 @@ body{
 .content{
 	margin-top: 30px;
 }
+.profile .adm table{
+	margin-top: 50px;
+	width: 600px;
+	border-collapse: collapse;
+}
+.profile .adm tr,td{
+	width: 150px;
+	border: 1px solid black;
+}
+.profile .adm td{
+	margin: 0 auto;
+	text-align:center;
+}
+.profile .adm a{
+}
 
 .body label{
 	text-align: center;
@@ -251,6 +266,22 @@ div.window div.alerts{
 	margin-bottom: -26px; 
 	display: none;
 }
+.profile .novaCategoria{
+	text-align: center;
+	margin-top: 40px;
+	border: solid 1px;
+	width: 80%;
+	border-radius: 15px;
+	background: white;
+	border: solid 1px #babaca; 
+	margin-top: 80px;
+	margin-bottom: 60px;
+	padding-bottom: 15px;
+}
+.profile .novaCategoria fieldset{
+	margin: auto;
+	width: 90%;
+}
 div.cadastro{
 	text-align: center;
 	margin-top: 40px;
@@ -262,7 +293,18 @@ div.cadastro{
 	margin-top: 120px;
 	margin-bottom: 60px;
 }
-div.cadastro form button{
+.profile .novaCategoria p{
+	font-size: 15px;
+}
+.profile .novaCategoria input{
+	width: 49%;
+	height: 35px;
+	border-radius: 5px;
+	border: solid 1px #babaca;
+	padding-left: 5px;
+	text-transform: capitalize
+}
+div.cadastro form button , .profile .novaCategoria form button {
 	color: white;
 	background: red;
 	border: none;
@@ -276,7 +318,6 @@ div.cadastro form button{
 div.cadastro form button:hover{
 	background: #FA5858;
 }
-
 div.cadastro h2{
 	margin-top: 20px;
 }

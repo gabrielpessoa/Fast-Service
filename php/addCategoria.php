@@ -53,56 +53,36 @@ if (!isLogged()) {
 			</form>
 		</div>
 
-	<div class="search">
-		<center>
-			<?php if (isset($_SESSION["anuncio_sucesso"])) : ?>
-				<p class="blue">Cadastrado com sucesso</p>
-			<?php endif; unset($_SESSION["anuncio_sucesso"]); ?>
-			<?php if (isset($_SESSION["anuncio_edite"])) : ?>
-				<p class="blue">Editado com sucesso</p>
-			<?php endif; unset($_SESSION["anuncio_edite"]); ?>
-		
-		<?php 
-		$usuario = $_SESSION['userId']; 
-		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
-		$resultado = $dados -> fetchAll(); 
-		foreach($resultado as $value):?>
-			<br>
-			<div class="anuncios">
-				<center>
-					<div class="adverts">
-                        <a href="desc_produto.php?desc=<?=md5($value['SRV_ID']);?>">
-
-							<?php
-							$id_img = $value['SRV_ID'];
-							$img = 0;
-							$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$id_img]);
-							$dados2 = $data -> fetchAll();
-							if ($data->rowCount() >0) { ?>
-								<?php foreach ($dados2 as $data) : ?>
-									<img src="<?= $data['IMG_NOME']; ?>">
-							<?php endforeach; 
-							}///if 
-							else{?>
-								<img src="../img/default.jpeg">
-							<?php } ?>
-							
-							<p style="margin-top: 10px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
-							<h3>Preço</h3>
-							<p>R$: <?= $value['SRV_PRECO'];?></p>
-						</a>
-						<p class="link">
-							<a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
-							<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a>
-						</p><br>
-					</div>
-				</center>	
-			</div><br>
-		<?php endforeach; ?>
-
+	<div class="profile">
+		<div class="novaCategoria">
+			<form method="GET" action="novaCategoria.php">
+				<fieldset>
+					<legend style="font-size: 20px">Nova categoria</legend>
+					<input type="text" name="categoria"><br>
+					<button type="submit">Enviar</button>
+				</fieldset>
+			</form>
+			<form method="POST" action="novaCategoria.php">
+				<fieldset>
+					<legend style="font-size: 20px;">Nova subcategoria</legend>
+					<p>Categoria</p>
+					<select style="width: 50%;height: 35px;border-radius: 5px;outline: none;" name="type" class="type" required="">
+	                    <option value="null" class='null' readonly >Selecione</option>
+	                    <?php 
+	                    $dados = pdoExec("SELECT * FROM CATEGORIAS",[]);
+	                    $resultado = $dados -> fetchAll();
+	                    foreach ($resultado as $value) : ?>                            
+	                    <option value=<?=$value['CTG_ID'];?> > <?= utf8_encode($value['CTG_NOME']);?> </option>
+	                    <?php endforeach; ?>
+	                </select>
+	                <p>Nova subcategoria</p>
+	                <input type="text" name="subCategoria"><br>
+	                <button name="enviar" type="submit">Enviar</button>
+				</fieldset>
+			</form>
 		</div>
-		</center>
-	
+	</div>
+
     <?php include("conta.php");?>
 
 	<footer class="rodape">©Copyright 2019</footer>

@@ -8,6 +8,9 @@
 				<li><a href="anuncios.php">Meus anúncios</a></li>
 				<li><a href="perfil.php">Minha conta</a></li>
 				<li><a href="servico.php">Anunciar</a></li>
+				<?php if ($_SESSION['userTipo'] > 0): ?>
+					<li><a href="addCategoria.php">Criar Categorias</a></li>
+				<?php endif ?>
 				<li><a href="logout.php" class="btn-login">Sair</a></li>
 			<?php } else{ ?>
 				<li><a href="register.php">Registrar-se</a></li>
