@@ -15,7 +15,7 @@
 		<nav>
 			<a href="../index.php"><img src="../img/3.png"></a>
 			<ul>
-				<li><a href="/"><i class="fas fa-home"></i>Início</a></li>
+				<li><a href="../index.php"><i class="fas fa-home"></i>Início</a></li>
 				<li><a href="ajuda.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
 					<li><a href="servico.php"><i class="fas fa-ad"></i>Anunciar</a></li>
@@ -49,17 +49,48 @@
                     </ul>
             </div>
 			<div class="ajuda">
-				<h1>Como faço para me cadastrar?</h1><br> 
- 				<ul class="ul">		 		
-		 		  <li>Na página inicial clique em registrar-se;</li>
-		 			<li>Digite seu nome;</li>
-		 			<li>Nome do usuário;</li>
-		 			<li>E-mail;</li>
-		 			<li>Selecionar tipo de conta (Anuciante ou Cliente);</li>
-		 			<li>Criar senha;</li>
-		 			<li>Confirmar senha;</li>
- 					
+				<center>
+					<br><h1>Ajuda</h1>
+ 				<br><ul>		 		
+			 		    <li><a href="#" id="duvi-user">Como faço para me cadastrar ?</a></li>
+			 		    <div class="duvida-cadastro-user">
+				 		  	<p><h3>Passo 1</h3></p>
+				 		  	<p>Navege até o menu e clique em "REGISTRAR-SE"</p>
+				 		  	<p><img src="../img/cadastro1.png"></p>
+				 		  	<p><h3>Passo 2</h3></p>
+				 		  	<p>Preencha corretamente todos os campos do formulário. OBS: o campo "Usuário" será usado para fazer login</p>
+				 		  	<p><img src="../img/cadastro2.png"></p>
+			 		    </div>
+			 			<li><a href="#" id="duvi-ads">Como cadastrar um anúncio?</a></li>
+			 			<div class="duvida-cadastro-ads">
+				 		  	<p><h3>Passo 1</h3></p>
+				 		  	<p>Navege até o menu e clique em "Anunciar"</p>
+				 		  	<p><img src="../img/cadastro3.png"></p>
+				 		  	<p><h3>Passo 2</h3></p>
+				 				<!-- Continuem o resto -->
+				 			<p><img src=""></p>
+			 		    </div>
+			 			<li><a href="#" id="duvi-dados">Como posso alterar meus dados?</a></li>
+			 			<div class="duvida-alterar-dados">
+				 		  	<p><h3>Passo 1</h3></p>
+			 				<!-- Continuem o resto -->
+				 		  	<p><img src=""></p>
+			 		    </div>
+			 		    <li><a href="#" id="duvi-login">Como faço login?</a></li>
+			 		    <div class="duvida-login">
+			 		  		<p><h3>Passo 1</h3></p>
+			 				<!-- Continuem o resto -->
+				 		  	<p><img src=""></p>
+			 		    </div>
+			 		    <li><a href="#" id="duvi-my-ads">Como posso ver meus anúncios</a></li>
+			 		    <div class="duvida-my-ads">
+			 		  		<p><h3>Passo 1</h3></p>
+			 				<!-- Continuem o resto -->
+				 		  	<p><img src=""></p>
+			 		    </div>
+			 		<br>
  				</ul>  
+				</center>
 			</div>
 	</center>
 
@@ -69,6 +100,7 @@
 	?>
 
 	<footer class="rodape">©Copyright 2019</footer>
+
 
 </body>
 </html>

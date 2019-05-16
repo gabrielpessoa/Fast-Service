@@ -583,16 +583,74 @@ div.anuncios form button{
 }
 
 .ajuda {
-	text-align: justify;
-	margin: 150px auto;
-	width: 400px;
+	text-align: center;
+	margin-top: 80px;
+	width: 80%;
+	border-radius: 10px;
 	font-size: 19px;
-	color: rgb(255 255 255);
-	z-index: 5;
+	background: white;
+	margin-bottom: 40px;
+	min-height: 100vh;
 }
-.ajuda h1{
-	margin-left:-25px;
-}	
+div.ajuda ul{
+	list-style: none;
+	text-align: justify;
+	margin-left: 60px;
+	margin-top: 60px;
+}
+div.ajuda ul li{
+	margin-top: 20px;
+}
+div.ajuda ul li a{
+	font-size: 22px;	
+}
+div.ajuda h1{
+	margin-top:25px;
+}
+div.ajuda div.duvida-cadastro-user{
+	display: none;
+	margin-right: 60px;
+	margin-top: 18px;
+}
+div.ajuda div.duvida-cadastro-ads{
+	display: none;
+	margin-right: 60px;
+	margin-top: 18px;
+}
+div.ajuda div.duvida-alterar-dados{
+	display: none;
+	margin-right: 60px;
+	margin-top: 18px;
+}
+div.ajuda div.duvida-my-ads{
+	display: none;
+	margin-right: 60px;
+	margin-top: 18px;
+}
+div.ajuda div.duvida-login{
+	display: none;
+	margin-right: 60px;
+	margin-top: 18px;
+}
+div.duvida-cadastro-user p{
+	margin-top: 15px;
+}
+div.duvida-cadastro-ads p{
+	margin-top: 15px;
+}
+div.duvida-alterar-dados p{
+	margin-top: 15px;
+}
+div.duvida-my-ads p{
+	margin-top: 15px;
+}
+div.duvida-login p{
+	margin-top: 15px;
+}
+div.ajuda h3{
+	color: red;
+	font-weight: normal;
+}
 .slide{
 	width: 300px;
 	height: 350px;

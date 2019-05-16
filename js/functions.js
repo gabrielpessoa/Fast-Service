@@ -83,13 +83,13 @@ $(document).ready(function() {
 
 		var left = ($(window).width()/2) - ($(id).width()/2);
 		var top = ($(window).height()/2) - ($(id).height()/2);
-		$(".account").fadeIn(500, 'linear');
+		$(".account").toggle();
 		 $(id).css({'margin-top': 86});
 	});
 
 	$(".fechar").click(function(e){
 		e.preventDefault();
-		$(".account").fadeOut(1000, "linear");
+		$(".account").fadeOut();
 	});
 	
 	$(".top").click(function(e){
@@ -308,6 +308,31 @@ $(document).ready(function() {
 				location.reload();
 			}
 		});
+	});
+
+	$("div.ajuda ul li a#duvi-user").click(function(e){
+		e.preventDefault();
+		$(".duvida-cadastro-user").toggle();
+	});
+
+	$("div.ajuda ul li a#duvi-ads").click(function(e){
+		e.preventDefault();
+		$(".duvida-cadastro-ads").toggle();
+	});
+
+	$("div.ajuda ul li a#duvi-dados").click(function(e){
+		e.preventDefault();
+		$(".duvida-alterar-dados").toggle();
+	});
+
+	$("div.ajuda ul li a#duvi-login").click(function(e){
+		e.preventDefault();
+		$(".duvida-login").toggle();
+	});
+
+	$("div.ajuda ul li a#duvi-my-ads").click(function(e){
+		e.preventDefault();
+		$(".duvida-my-ads").toggle();
 	});
 
     $("#cep").mask("99999-999");
