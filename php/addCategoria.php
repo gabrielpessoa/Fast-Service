@@ -58,7 +58,7 @@ if (!isLogged()) {
 			<form method="GET" action="novaCategoria.php">
 				<fieldset>
 					<legend style="font-size: 20px">Nova categoria</legend>
-					<input type="text" name="categoria"><br>
+					<input type="text" name="categoria" placeholder="Nome da categoria"><br>
 					<button type="submit">Enviar</button>
 				</fieldset>
 			</form>
@@ -76,7 +76,7 @@ if (!isLogged()) {
 	                    <?php endforeach; ?>
 	                </select>
 	                <p>Nova subcategoria</p>
-	                <input type="text" name="subCategoria"><br>
+	                <input type="text" name="subCategoria" placeholder="Nome da subcategoria"><br>
 	                <button name="enviar" type="submit">Enviar</button>
 				</fieldset>
 			</form>

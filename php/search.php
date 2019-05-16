@@ -21,6 +21,9 @@
 				<?php if (isLogged() ){ ?>
 					<li><a href="servico.php"><i class="fas fa-ad"></i>Anunciar</a></li>
 					<li><a href="#account" rel="account"><i class="fas fa-user-alt"></i>Minha conta</a></li>
+					<?php if ($_SESSION['userTipo'] > 0): ?>
+						<li><a href="addCategoria.php"><i class="fas fa-plus-circle"></i>Criar Categorias</a></li>
+					<?php endif ?>
 					<li><a href="logout.php" class="btn-login"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
 				<?php } else{ ?>
 				<li><a href="register.php"><i class="fas fa-user-plus"></i>Registrar-se</a></li>
