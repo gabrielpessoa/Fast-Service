@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
 //$conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_23605681_FASTSERVICE",'epiz_23605681','2U0ZNu9aI1GhW');
 
 function conexao(){
@@ -229,13 +229,6 @@ function addComentario($data){
 	header('location:'.$_SERVER['HTTP_REFERER']);
 
 }
-function addVisualizacao($data){
-	$stmt = pdoExec("SELECT * FROM VISUALIZACOES WHERE VISU_USER_ID=? AND VISU_SRV_ID=?", [$_SESSION['userId'], $data]);
-	if ($stmt->rowCount()>0) {
-		exit();
-	}
-	pdoExec("INSERT INTO VISUALIZACOES SET VISU_SRV_ID=?, VISU_USER_ID=?", [$data, $_SESSION['userId']]);
-}
 function addVisitas($data){
 	$now=date('Y-m-d H:i:s');
 	$stmt = pdoExec("SELECT * FROM SERVICOS WHERE SRV_ID=?",[$data]);
@@ -244,11 +237,11 @@ function addVisitas($data){
 	foreach ($resultado as $value) {
 		$user = $value['SRV_USER_ID'];
 	}
-	$stmt = pdoExec("SELECT * FROM VISITAS WHERE VISI_USER_ID=? AND VISI_PESSOA_ID=? AND VISI_SRV_ID=? AND VISI_DATA=?",[$user, $_SESSION['userId'], $data, $now]);
+	$stmt = pdoExec("SELECT * FROM VISITAS WHERE VISI_USER_ID=? AND VISI_SRV_ID=? AND VISI_DATA=?",[$user, $_SESSION['userId'], $data, $now]);
 	if ($stmt->rowCount()>0) {
 		exit();
 	}
-	pdoExec("INSERT INTO VISITAS SET VISI_USER_ID=?, VISI_PESSOA_ID=?, VISI_SRV_ID=?, VISI_DATA=?",[$user, $_SESSION['userId'], $data, $now]);
+	pdoExec("INSERT INTO VISITAS SET VISI_USER_ID=?, VISI_SRV_ID=?, VISI_DATA=?",[$_SESSION['userId'], $data, $now]);
 }
 function tornarAdm($id){
 	$valor = 1;

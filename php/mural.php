@@ -49,7 +49,7 @@
 		<br>
 		<div class="profile">
 			<center>
-				<div class="info">
+				<div class="info" style="justify-content: center;">
 					<?php
 					$contador = 0; $media = 0; $mediaUsuario=0;
 					$id = $_GET['i'];
@@ -110,14 +110,9 @@
 			                foreach($dados2 as $val){?>
 			                	<img src="<?=$val['IMG_NOME'];?>">
 			                <?php } ?>
-		                	<br><p style="margin-top: 20px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
+		                	<br><p style="margin-top: 20px;"><h2><?= $value['SRV_NOME'];?></h2></p>
 							<h3>Preço</h3>
-							<p><?= "R$: ".$value['SRV_PRECO'];?></p><hr>
-							<h3>Descrição</h3>
-							<p><?= $value['SRV_DESCRICAO'];?></p>
-							<hr>
-							<h3>Localização</h3>
-							<p><?= $value['SRV_LOCALIZACAO'];?></p>
+							<p><?= "R$: ".$value['SRV_PRECO'];?></p>
 		                	</div>
 	                	</a>
 	               <?php }?>  

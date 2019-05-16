@@ -259,12 +259,6 @@ $(document).ready(function() {
 
     $("div.products a").click(function() {
     	var id = $(this).attr('id');
-    	//alert(id);
-    	$.ajax({
-    		url: '../php/add_visualizacao.php',
-    		type: 'POST',
-    		data: {id: id}
-     	});
      	$.ajax({
     		url: '../php/visitas.php',
     		type: 'POST',

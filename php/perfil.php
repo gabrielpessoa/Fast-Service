@@ -100,7 +100,6 @@ if (!isLogged()) {
                                 <p>Links</p><br> 
                                 <a href="alterar_dados.php">Alterar meus dados</a><br>
                                 <a href="#" class="visit">Quem acessou meus anúncios?</a><br>
-                                <a href="anuncios.php">Meus anúncios</a>
                             </div>
                     </div>
                     <div class="adverts"  style="justify-content: center;">
@@ -119,9 +118,16 @@ if (!isLogged()) {
                                 foreach($dados2 as $val){?>
                                     <img src="<?=$val['IMG_NOME'];?>">
                                 <?php } ?>
-                                <br><p style="margin-top: 20px;"><h2><?= $value1['SRV_NOME'];?></h2></p><hr>
+                                <br><p style="margin-top: 20px;"><h2><?= $value1['SRV_NOME'];?></h2></p>
                                 <h3>Preço</h3>
                                 <p><?= "R$: ".$value1['SRV_PRECO'];?></p>
+                                <p>
+                                    <?php 
+                                    $stmt = pdoExec("SELECT COUNT('VISI_SRV_ID') FROM VISITAS WHERE VISI_SRV_ID=?", [$value1['SRV_ID']]);
+                                    $visitas = $stmt->fetchAll();
+                                    echo $visitas[0]["COUNT('VISI_SRV_ID')"]." visualizações"; 
+                                ?>
+                                </p>
                                 </div>
                             </a>
                        <?php }?>  
@@ -136,7 +142,7 @@ if (!isLogged()) {
             $stmt = pdoExec("SELECT * FROM VISITAS WHERE VISI_USER_ID=?", [$_SESSION['userId']]);
             $result = $stmt->fetchAll();
             foreach ($result as $value) { 
-                $dt = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$value['VISI_PESSOA_ID']]);
+                $dt = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$value['VISI_USER_ID']]);
                 $dt2 = $dt -> fetchAll();
                 foreach ($dt2 as $dado) {
                     $username = $dado['USER_NOME'];
@@ -151,7 +157,7 @@ if (!isLogged()) {
             <?php }
             ?>
             <center>
-            <p class="limpa"><a href="">Limpar</a></p>
+            <!-- <p class="limpa"><a href="">Limpar</a></p> -->
         </center>
         </div>
                 </center>

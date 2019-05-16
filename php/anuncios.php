@@ -87,9 +87,20 @@ if (!isLogged()) {
 								<img src="../img/default.jpeg">
 							<?php } ?>
 							
-							<p style="margin-top: 10px;"><h2><?= $value['SRV_NOME'];?></h2></p><hr>
+							<p style="margin-top: 10px;"><h2><?= $value['SRV_NOME'];?></h2></p>
 							<h3>Preço</h3>
 							<p>R$: <?= $value['SRV_PRECO'];?></p>
+							<p>
+								<?php
+								$stmt = pdoExec("SELECT COUNT('VISI_SRV_ID') FROM VISITAS WHERE VISI_SRV_ID=?", [$value['SRV_ID']]);
+								$visitas = $stmt->fetchAll();
+								echo $visitas[0]["COUNT('VISI_SRV_ID')"]." visualizações"; 
+								// foreach ($visitas as $va) {
+								//  	$tt = $va["COUNT('VISI_SRV_ID')"]; 
+								//  }
+								// echo($tt)."<br>";
+								?>
+							</p>
 						</a>
 						<p class="link">
 							<a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
