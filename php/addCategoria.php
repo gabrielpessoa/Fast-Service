@@ -54,6 +54,13 @@ if (!isLogged()) {
 		</div>
 
 	<div class="profile">
+		<?php 
+		if(isset($_SESSION['ctg_cadastrada'])){?>
+			<p class="blue">Categoria cadastrada com sucesso</p>
+		<?php } unset($_SESSION['ctg_cadastrada']); ?> 
+		<?php if(isset($_SESSION['sctg_cadastrada'])){?>
+			<p class="blue">Subcategoria cadastrada com sucesso</p>
+		<?php } unset($_SESSION['sctg_cadastrada']); ?>
 		<div class="novaCategoria">
 			<form method="GET" action="novaCategoria.php">
 				<fieldset>
