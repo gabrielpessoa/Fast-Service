@@ -58,7 +58,7 @@
 				 		  	<p>Navege até o menu e clique em "REGISTRAR-SE"</p>
 				 		  	<p><img src="../img/cadastro1.png"></p>
 				 		  	<p><h3>Passo 2</h3></p>
-				 		  	<p>Preencha corretamente todos os campos do formulário. OBS :  o campo "Usuário" será usado para fazer login</p>
+				 		  	<p>Preencha corretamente todos os campos do formulário.<br> OBS :  o campo "Usuário" será usado para fazer login e a "Senha" deve conter no mínimo 6 caracteres.</p>
 				 		  	<p><img src="../img/cadastro1.2.png"></p>
 				 		  	<p><h3>Passo 3</h3></p>
 				 		  	<p>Clique no botão "Cadastrar"</p>
