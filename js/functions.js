@@ -335,6 +335,37 @@ $(document).ready(function() {
 		$(".duvida-my-ads").toggle();
 	});
 
+	$(".btn-reset-pw").click(function(e){
+		e.preventDefault();
+		var dados = $("form#reset-pw").serialize();
+		var senha1 = $("input#senha1").val();
+		var senha2 = $("input#senha2").val();
+		$.ajax({
+				url: 'up_password_control.php',
+				type: 'POST',
+				data: dados,
+				success: function(retorno){
+					if (retorno=='senhas diferentes') {
+						$("input").addClass("red");
+						$("label.link-usado").fadeOut();
+						$("label.sucesso").fadeOut();
+						$("label.passwords").show();
+					}
+					else if(retorno=='link usado'){
+						$("input").removeClass("red");
+						$("label.passwords").fadeOut();
+						$("label.sucesso").fadeOut();
+						$("label.link-usado").show();
+					}
+					else{
+						$("input").removeClass("red");
+						$("label.passwords").fadeOut();
+						$("label.sucesso").show();
+					}
+				}
+		});
+	});
+
     $("#cep").mask("99999-999");
     $("#tel").mask("(99)99999-9999");
 });

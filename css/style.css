@@ -88,12 +88,6 @@ nav ul li a{
 li a i{
 	padding-right: 5px;
 }
-.black ul li a{
-	color: white;
-}
-.black ul li a:hover{
-	
-}
 nav  img{
 	margin-left: 45px;
 	float: left;
@@ -252,12 +246,13 @@ section p{
 	border-radius: 5px;
 	outline: none;
 }
-.window input.red{
+input.red{
 	border: solid 2px red;
 	background: #F5A9A9;
 }
 input{
 	padding-left: 10px;
+	outline: none;
 }
 div.window div.alerts{
 	width: 80%; 
@@ -333,14 +328,14 @@ div.cadastro input{
 div.cadastro input[type=file]{
 	height: 20px;
 }
-div.cadastro form label{
+/*div.cadastro form label{
 	background-color: #3498db;
 	border-radius: 5px;
 	color: #fff;
 	cursor: pointer;
 	margin: 10px;
 	padding: 6px 20px;
-}
+}*/
 div.cadastro form textarea{
 	width:49% ; 
 	height: 90px; 
@@ -961,4 +956,39 @@ div.visitas a:hover{
 }
 div.visitas p.limpa{
 	text-align: center; bottom: 0; position: absolute;
+}
+div.recuperar_senha{
+	margin:  auto; 
+	text-align: center; 
+	width: 400px; 
+	background: #D8D8D8; 
+	height: 300px; 
+	border-radius: 19px; 
+	padding: 15px;
+}
+div.recuperar_senha h1{
+	color: red; 
+	font-size: 45px;
+}
+div.recuperar_senha a.recuperar{
+	background: blue; 
+	border-radius: 10px; 
+	color: white; 
+	padding: 10px; 
+	text-decoration: none;
+}
+div.recuperar_senha a.recuperar:hover{
+	background: #5882FA;
+	text-decoration: none;
+}
+div.recuperar_senha a:hover{
+	text-decoration: underline;
+}
+form#reset-pw label{
+	display: none;
+	color: red;
+}
+form#reset-pw label.sucesso{
+	color: blue;
+	display: none;
 }

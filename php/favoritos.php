@@ -1,4 +1,4 @@
-<?php include("functions.php"); if(!isLogged()){header('location: index.php'); exit();} ?>
+<?php include("functions.php"); if(!isLogged()){header('location: ../index.php'); exit();} ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

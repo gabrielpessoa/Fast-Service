@@ -93,7 +93,7 @@
 				<input type="password" name="password" id="password" placeholder="Digite aqui"><br>
 				<div class="alerts senha"></div>
 				<button type="submit" id="entrar">Entrar</button><br>
-				<a href="#">Esqueceu sua senha?</a>
+				<a href="php/reset_password.php">Esqueceu sua senha?</a>
 			</form>
 		</center>
 	</div>
@@ -111,7 +111,7 @@
 			<p><a href="php/anuncios.php" class="link"><i class="fas fa-ad"></i><br>Meus anúncios</a></p><hr class="hr">
 			<p><a href="php/favoritos.php" class="link"><i class="fas fa-star"></i></i><br>Favoritos</a></p><hr class="hr">
 			<p><a href="php/views.php" class="link"><i class="fas fa-eye"></i><br>Anúncios visitados</a></p>
-			<?php if ($_SESSION['userTipo'] == 2 ): ?>
+			<?php if (isLogged() && $_SESSION['userTipo'] == 2 ): ?>
 				<hr class="hr">
 				<p><a href="php/gerenciaUser.php" class="link"><i class="fas fa-user-edit"></i><br>Gerenciamento de Usuarios</a></p>
 			<?php endif ?>

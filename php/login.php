@@ -11,7 +11,7 @@
 			<input type="password" name="password" id="password" placeholder="Digite aqui"><br>
 			<div class="alerts senha"></div>
 			<button type="submit" id="login">Entrar</button><br>
-			<a href="#">Esqueceu sua senha?</a>
+			<a href="reset_password.php">Esqueceu sua senha?</a>
 		</form>
 	</center>
 </div>
