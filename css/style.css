@@ -992,3 +992,7 @@ form#reset-pw label.sucesso{
 	color: blue;
 	display: none;
 }
+form.send-email label.sucesso{
+	color: blue;
+	display: none;
+}

@@ -13,7 +13,7 @@ if ($stmt->rowCount() >0) {
 	$md5=md5($id);
 	$update = pdoExec("UPDATE USUARIOS SET USER_RESET_PW=? WHERE USER_ID=?", [1, $id]);
 	$link= "https://fastservices.epizy.com/php/update_password.php?i=".$md5;
-	$mensagem=' <div class="recuperar_senha" style="margin:  auto; text-align: center; width: 400px; background: #D8D8D8; height: 300px; border-radius: 19px; padding: 15px;">
+	$mensagem=' <div class="recuperar_senha" style="margin:  auto; text-align: center; width: 400px; background: #D8D8D8; height: 380px; border-radius: 19px; padding: 15px;">
 	<p><h1 style="color: red; font-size: 45px;">Fast-Service</h1></p>
 	<h3 style="margin-bottom: 10px;">Esqueci minha senha</h3>
 	<p>Ocorreu uma solicitação com seu e-mail para recuperar a sua senha no Fast-Service, caso não tenha sido você desconsidere esta mensagem.</p>

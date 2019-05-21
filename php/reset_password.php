@@ -49,14 +49,15 @@
                 </ul>
             </div>
 
-			<div class="cadastro">
+			<div class="cadastro" style="min-height: 290px;">
 				<center>
 					<br>
 					<h1>Recuperar minha senha</h1><br>
-					<form action="password_email.php" method="POST">
+					<form action="" method="POST" class="send-email">
 						<p>Digite seu e-mail</p>
 						<input type="email" name="email" required=""><br>
-						<button type="submit">Enviar e-mail</button>
+						<button type="submit" class="btn-send-email">Enviar e-mail</button><br>
+						<label class="sucesso">E-mail enviado com sucesso! Se o e-mail não estiver na sua caixa de entrada, verifique no "Spam".</label>
 					</form>
 				</center>
 			</div>

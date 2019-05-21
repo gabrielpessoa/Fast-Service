@@ -341,28 +341,41 @@ $(document).ready(function() {
 		var senha1 = $("input#senha1").val();
 		var senha2 = $("input#senha2").val();
 		$.ajax({
-				url: 'up_password_control.php',
-				type: 'POST',
-				data: dados,
-				success: function(retorno){
-					if (retorno=='senhas diferentes') {
-						$("input").addClass("red");
-						$("label.link-usado").fadeOut();
-						$("label.sucesso").fadeOut();
-						$("label.passwords").show();
-					}
-					else if(retorno=='link usado'){
-						$("input").removeClass("red");
-						$("label.passwords").fadeOut();
-						$("label.sucesso").fadeOut();
-						$("label.link-usado").show();
-					}
-					else{
-						$("input").removeClass("red");
-						$("label.passwords").fadeOut();
-						$("label.sucesso").show();
-					}
+			url: 'up_password_control.php',
+			type: 'POST',
+			data: dados,
+			success: function(retorno){
+				if (retorno=='senhas diferentes') {
+					$("input").addClass("red");
+					$("label.link-usado").fadeOut();
+					$("label.sucesso").fadeOut();
+					$("label.passwords").show();
 				}
+				else if(retorno=='link usado'){
+					$("input").removeClass("red");
+					$("label.passwords").fadeOut();
+					$("label.sucesso").fadeOut();
+					$("label.link-usado").show();
+				}
+				else{
+					$("input").removeClass("red");
+					$("label.passwords").fadeOut();
+					$("label.sucesso").show();
+				}
+			}
+		});
+	});
+
+	$(".btn-send-email").click(function(e){
+		e.preventDefault();
+		var email = $("input[type=email]").val();
+		$.ajax({
+			url: 'password_email.php',
+			type: 'POST',
+			data: {email: email},
+			success: function(){
+				$("label.sucesso").show();
+			}
 		});
 	});
 
