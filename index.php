@@ -52,7 +52,30 @@
 
 			<div class="search">
 			<center>
-				<br><p style="top: 40px; font-size: 20px;">Anúncios</p>
+				<br><p style="top: 40px; font-size: 30px;">Sugestões</p>
+					<?php 
+						$valor = sugestaoServicos();
+						$stmt = pdoExec("SELECT * FROM SERVICOS WHERE SRV_CATEGORIA=? LIMIT 3", [$valor]);
+						$resultado = $stmt -> fetchAll(); 
+						foreach($resultado as $value): 
+							$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
+							$data3 = $data -> fetchAll();
+						foreach ($data3 as $val) {
+							$img = $val['IMG_NOME']; 
+						}
+						if($data->rowCount()<=0){
+							$img = "img/default.jpeg";
+						}
+						?>
+							<div class="products">
+								<a href="php/desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
+									<div class="foto"><img src="<?= $img;?>" style="width: 100%; height: 100%;"></div>
+									<p><?= $value['SRV_NOME'];?><br>
+									<?= "R$: ".$value['SRV_PRECO']; ?></p><br>
+								</a>
+							</div>
+						<?php endforeach; ?> 
+						<br><p style="top: 40px; font-size: 30px;">Anuncios</p>
 				<?php 
 					$dados = pdoExec("SELECT * FROM SERVICOS", []);
 					$resultado = $dados -> fetchAll(); 

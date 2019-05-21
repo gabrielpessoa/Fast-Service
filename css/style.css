@@ -443,9 +443,12 @@ div.busca .icons-busca{
 div.search {
 	margin-top: 60px;
 	text-align: center;
-	width: 70%;
+	width: 80%;
+	display: flex;
 	border-radius: 15px;
 	background: white;
+	justify-content: center;
+	flex-wrap: wrap;
 	margin-bottom: 80px;
 	min-height: 100vh;
 }

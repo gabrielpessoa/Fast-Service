@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'service', '049633');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
 //$conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_23605681_FASTSERVICE",'epiz_23605681','2U0ZNu9aI1GhW');
 
 function conexao(){
@@ -259,4 +259,17 @@ function tornarPadrao($id){
 	$valor = 0;
 	$stmt =pdoExec("UPDATE USUARIOS SET USER_TIPO WHERE USER_ID=?", [$valor, $id]);
 	header('location: ../index.php');
+}
+function sugestaoServicos(){
+	$stmt = pdoExec("SELECT C.CTG_ID, COUNT(C.CTG_ID) AS QUANTIDADE FROM VISITAS T JOIN SERVICOS S ON T.VISI_SRV_ID = S.SRV_ID JOIN CATEGORIAS C ON S.SRV_CATEGORIA = C.CTG_ID WHERE VISI_USER_ID = ? GROUP BY C.CTG_ID", [$_SESSION['userId']]);
+	$resultado = $stmt->fetchAll();
+	$quantidade=0;
+	$categoria = 0;
+	foreach ($resultado as $value) {
+		if ($value['QUANTIDADE'] > $quantidade) {
+			$quantidade = $value['QUANTIDADE'];
+			$categoria = $value['CTG_ID'];
+		}
+	}
+		return $categoria;
 }
