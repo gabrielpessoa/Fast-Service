@@ -52,6 +52,8 @@
 
 		<div class="search">
 			<center>
+				<p style="margin: 40px; font-size: 20px;">Anúncios</p>
+				<div class="ads-sugestao">
 				<?php
 				$search = $_GET['search'];
 				$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_NOME LIKE '%$search%' ", [$search]);
@@ -69,13 +71,17 @@
 						?>
 					<div class="products">
 						<a href="desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
-						<div class="foto"><img src="<?=$img;?>" style="width: 100%; height: 100%;"></div>
+						<img src="<?=$img;?>">
 							<p><?= $value['SRV_NOME'];?><br>
 							<?= "R$: ".$value['SRV_PRECO']; ?></p><br>
 						</a>
 					</div>
 				<?php endforeach; ?>
-				<?php if(!$dados->rowCount() > 0  ){
+				</div>
+				
+				<?php if(!$dados->rowCount() > 0  ){ ?>
+				<div class="ads-sugestao">
+					<?php
 					$row = 1;
 					$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_CATEGORIA)=?", [$search]);
 					$resultado = $dados -> fetchAll(); 
@@ -92,13 +98,17 @@
 					<br>
 						<div class="products">
 						<a href="desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
-							<div class="foto"><img src="<?=$img;?>" style="width: 100%; height: 100%;"></div>
+							<img src="<?=$img;?>">
 								<p><?= $value['SRV_NOME'];?><br>
 								<?= "R$: ".$value['SRV_PRECO']; ?></p><br>
 							</a>
 						</div>
-				<?php endforeach; } ?> 
-				<?php if($search=="todos"){
+				<?php endforeach; ?>
+				</div>
+				<?php } ?>
+				<?php if($search=="todos"){ ?>
+					<div class="ads-sugestao">
+					<?php 
 					$dados = pdoExec("SELECT * FROM SERVICOS", []);
 					$resultado = $dados -> fetchAll(); 
 					foreach($resultado as $value):
@@ -113,12 +123,15 @@
 						?>
 					<br>
 						<div class="products">
-						<a href="desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
-							<div class="foto"><img src="<?= $img;?>" style="width: 100%; height: 100%;"></div>
+							<a href="desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
+							<img src="<?= $img;?>">
 								<p><?= $value['SRV_NOME'];?><br>
 								<?= "R$: ".$value['SRV_PRECO']; ?></p><br>
+							</a>
 						</div>
-				<?php endforeach; } ?> 
+				<?php endforeach; ?>
+				</div>
+			<?php } ?>
 			</center>
 		</div>
 	</center>

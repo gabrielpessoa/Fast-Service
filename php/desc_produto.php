@@ -58,8 +58,7 @@
 		$resultado = $dados -> fetchAll();
 		foreach($resultado as $value):?>
 
-				<center>
-			<div class="anuncios" style="width: 100%;">
+			<center>
 				<div class="slide">
 					<div class="botao" style="width: 300px;">
 						<a href="#" class="anterior" id="section"><</a>
@@ -183,7 +182,6 @@
 			</div>
 		<?php endforeach; ?>
 				</center>	
-	</div>
 		<div class="coment">
 			<form action="" method="POST">
 				<input type="hidden" value="" name="id">

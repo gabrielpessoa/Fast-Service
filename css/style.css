@@ -454,11 +454,12 @@ div.search {
 }
 div.search div.products{
 	margin-top: 20px;
-	width: 400px;
-	height: 210px;
+	width: 220px;
+	height: 310px;
 	text-align: center;
 	border: solid 1px #babaca;
 	border-radius: 5px;
+	overflow: hidden;
 }
 div.search select{
 	width: 51%;
@@ -472,19 +473,16 @@ div.products a{
 	cursor: pointer;
 }
 div.search div.products a p{
-	margin-top: -140px;
-	float: right;
-	width: 50%;
+	padding-top: 20px;
+	height: 33%;
 }
-div.search div.products div.foto{
-	width: 50%;
-	height: 100%;
-	border-radius: 5px;
-	overflow: hidden;
+div.search div.products img{
+	width: 100%;
+	height: 60%;
 }
 div.search div.anuncios{
 	margin-top: 50px;
-	width: 250px;
+	width: 100%;
 	background: white;
 	border-radius: 5px;
 	border: solid 1px #babaca;
@@ -998,4 +996,10 @@ form#reset-pw label.sucesso{
 form.send-email label.sucesso{
 	color: blue;
 	display: none;
+}
+div.ads-sugestao{
+	display: flex;
+}
+div.ads-sugestao div.products{
+	margin: 10px;
 }
