@@ -58,7 +58,7 @@
 						<div class="ads-sugestao">
 							<?php 
 							$valor = sugestaoServicos();
-							$stmt = pdoExec("SELECT * FROM SERVICOS WHERE SRV_CATEGORIA=? LIMIT 3", [$valor]);
+							$stmt = pdoExec("SELECT * FROM SERVICOS WHERE SRV_CATEGORIA=? LIMIT 4", [$valor]);
 							$resultado = $stmt -> fetchAll(); 
 							foreach($resultado as $value): 
 								$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
@@ -68,8 +68,8 @@
 								}
 								if($data->rowCount()<=0){
 									$img = "img/default.jpeg";
-								}
-							?>
+								}?>
+
 								<div class="products">
 									<a href="php/desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
 										<img src="<?= $img;?>"><br>
@@ -77,8 +77,9 @@
 										R$: <?=$value['SRV_PRECO']; ?></p><br>
 									</a>
 								</div>
-							<?php endforeach; }?>
+							<?php endforeach; ?>
 						</div>
+					<?php }?>
 					<br>
 					<p style="margin: 40px; font-size: 20px;">Anuncios</p>
 					<div class="ads-sugestao">

@@ -284,7 +284,7 @@ div.cadastro{
 	width: 80%;
 	border-radius: 15px;
 	background: white;
-	border: solid 1px #babaca; 
+	border: none; 
 	margin-top: 120px;
 	margin-bottom: 60px;
 }
@@ -485,7 +485,8 @@ div.search div.anuncios{
 	width: 100%;
 	background: white;
 	border-radius: 5px;
-	border: solid 1px #babaca;
+	/*border: solid 1px #babaca;*/
+	border: none;
 }
 div.anuncios div.adverts img{
 	width: 100%;

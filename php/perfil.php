@@ -142,21 +142,20 @@ if (!isLogged()) {
 
             <h2>Pessoas que acessaram meus anúncios</h2><br>
            <?php 
-            $stmt = pdoExec("SELECT * FROM VISITAS WHERE VISI_USER_ID=?", [$_SESSION['userId']]);
-            $result = $stmt->fetchAll();
-            foreach ($result as $value) { 
-                $dt = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$value['VISI_USER_ID']]);
-                $dt2 = $dt -> fetchAll();
-                foreach ($dt2 as $dado) {
-                    $username = $dado['USER_NOME'];
-                }
-                $dt3 = pdoExec("SELECT* FROM SERVICOS WHERE SRV_ID=?", [$value['VISI_SRV_ID']]);
-                $dt4 = $dt3 -> fetchAll();
-                foreach ($dt4 as $serv) {
-                    $servico = $serv['SRV_NOME'];
-                }
+                $stmt = pdoExec("SELECT* FROM SERVICOS WHERE SRV_USER_ID=?", [$_SESSION['userId']]);
+                $result = $stmt -> fetchAll();
+                foreach ($result as $value) {
+                    $stmt2 = pdoExec("SELECT * FROM VISITAS WHERE VISI_SRV_ID=?", [$value['SRV_ID']]);
+                    $result2 = $stmt2->fetchAll();
+                    foreach ($result2 as $value2) {
+                        $stmt3 = pdoExec("SELECT * FROM USUARIOS WHERE USER_ID=?", [$value2['VISI_USER_ID']]);
+                        $result3 = $stmt3 -> fetchAll();
+                        foreach ($result3 as $dado) {
+                            $username = $dado['USER_NOME']; ?>
+                <p><?=$username;?>  acessou seu anúncio  <?=$value['SRV_NOME'];?>  <label><?=$value2['VISI_DATA'];?></label></p><br>
+                        <?php }
+                    }
                 ?>
-                <p><?=$username;?>  acessou seu anúncio  <?=$servico;?>  <label><?=$value['VISI_DATA'];?></label></p><br>
             <?php }
             ?>
             <center>

@@ -57,7 +57,7 @@
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE md5(SRV_ID)=?", [$search]);
 		$resultado = $dados -> fetchAll();
 		foreach($resultado as $value):?>
-
+			<div class="anuncios">
 			<center>
 				<div class="slide">
 					<div class="botao" style="width: 300px;">
@@ -189,6 +189,7 @@
 				<button type="submit" class="btn-coment">Salvar</button>
 			</form>
 		</div>
+	</div>
 	</center>
 	<!--</div>-->
 	<?php 

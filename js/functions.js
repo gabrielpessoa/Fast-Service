@@ -165,6 +165,9 @@ $(document).ready(function() {
 		});
 	});
 
+	$(".botao a").click(function(e){
+		e.preventDefault();
+	});
 
 	function limpa_cep() {
         // Limpa valores do formulário de cep.
