@@ -61,16 +61,16 @@ if (!isLogged()) {
 			<?php if (isset($_SESSION["anuncio_edite"])) : ?>
 				<p class="blue">Editado com sucesso</p>
 			<?php endif; unset($_SESSION["anuncio_edite"]); ?>
-		
+		<p style="margin: 20px; font-size: 20px;">Meus anúncios</p>
+		<div class="ads-sugestao">
 		<?php 
 		$usuario = $_SESSION['userId']; 
 		$dados = pdoExec("SELECT * FROM SERVICOS WHERE SRV_USER_ID=?", [$usuario]);
 		$resultado = $dados -> fetchAll(); 
 		foreach($resultado as $value):?>
 			<br>
-			<div class="anuncios">
 				<center>
-					<div class="adverts">
+					<div class="products">
                         <a href="desc_produto.php?desc=<?=md5($value['SRV_ID']);?>">
 
 							<?php
@@ -80,36 +80,30 @@ if (!isLogged()) {
 							$dados2 = $data -> fetchAll();
 							if ($data->rowCount() >0) { ?>
 								<?php foreach ($dados2 as $data) : ?>
-									<img src="<?= $data['IMG_NOME']; ?>">
-							<?php endforeach; 
-							}///if 
+									<img src="<?= $data['IMG_NOME']; ?>"><br>
+								<?php endforeach; 
+							}
 							else{?>
-								<img src="../img/default.jpeg">
+								<img src="../img/default.jpeg"><br>
 							<?php } ?>
 							
-							<p style="margin-top: 10px;"><h2><?= $value['SRV_NOME'];?></h2></p>
-							<h3>Preço</h3>
-							<p>R$: <?= $value['SRV_PRECO'];?></p>
-							<p>
+							<p><?= $value['SRV_NOME'];?></br>
+							R$: <?= $value['SRV_PRECO'];?><br>
 								<?php
 								$stmt = pdoExec("SELECT COUNT('VISI_SRV_ID') FROM VISITAS WHERE VISI_SRV_ID=?", [$value['SRV_ID']]);
 								$visitas = $stmt->fetchAll();
-								echo $visitas[0]["COUNT('VISI_SRV_ID')"]." visualizações"; 
-								// foreach ($visitas as $va) {
-								//  	$tt = $va["COUNT('VISI_SRV_ID')"]; 
-								//  }
-								// echo($tt)."<br>";
-								?>
-							</p>
+								echo $visitas[0]["COUNT('VISI_SRV_ID')"]." visualizações"; ?>
 						</a>
-						<p class="link">
-							<a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
-							<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a>
+							<br>
+								<a href="editeAnuncio.php?i=<?=md5($value['SRV_ID']);?>"> Editar</a>
+								<a href=deleteAnuncio.php?i=<?=md5($value['SRV_ID']);?> > Excluir</a>
+							</p>
+						<p>
 						</p><br>
 					</div>
 				</center>	
-			</div><br>
 		<?php endforeach; ?>
+			</div><br>
 
 		</div>
 		</center>

@@ -161,20 +161,17 @@ function addUser($data){
 	$stmt = rowCount("SELECT * FROM USUARIOS WHERE USER_USUARIO=?", [$username]) > 0;
 
 	if ($stmt) {
-		$_SESSION['user_exist'] = 1;
-		header('location: register.php');
+		echo "usuario ja existe";
  		exit();
 	}
 	$stmt = rowCount("SELECT * FROM USUARIOS WHERE USER_EMAIL=?", [$email]) > 0;
 	if ($stmt) {
-		$_SESSION['email_exist'] = 1;
-		header('location: register.php');
+		echo "email ja existe";
 		exit();
 	}
 	else{
-	    $_SESSION['add_user'] = 1;
+	    echo "cadastrado com sucesso";
 		pdoExec("INSERT INTO USUARIOS SET USER_NOME = ?, USER_USUARIO =?, USER_SENHA=?, USER_EMAIL=?, USER_TELEFONE=?", [$name, $username, $password, $email, $fone]);
-		header('location: ../index.php');
 	}
 }
 

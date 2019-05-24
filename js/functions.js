@@ -138,7 +138,7 @@ $(document).ready(function() {
 					location.reload();
 				}
 				else{
-					$(".senha").fadeOut();
+					$("div.senha").fadeOut();
 					$("input#password").removeClass("red");	
 					$(".usuario").show();
 					$(".usuario").html("Usuário não existe");
@@ -381,6 +381,45 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	$("#btn-register-user").click(function(e){
+		e.preventDefault();
+		var dados = $("form#register").serialize();
+		$.ajax({
+			url: 'register2.php',
+			type: 'POST',
+			data: dados,
+			success: function(retorno){
+				if (retorno=="usuario ja existe") {
+					$("div.alerts").fadeOut();
+					$("input").removeClass("red");
+					$("div.usuario").show();
+					$("div.usuario").html("Usuário já existe");
+					$("input#username").addClass('red');
+				}
+				else if (retorno=="email ja existe") {
+					$("div.alerts").fadeOut();
+					$("input").removeClass("red");
+					$("div.email").show();
+					$("div.email").html("E-mail já em uso");
+					$("input#email").addClass("red");
+				}
+				else if(retorno=="senhas diferentes"){
+					$("div.alerts").fadeOut();
+					$("input").removeClass("red");
+					$("input#senhas").addClass("red");
+					$("div.senhas").show();
+					$("div.senhas").html("Senhas não conferem");
+				}
+				else{
+					alert("Usuário cadastrado com sucesso");	
+					location.reload();
+				}
+
+			}
+		});
+	});
+
 
     $("#cep").mask("99999-999");
     $("#tel").mask("(99)99999-9999");

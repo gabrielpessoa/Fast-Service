@@ -287,6 +287,7 @@ div.cadastro{
 	border: none; 
 	margin-top: 120px;
 	margin-bottom: 60px;
+	justify-content: center;
 }
 .profile .novaCategoria p{
 	font-size: 15px;
@@ -1000,7 +1001,20 @@ form.send-email label.sucesso{
 }
 div.ads-sugestao{
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center; 
 }
 div.ads-sugestao div.products{
 	margin: 10px;
+}
+form#register div.alerts{
+	width: 80%; 
+	text-align: center; 
+	color: red; 
+	margin-bottom: -26px; 
+	display: none;
+}
+form#register input.red{
+	border: solid 2px red;
+	background: #F5A9A9;
 }
