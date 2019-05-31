@@ -69,7 +69,12 @@ if(!isLogged()){
                 </select>
                 <br><p>Descrição</p>
                 <textarea name="description" placeholder="Digite aqui"></textarea><br>
-                <!-- <br><p>Cidade <span>*</span></p><br> -->
+
+                <br><p>Tags</p>
+
+                <input class="tags" placeholder="Tags" type="text" name="tag1" id="tag1" maxlength="15" required>
+                <input class="tags" placeholder="Tags" type="text" name="tag2" id="tag2" maxlength="15">
+                <input class="tags" placeholder="Tags" type="text" name="tag3" id="tag3" maxlength="15">
 
                 <br><p>CEP <span>*</span></p>
                 <input  type="text" name="cep" id="cep" minlength="9" maxlength="10" required>

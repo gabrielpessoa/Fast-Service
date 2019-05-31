@@ -8,6 +8,13 @@ function conexao(){
 	return $conn;
 }
 
+function pdoExecReturn($prepare, $execute){
+	$stmt = conexao()->prepare($prepare);
+	$stmt -> execute($execute);
+	$resultado =$stmt -> fetchAll(PDO::FETCH_ASSOC);
+	return $resultado;
+}
+
 function pdoExec($prepare, $execute){
 	$stmt = conexao()->prepare($prepare);
 	$stmt -> execute($execute);
