@@ -55,7 +55,7 @@ if(!isLogged()){
                 <p class="primary">Nome do Serviço <span>*</span></p><br>
                 <input type="text" name="name" placeholder="Digite aqui"><br>
                 <br><p>Categoria <span>*</span></p>
-                <select name="type" class="type" required="">
+                <select style="border: solid 1px #babaca;" name="type" class="type" required="">
                     <option value="null" class='null' readonly >Selecione</option>
                     <?php 
                     $dados = pdoExec("SELECT * FROM CATEGORIAS",[]);
@@ -65,34 +65,34 @@ if(!isLogged()){
                     <?php endforeach; ?>
                 </select>
                 <br><p class="subtype">Subcategoria <span>*</span></p>
-                <select name="subtype" class="subtype" required="">
+                <select style="border: solid 1px #babaca;" name="subtype" class="subtype" required="">
                 </select>
                 <br><p>Descrição</p>
-                <textarea name="description" placeholder="Digite aqui"></textarea><br>
+                <textarea style="border: solid 1px #babaca;" name="description" placeholder="Digite aqui"></textarea><br>
 
                 <br><p>Tags</p>
 
-                <input class="tags" placeholder="Tags" type="text" name="tag1" id="tag1" maxlength="15" required>
-                <input class="tags" placeholder="Tags" type="text" name="tag2" id="tag2" maxlength="15">
-                <input class="tags" placeholder="Tags" type="text" name="tag3" id="tag3" maxlength="15">
+                <input style="width:15.5%;" class="tags" placeholder="1° tag" type="text" name="tag1" id="tag1" maxlength="15" required>
+                <input style="width:15.5%;" class="tags" placeholder="2° tag" type="text" name="tag2" id="tag2" maxlength="15">
+                <input style="width:15.5%;" class="tags" placeholder="3° tag" type="text" name="tag3" id="tag3" maxlength="15">
 
-                <br><p>CEP <span>*</span></p>
-                <input  type="text" name="cep" id="cep" minlength="9" maxlength="10" required>
+                <br><br><p>CEP <span>*</span></p>
+                <input  type="text" name="cep" id="cep" minlength="9" maxlength="10" required><br>
 
                 <br><p>Número do estabelecimento<span>*</span></p>     
-                <input type="text" name="numero" id="numero" required>
+                <input type="text" name="numero" id="numero" required><br>
 
                 <br><p>Logradouro <span>*</span></p>
-                <input type="text" name="logradouro" id="rua" required  maxlength="45"/>
+                <input type="text" name="logradouro" id="rua" required  maxlength="45"/><br>
 
                 <br><p>Bairro <span>*</span></p>
-                <input type="text" name="bairro" id="bairro" required>
+                <input type="text" name="bairro" id="bairro" required><br>
 
                 <br><p>Cidade <span>*</span></p>
-                <input type="text" name="cidade" id="cidade" required  maxlength="25" />
+                <input type="text" name="cidade" id="cidade" required  maxlength="25" /><br>
 
                 <br><p>Estado <span>*</span></p>
-                <input type="text" name="estado" id="uf" required>
+                <input type="text" name="estado" id="uf" required><br>
                 <br><p>Preço</p>
                 <input type="number" name="price" placeholder="Digite aqui" min="0" max="500000"><br>
                 <br><p>Fotos para o anúncio</p><br>

@@ -54,10 +54,14 @@
 			<center><br>
 				<?php 
 					if (isLogged()) {?>
-						<p style="margin: 40px; font-size: 20px;">Baseada nas suas últimas visitas</p>
+						<?php 
+							$valor = sugestaoServicos();
+							if($valor>0){?>
+							<p style="margin: 40px; font-size: 20px;">Baseada nas suas últimas visitas</p>
+							<?php }	?>
 						<div class="ads-sugestao">
 							<?php 
-							$valor = sugestaoServicos();
+							
 							$stmt = pdoExec("SELECT * FROM SERVICOS WHERE SRV_CATEGORIA=? LIMIT 4", [$valor]);
 							$resultado = $stmt -> fetchAll(); 
 							foreach($resultado as $value): 

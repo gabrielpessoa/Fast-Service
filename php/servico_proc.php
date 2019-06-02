@@ -14,16 +14,38 @@ include('functions.php');
 	$dados["bairro"] = addslashes($_POST["bairro"]);
 	$dados["cidade"] = addslashes($_POST["cidade"]);
 	$dados["estado"] = addslashes($_POST["estado"]);
-	addServico($dados, $foto);
-	
-	$tags1 = addslashes($_POST["tags1"]);
-	$tags2 = addslashes($_POST["tags2"]);
-	$tags3 = addslashes($_POST["tags3"]);
 
+	$tag1 = addslashes($_POST["tag1"]);
+	$tag2 = addslashes($_POST["tag2"]);
+	$tag3 = addslashes($_POST["tag3"]);
+
+	$id_servico = addServico($dados, $foto);
 	$id = $id_servico;
-	$tags = pdoExecReturn("SELECT * FROM PALAVRAS_CHAVE WHERE PAC_NOME = ? OR PAC_NOME = ? OR PAC_NOME = ?", [$tags1, $tags2, $ags3]);
+	$tags = pdoExecReturn("SELECT * FROM PALAVRAS_CHAVE WHERE PAC_NOME = ? OR PAC_NOME = ? OR PAC_NOME = ?", [$tag1, $tag2, $tag3]);
 	foreach ($tags as $tag) {
-		var_dump($tag);
-		echo "<br>";
-	} 
+		var_dump($tags);
+		if($tag['PAC_NOME']==$tag1){
+			$stmt = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $tag['PAC_ID']]);
+		}else{
+			$stmt = pdoExec("INSERT INTO PALAVRAS_CHAVE SET PAC_NOME=? ", [$tag1]);
+			$stmt1 = pdoExecReturn("SELECT PAC_ID FROM PALAVRAS_CHAVE WHERE PAC_NOME=? ", [$tag1]);
+			$stmt2 = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $stmt1]);
+		}
+		if($tag['PAC_NOME']==$tag2){
+			$stmt = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $tag['PAC_ID']]);
+		}else{
+			$stmt = pdoExec("INSERT INTO PALAVRAS_CHAVE SET PAC_NOME=? ", [$tag2]);
+			$stmt1 = pdoExecReturn("SELECT PAC_ID FROM PALAVRAS_CHAVE WHERE PAC_NOME=? ", [$tag2]);
+			$stmt2 = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $stmt1]);
+		}
+		if($tag['PAC_NOME']==$tag3){
+			$stmt = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $tag['PAC_ID']]);
+		}else{
+			$stmt = pdoExec("INSERT INTO PALAVRAS_CHAVE SET PAC_NOME=? ", [$tag3]);
+			$stmt1 = pdoExecReturn("SELECT PAC_ID FROM PALAVRAS_CHAVE WHERE PAC_NOME=? ", [$tag3]);
+			$stmt2 = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $stmt1]);
+		}
+	}
+	header('location: anuncios.php'); 
+ }
 ?>

@@ -73,7 +73,6 @@ if(!isLogged()){
 					<p>Adicionar foto</p>
 					<input type="file" name="img[]" multiple style="height: 20px;">
 					<br><p style="margin-top: 80px;"><h2>Nome do servico / Produto</h2></p> <input type="text" name="name" value="<?= $value['SRV_NOME'];?>"><br>
-					<input type="text" name="name" placeholder="Digite aqui"><br>
 	                <br><p>Categoria <span>*</span></p>
 	                <select name="type" class="type" required="">
 	                    <option value="null" class='null' readonly >Selecione</option>

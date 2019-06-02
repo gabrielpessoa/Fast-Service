@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', 'ifpe');
+$conn = new PDO("mysql: host=localhost;dbname=FASTSERVICE", 'root', '');
 //$conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_23605681_FASTSERVICE",'epiz_23605681','2U0ZNu9aI1GhW');
 
 function conexao(){
@@ -72,7 +72,6 @@ function addServico($dados, $img){
 			$count = count(array_filter($img['name']));
 			$permite = ['image/jpeg', 'image/png', 'image/jpg'];
 			$conn = conexao();
-			echo($count);
 			for($i=0; $i< $count; $i++):
 				$name = $img['name'][$i];
 				$tmp = $img['tmp_name'][$i];
@@ -85,7 +84,7 @@ function addServico($dados, $img){
 			endfor;
 		endif;
 		$_SESSION['userIMG'] = $diretorio;
-		header('location: anuncios.php');
+		return $id_servico;
 	}else{
 		header('location: servico.php');
 	}
@@ -153,9 +152,12 @@ function deleteServico($dados){
 		unlink($value['IMG_NOME']);
 	}
 	pdoExec("DELETE FROM IMAGENS WHERE md5(IMG_SRV_ID)=?", [$id]);
-	pdoExec("DELETE FROM SERVICOS WHERE md5(SRV_ID)=?",[$id]);
+	pdoExec("DELETE FROM SERVICOS_PALAVRAS_CHAVE WHERE md5(SPC_SRV_ID)=?", [$id]);
+	pdoExec("DELETE FROM VISITAS WHERE md5(VISI_SRV_ID)=?", [$id]);
+	pdoExec("DELETE FROM VISUALIZACOES WHERE md5(VISU_SRV_ID)=?", [$id]);
 	pdoExec("DELETE FROM MEDIA_AVALIACOES WHERE md5(MDAV_SRV_ID)=?", [$id]);
 	pdoExec("DELETE FROM AVALIACOES WHERE md5(AVL_SRV_ID)=?", [$id]);
+	pdoExec("DELETE FROM SERVICOS WHERE md5(SRV_ID)=?",[$id]);
 	header('location: anuncios.php');
 }
 
