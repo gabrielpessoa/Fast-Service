@@ -105,7 +105,10 @@ if(!isLogged()){
             </form>
 		</div>
 	</center>
-    <?php include("conta.php");?>
+    <?php 
+    include("conta.php");
+    include("chat.php");
+    ?>
 	<footer class="rodape">©Copyright 2019</footer>
 </body>
 </html>

@@ -225,6 +225,8 @@
 	<?php 
 	include("login.php");
 	include("conta.php");
+	include("chat.php");
+	
 	?>
 
 	<footer class="rodape">©Copyright 2019</footer>

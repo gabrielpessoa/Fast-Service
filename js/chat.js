@@ -3,7 +3,7 @@ $(function(){
 	function add_janela(id, nome, status){
 		var janelas=Number($('.chats .chat').length);
 		var pixels=(280+5)*janelas;
-		var style='float:none; position: absolute; bottom:0; left:'+pixels+'px;';
+		var style='float:none; position: fixed; bottom:0; left:'+pixels+'px;';
 		var splitDados=id.split(':');
 		var id_user=Number(splitDados[1]);
 		var janela='<div class="chat" id="janela_'+id_user+'" style="'+style+'">';
@@ -14,13 +14,15 @@ $(function(){
 		$('.chats').append(janela);
 	}
 
-	//histórico de conversa
+	// histórico de conversa
 	function retorna_historico(user_id){
+		var id = $(this).attr('id');
 		var pega_id=$('body .users_online li a').attr('id');
 		var id_teste = $(".users_online ul li").attr("id");
 		var ids=pega_id.split(':');
 		var my_id=ids[0];
 		var user_i=ids[1];
+		console.log(user_id);
 		var userOnline=Number($('.users_online ul li').attr('id'));
 		$.ajax({
 			type: 'POST',
@@ -30,21 +32,20 @@ $(function(){
 			success: function (retorno){
 				var son = JSON.parse(retorno)
 				if(son!=null){
-					
+
 					son.forEach(function(o, index){
 				//console.log(o.janela_id);
 					// });
 						// console.log(retorno['id']);
 			// 	$.each(retorno, function(i, msg){
 
-					if($('#janela_'+o.user_id)){
 						if(my_id==o.id_de){
-							$('.mensagens ul').append('<li id="'+o.id+'" class="eu"><p>'+o.mensagem+'</p></li>');	
+							$('#janela_'+user_id+' .mensagens ul').append('<li id="'+o.id+'" class="eu"><p>'+o.mensagem+'</p></li>');	
 						}
 						else{
-							$('.mensagens ul').append('<li id="'+o.id+'"><div class="imgSmall"><img src="../img/avatar1.png"></div><p>'+o.mensagem+'</p></li>');
+							$('#janela_'+user_id+' .mensagens ul').append('<li id="'+o.id+'"><div class="imgSmall"><img src="../img/usuarios/profile-default.png"></div><p>'+o.mensagem+'</p></li>');
 						}
-					}
+					
 				});
 				}
 
@@ -115,13 +116,20 @@ $(function(){
 				url: 'add_mensagens.php',
 				data: {mensagem: texto, para: destino},
 				success: function(retorno){
-					if(retorno=='ok'){
+					if(retorno!='erro'){
 						$('.msg').val('');
+						$("#janela_"+destino+" .mensagens ul").append("<li class='eu'><p>"+retorno+"</p></li>");
+						console.log(retorno);
 					}else{
 						alert('Não foi possível enviar a mensagem');
 					}
 				}
 			});
 		}
+	});
+	$(".show_chat").click(function(){
+		var next=$(this).next();
+		next.animate({"height": "toggle"});
+		$(this).animate({"bottom": 0});
 	});
 });

@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include('functions.php');
 $de=$_SESSION['userId'];
 $conversa=$_POST['conversacom'];

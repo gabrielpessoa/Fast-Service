@@ -1,16 +1,6 @@
-<?php 
-include("functions.php");
-?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="../css/style.css">
-	<script src="../js/jquery.js"></script>
-	<script src="../js/chat.js"></script>
-</head>
+
 <body>
+	<div class="show_chat">Chat</div>
 	<aside class="users_online">
 
 		<ul>
@@ -28,8 +18,13 @@ include("functions.php");
 	</aside>
 
 	<aside class="chats">
-
 	</aside>
 	
+		<script>
+		$(".users_online ul li a").click(function(e){
+			e.preventDefault();
+		});
+	</script>
+	<script src="../js/chat.js"></script>
+	<!-- <link rel="stylesheet" type="text/css" href="../css/style.css"> -->
 </body>
-</html>

@@ -132,6 +132,7 @@
 	<?php 
 	include("conta.php");
 	include("login.php");
+	if(isLogged()){include("chat.php");}
 	?>
 
 	<footer class="rodape">©Copyright 2019</footer>
