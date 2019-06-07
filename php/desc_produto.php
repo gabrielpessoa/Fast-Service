@@ -80,9 +80,9 @@
 					<?php if(isLogged()){
 						$stmt = rowCount("SELECT * FROM FAVORITOS WHERE FVR_SRV_ID=?", [$id_servico]);
 							if($stmt > 0){  ?>
-								<br><p class="link"><a href="del_favoritos.php?i=<?=md5($value['SRV_ID']);?>">Remover favorito</a></p>
+								<br> <p><a style="background: black;" href="del_favoritos.php?i=<?=md5($value['SRV_ID']);?>"><i class="far fa-heart"></i></a></p>
 							<?php }else{  ?>
-								<br><p class="link"><a href="add_favoritos.php?i=<?=$value['SRV_ID'];?>">Favoritos</a></p>
+								<br> <p><a style="background: black;" href="add_favoritos.php?i=<?=$value['SRV_ID'];?>"><i class="fas fa-heart"></i></a></p>
 						 <?php }
 						}
 					 ?>	
@@ -179,17 +179,47 @@
 						<input type="hidden" name="id_servico" value=<?=$id_servico;?> >
 						<button type="submit">Enviar comentário</button>
 					</form>
-			</div>
-		<?php endforeach; ?>
-				</center>	
-		<div class="coment">
-			<form action="" method="POST">
-				<input type="hidden" value="" name="id">
-				<textarea name="comentario" id="edit"></textarea><br>
-				<button type="submit" class="btn-coment">Salvar</button>
-			</form>
-		</div>
-	</div>
+					<hr class="hr">
+			<?php 
+				$dados = pdoExecReturn("SELECT SPC_PAC_ID FROM SERVICOS_PALAVRAS_CHAVE WHERE SPC_SRV_ID =? ",[$id_servico]);
+				foreach ($dados as $dado) {
+					$sugestao = pdoExec("SELECT * FROM SERVICOS INNER JOIN SERVICOS_PALAVRAS_CHAVE ON SERVICOS_PALAVRAS_CHAVE.SPC_SRV_ID = SERVICOS.SRV_ID INNER JOIN PALAVRAS_CHAVE ON PALAVRAS_CHAVE.PAC_ID = SERVICOS_PALAVRAS_CHAVE.SPC_PAC_ID WHERE SERVICOS_PALAVRAS_CHAVE.SPC_PAC_ID =? LIMIT 4",[$dado['SPC_PAC_ID']]);
+				?>
+					<div class="ads-sugestao">
+						<?php 
+						$resultado = $sugestao -> fetchAll(); 
+						foreach($resultado as $value):
+							$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
+							$data3 = $data -> fetchAll();
+						foreach ($data3 as $val) {
+								$img = $val['IMG_NOME']; 
+							}
+							if($data->rowCount()<=0){
+								$img = "img/default.jpeg";
+							}
+						?>
+							<br>
+						<div class="products">
+							<a href="desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
+								<img src="<?= $img;?>">
+								<p><?= $value['SRV_NOME'];?><br>
+								<?= "R$: ".$value['SRV_PRECO']; ?></p><br>
+							</a>
+						</div>
+						<?php endforeach; ?> 
+					</div>
+						<?php } ?>
+						<?php endforeach; ?>
+			</center>	
+						<div class="coment">
+							<form action="" method="POST">
+								<input type="hidden" value="" name="id">
+								<textarea name="comentario" id="edit"></textarea><br>
+								<button type="submit" class="btn-coment">Salvar</button>
+							</form>
+						</div>
+
+					</div>
 	</center>
 	<!--</div>-->
 	<?php 

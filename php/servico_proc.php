@@ -23,27 +23,29 @@ include('functions.php');
 	$id = $id_servico;
 	$tags = pdoExecReturn("SELECT * FROM PALAVRAS_CHAVE WHERE PAC_NOME = ? OR PAC_NOME = ? OR PAC_NOME = ?", [$tag1, $tag2, $tag3]);
 	foreach ($tags as $tag) {
-		var_dump($tags);
 		if($tag['PAC_NOME']==$tag1){
 			$stmt = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $tag['PAC_ID']]);
 		}else{
 			$stmt = pdoExec("INSERT INTO PALAVRAS_CHAVE SET PAC_NOME=? ", [$tag1]);
 			$stmt1 = pdoExecReturn("SELECT PAC_ID FROM PALAVRAS_CHAVE WHERE PAC_NOME=? ", [$tag1]);
-			$stmt2 = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $stmt1]);
+			$idPac = $stmt1[0]['PAC_ID'];
+			$stmt2 = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $idPac]);
 		}
 		if($tag['PAC_NOME']==$tag2){
 			$stmt = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $tag['PAC_ID']]);
 		}else{
 			$stmt = pdoExec("INSERT INTO PALAVRAS_CHAVE SET PAC_NOME=? ", [$tag2]);
 			$stmt1 = pdoExecReturn("SELECT PAC_ID FROM PALAVRAS_CHAVE WHERE PAC_NOME=? ", [$tag2]);
-			$stmt2 = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $stmt1]);
+			$idPac = $stmt1[0]['PAC_ID'];
+			$stmt2 = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $idPac]);
 		}
 		if($tag['PAC_NOME']==$tag3){
 			$stmt = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $tag['PAC_ID']]);
 		}else{
 			$stmt = pdoExec("INSERT INTO PALAVRAS_CHAVE SET PAC_NOME=? ", [$tag3]);
 			$stmt1 = pdoExecReturn("SELECT PAC_ID FROM PALAVRAS_CHAVE WHERE PAC_NOME=? ", [$tag3]);
-			$stmt2 = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=? ", [$id, $stmt1]);
+			$idPac = $stmt1[0]['PAC_ID'];
+			$stmt2 = pdoExec("INSERT INTO SERVICOS_PALAVRAS_CHAVE SET SPC_SRV_ID=?, SPC_PAC_ID=?", [$id, $idPac]);
 		}
 	}
 	header('location: anuncios.php'); 
