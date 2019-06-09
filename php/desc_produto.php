@@ -1,4 +1,4 @@
-<?php include("functions.php"); ?>
+	<?php include("functions.php"); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -180,15 +180,27 @@
 						<button type="submit">Enviar comentário</button>
 					</form>
 					<hr class="hr">
+					<h2>Sugestões baseadas no anuncio atual</h1>
 			<?php 
+			$checks = [];
 				$dados = pdoExecReturn("SELECT SPC_PAC_ID FROM SERVICOS_PALAVRAS_CHAVE WHERE SPC_SRV_ID =? ",[$id_servico]);
 				foreach ($dados as $dado) {
-					$sugestao = pdoExec("SELECT * FROM SERVICOS INNER JOIN SERVICOS_PALAVRAS_CHAVE ON SERVICOS_PALAVRAS_CHAVE.SPC_SRV_ID = SERVICOS.SRV_ID INNER JOIN PALAVRAS_CHAVE ON PALAVRAS_CHAVE.PAC_ID = SERVICOS_PALAVRAS_CHAVE.SPC_PAC_ID WHERE SERVICOS_PALAVRAS_CHAVE.SPC_PAC_ID =? LIMIT 4",[$dado['SPC_PAC_ID']]);
+					$sugestao = pdoExec("SELECT * FROM SERVICOS INNER JOIN SERVICOS_PALAVRAS_CHAVE ON SERVICOS_PALAVRAS_CHAVE.SPC_SRV_ID = SERVICOS.SRV_ID INNER JOIN PALAVRAS_CHAVE ON PALAVRAS_CHAVE.PAC_ID = SERVICOS_PALAVRAS_CHAVE.SPC_PAC_ID WHERE SERVICOS_PALAVRAS_CHAVE.SPC_PAC_ID =? LIMIT 5",[$dado['SPC_PAC_ID']]);
 				?>
 					<div class="ads-sugestao">
 						<?php 
 						$resultado = $sugestao -> fetchAll(); 
 						foreach($resultado as $value):
+							if ($value['SRV_ID'] == $id_servico) {
+								continue;
+							}
+
+							if (checar($checks,$value['SRV_ID'])) {
+								continue;
+							}
+							
+
+
 							$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
 							$data3 = $data -> fetchAll();
 						foreach ($data3 as $val) {
@@ -199,17 +211,18 @@
 							}
 						?>
 							<br>
-						<div class="products">
+						<div class="products" style="width: 140px; height: 220px;">
 							<a href="desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
 								<img src="<?= $img;?>">
 								<p><?= $value['SRV_NOME'];?><br>
 								<?= "R$: ".$value['SRV_PRECO']; ?></p><br>
 							</a>
 						</div>
+					<?php array_push($checks, $value['SRV_ID']); ?>
 						<?php endforeach; ?> 
 					</div>
 						<?php } ?>
-						<?php endforeach; ?>
+						<?php endforeach;?>
 			</center>	
 						<div class="coment">
 							<form action="" method="POST">

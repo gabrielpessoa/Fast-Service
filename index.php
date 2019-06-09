@@ -68,7 +68,8 @@
 								$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
 								$data3 = $data -> fetchAll();
 								foreach ($data3 as $val) {
-									$img = $val['IMG_NOME']; 
+									$img = $val['IMG_NOME'];
+									$img = substr($img, 3); 
 								}
 								if($data->rowCount()<=0){
 									$img = "img/default.jpeg";
@@ -94,7 +95,8 @@
 						$data = pdoExec("SELECT * FROM IMAGENS WHERE IMG_SRV_ID=? LIMIT 1", [$value['SRV_ID']]);
 						$data3 = $data -> fetchAll();
 						foreach ($data3 as $val) {
-							$img = $val['IMG_NOME']; 
+							$img = $val['IMG_NOME'];
+							$img = substr($img, 3); 
 						}
 						if($data->rowCount()<=0){
 							$img = "img/default.jpeg";
