@@ -59,4 +59,4 @@ $ php -S localhost:8000
 
 ## Licença
 
-- Copyright 2019© <a href="https://github.com/ArthurViniciusE/pep2_n0xus" target="_blank">STUDIO</a>.
+- Copyright 2019© <a href="http://fastservices.epizy.com/" target="_blank">FASTSERVICE</a>.
