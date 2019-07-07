@@ -30,7 +30,10 @@ Siga as instruções abaixo para realizar a instalação e execução do projeto
 
 ## Instalação
 ### Clone
-- Clone o repositório do projeto no seu computador : ```https://github.com/gabrielpessoa/Fast-Service.git ```
+> Clone o repositório do projeto no seu computador :=
+```
+$ git clone https://github.com/gabrielpessoa/Fast-Service.git
+```
 
 ### Configuração
 > Exportar o banco de dados para seu computador encontrado na paasta Fast-Service/bd/ :
