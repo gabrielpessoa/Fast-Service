@@ -1,4 +1,4 @@
-<?php include("php/functions.php"); ?>
+<?php include("php/controller/functions_controller.php"); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,16 +17,16 @@
 			<a href="index.php"><img src="img/3.png"></a>
 			<ul>
 				<li><a href="index.php"><i class="fas fa-home"></i>Início</a></li>
-				<li><a href="php/ajuda.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
+				<li><a href="php/view/ajuda_view.php"><i class="fas fa-question-circle"></i>Ajuda</a></li>
 				<?php if (isLogged() ){ ?>
-					<li><a href="php/servico.php"><i class="fas fa-ad"></i>Anunciar</a></li>
+					<li><a href="php/view/servico_view.php"><i class="fas fa-ad"></i>Anunciar</a></li>
 					<li><a href="#account" rel="account"><i class="fas fa-user-alt"></i>Minha conta</a></li>
 					<?php if ($_SESSION['userTipo'] > 0): ?>
-						<li><a href="php/addCategoria.php"><i class="fas fa-plus-circle"></i>Criar Categorias</a></li>
+						<li><a href="php/view/add_categoria_view.php"><i class="fas fa-plus-circle"></i>Criar Categorias</a></li>
 					<?php endif ?>
-					<li><a href="php/logout.php" class="btn-login"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+					<li><a href="php/controller/logout_controller.php" class="btn-login"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
 				<?php } else{ ?>
-				<li><a href="php/register.php"><i class="fas fa-user-plus"></i>Registrar-se</a></li>
+				<li><a href="php/view/cadastro_usuario_view.php"><i class="fas fa-user-plus"></i>Registrar-se</a></li>
 				<li><a href="#janela" rel="modal" class="btn-login"><i class="fas fa-user-alt"></i>Login</a></li>
 			<?php } ?>
 			</ul>
@@ -36,17 +36,17 @@
 
 		<center>
 			<br><div class="busca">
-				<form action="php/search.php" method="GET">
+				<form action="php/view/search_view.php" method="GET">
 					<input type="text" name="search" placeholder="  Estou procurando por..." required>
 					<button type="submit"><i class="fas fa-search"></i></button>
 
 				</form>
 					<ul class="icons-busca">
-				    <li class="icons"> <a href=php/search.php?search=<?=md5(4);?> > <i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
-				    <li class="icons"> <a href=php/search.php?search=<?=md5(7);?> > <i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
-				    <li class="icons"> <a href=php/search.php?search=<?=md5(8);?> > <i class="fas fa-mortar-pestle"></i>Culinária </a></li>
-				    <li class="icons"> <a href=php/search.php?search=<?=md5(10);?> ><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
-				    <li class="icons"> <a href=php/search.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
+				    <li class="icons"> <a href=php/view/search_view.php?search=<?=md5(4);?> > <i class="fas fa-tshirt"></i>Moda e Beleza </a></li>
+				    <li class="icons"> <a href=php/view/search_view.php?search=<?=md5(7);?> > <i class="fas fa-volleyball-ball"></i>Esportes e Lazer </a></li>
+				    <li class="icons"> <a href=php/view/search_view.php?search=<?=md5(8);?> > <i class="fas fa-mortar-pestle"></i>Culinária </a></li>
+				    <li class="icons"> <a href=php/view/search_view.php?search=<?=md5(10);?> ><i class="fas fa-guitar"></i>Músicas e Hobbies </a></li>
+				    <li class="icons"> <a href=php/view/search_view.php?search=todos><i class="fas fa-th-list"></i>Todas as Categorias </a></li>
        				</ul>
 			</div><br>
 
@@ -76,7 +76,7 @@
 								}?>
 
 								<div class="products">
-									<a href="php/desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
+									<a href="php/view/desc_produto_view.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
 										<img src="<?= $img;?>"><br>
 										<p><?= $value['SRV_NOME'];?><br>
 										R$: <?=$value['SRV_PRECO']; ?></p><br>
@@ -104,7 +104,7 @@
 						?>
 					<br>
 					<div class="products">
-						<a href="php/desc_produto.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
+						<a href="php/view/desc_produto_view.php?desc=<?= md5($value['SRV_ID']);?>" id="<?=$value['SRV_ID'];?>">
 						<img src="<?= $img;?>">
 							<p><?= $value['SRV_NOME'];?><br>
 							<?= "R$: ".$value['SRV_PRECO']; ?></p><br>
@@ -130,7 +130,7 @@
 				<input type="password" name="password" id="password" placeholder="Digite aqui"><br>
 				<div class="alerts senha"></div>
 				<button type="submit" id="entrar">Entrar</button><br>
-				<a href="php/reset_password.php">Esqueceu sua senha?</a>
+				<a href="php/view/reset_password_view.php">Esqueceu sua senha?</a>
 			</form>
 		</center>
 	</div>
@@ -144,9 +144,9 @@
 			<a href="#" class="fechar">X</a>
 			<h3><i class="fas fa-user-alt"></i> Minha conta</h3>
 			<hr>
-			<p><a href="php/perfil.php" class="link"><i class="fas fa-user-circle"></i><br>Meu perfil</a></p><hr class="hr">
-			<p><a href="php/anuncios.php" class="link"><i class="fas fa-ad"></i><br>Meus anúncios</a></p><hr class="hr">
-			<p><a href="php/favoritos.php" class="link"><i class="fas fa-star"></i></i><br>Favoritos</a></p><hr class="hr">
+			<p><a href="php/view/perfil_view.php" class="link"><i class="fas fa-user-circle"></i><br>Meu perfil</a></p><hr class="hr">
+			<p><a href="php/view/anuncios_view.php" class="link"><i class="fas fa-ad"></i><br>Meus anúncios</a></p><hr class="hr">
+			<p><a href="php/view/favoritos_view.php" class="link"><i class="fas fa-star"></i></i><br>Favoritos</a></p><hr class="hr">
 			<p><a href="php/views.php" class="link"><i class="fas fa-eye"></i><br>Anúncios visitados</a></p>
 			<?php if (isLogged() && $_SESSION['userTipo'] == 2 ): ?>
 				<hr class="hr">
@@ -162,7 +162,7 @@
 			var user = $("input#user").val();
 			var pw = $("input#password").val();
 			$.ajax({
-				url: "php/login2.php",
+				url: "php/controller/login_controller.php",
 				type: "POST",
 				data: {username: user, password: pw},
 				success: function(retorno){

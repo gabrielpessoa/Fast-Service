@@ -22,11 +22,11 @@ $(function(){
 		var ids=pega_id.split(':');
 		var my_id=ids[0];
 		var user_i=ids[1];
-		console.log(user_id);
+		// console.log(user_id);
 		var userOnline=Number($('.users_online ul li').attr('id'));
 		$.ajax({
 			type: 'POST',
-			url: 'mensagens.php',
+			url: '../controller/mensagens_controller.php',
 			data: {conversacom: user_id},//user_id
 			datatype: 'json',
 			success: function (retorno){
@@ -34,11 +34,7 @@ $(function(){
 				if(son!=null){
 
 					son.forEach(function(o, index){
-				//console.log(o.janela_id);
-					// });
-						// console.log(retorno['id']);
-			// 	$.each(retorno, function(i, msg){
-
+		
 						if(my_id==o.id_de){
 							$('#janela_'+user_id+' .mensagens ul').append('<li id="'+o.id+'" class="eu"><p>'+o.mensagem+'</p></li>');	
 						}
@@ -113,7 +109,7 @@ $(function(){
 			var meu_id=Number(split[0]);
 			$.ajax({
 				type: 'POST',
-				url: 'add_mensagens.php',
+				url: '../controller/add_mensagens_controller.php',
 				data: {mensagem: texto, para: destino},
 				success: function(retorno){
 					if(retorno!='erro'){
@@ -127,6 +123,19 @@ $(function(){
 			});
 		}
 	});
+
+	$.ajax({
+		url: "../controller/mensagens_controller.php",
+		type: "POST",
+		data: "id do usuario",
+		success: function(retorno){
+			// atualizar o chat e dar scroll
+		}
+	});
+	// window.setInterval(function() {
+	// 	console.log("teste");
+	// }, 50);
+
 	$(".show_chat").click(function(){
 		var next=$(this).next();
 		next.animate({"height": "toggle"});

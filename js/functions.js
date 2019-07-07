@@ -57,7 +57,7 @@ $(document).ready(function() {
 	$('.star').on('click', function(){
 		var idArticle = $('.article').attr('data-id');//codigo do servico
 		var voto = $(this).attr('data-vote');//quantidade de votos
-		$.post('avaliacao.php', {votar: 'sim', codigo: idArticle, estrela: voto}, function(retorno){
+		$.post('../controller/avaliacao_controller.php', {votar: 'sim', codigo: idArticle, estrela: voto}, function(retorno){
 			avaliacao(retorno.average);
 			$('.votos span').html(retorno.votos);
 		}, 'jSON');
@@ -108,7 +108,7 @@ $(document).ready(function() {
 			$("p.subtype").fadeIn(500, 'linear');
 			$("select.subtype").fadeIn(500, 'linear');
 			$.ajax({
-				url: "subcategorias.php",
+				url: "subcategorias_view.php",
 				type: "POST",
 				data: {type: value},
 				success: function(retorno){
@@ -123,7 +123,7 @@ $(document).ready(function() {
 		var user = $("input#user").val();
 		var pw = $("input#password").val();
 		$.ajax({
-			url: "login2.php",
+			url: "../controller/login_controller.php",
 			type: "POST",
 			data: {username: user, password: pw},
 			success: function(retorno){
@@ -249,7 +249,7 @@ $(document).ready(function() {
     		var id =  $(".coment, input[type=hidden]").val();
     		var comentario = $("#edit").val();
 			$.ajax({
-				url: 'edita_comentario.php',
+				url: '../controller/edita_comentario_controller.php',
 				type: 'POST',
 				data: {id: id, comentario: comentario},
 				success: function(retorno){
@@ -263,12 +263,12 @@ $(document).ready(function() {
     $("div.products a").click(function() {
     	var id = $(this).attr('id');
     	$.ajax({
-    		url: '../php/add_visualizacao.php',
+    		url: '../controller/add_visualizacao_controller.php',
     		type: 'POST',
     		data: {id: id}
      	});
      	$.ajax({
-    		url: '../php/visitas.php',
+    		url: '../controller/add_visitas_controller.php',
     		type: 'POST',
     		data: {id: id}
      	});
@@ -305,7 +305,7 @@ $(document).ready(function() {
 	$("p.limpa a").click(function(e){
 		e.preventDefault();
 		$.ajax({
-			url: '../php/delete_visitas.php',
+			url: '../controller/delete_visitas_controller.php',
 			type: 'POST',
 			success: function(){
 				location.reload();
@@ -344,7 +344,7 @@ $(document).ready(function() {
 		var senha1 = $("input#senha1").val();
 		var senha2 = $("input#senha2").val();
 		$.ajax({
-			url: 'up_password_control.php',
+			url: '../controller/update_password_controller.php',
 			type: 'POST',
 			data: dados,
 			success: function(retorno){
@@ -373,7 +373,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		var email = $("input[type=email]").val();
 		$.ajax({
-			url: 'password_email.php',
+			url: '../controller/password_email_controller.php',
 			type: 'POST',
 			data: {email: email},
 			success: function(){
@@ -386,7 +386,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		var dados = $("form#register").serialize();
 		$.ajax({
-			url: 'register2.php',
+			url: '../controller/cadastro_usuario_controller.php',
 			type: 'POST',
 			data: dados,
 			success: function(retorno){
